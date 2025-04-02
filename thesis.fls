@@ -293,9 +293,9 @@ OUTPUT thesis-analisi.aux
 OUTPUT thesis-analisi.aux
 INPUT .\thesis-analisi.tex
 INPUT .\thesis-analisi.tex
-INPUT .\thesis.bbl
-INPUT .\thesis.bbl
 INPUT C:\Users\salva\AppData\Local\MiKTeX\luatex-cache\generic\fonts\otl\lmroman10-italic.luc
+INPUT .\thesis.bbl
+INPUT .\thesis.bbl
 INPUT .\thesis.aux
 INPUT .\thesis.aux
 INPUT .\thesis-analisi.aux

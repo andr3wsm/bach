@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex thesis"] 1743248039.48763 "thesis.aux" "thesis.bbl" "thesis" 1743248044.14177 0
+["bibtex thesis"] 1743344534.47326 "thesis.aux" "thesis.bbl" "thesis" 1743628187.76852 0
   "./plain_italian.bst" 1739116880 20656 b9f53fc1e71a9c29c62ec7586a3d5fef ""
-  "./thud.bib" 1743205778 588 6d93c570ae4b3babb0c8100923ace9e2 ""
-  "thesis-analisi.aux" 1743248042 1019 52e35ba7694ea9857a84b1dd0c29d47f "lualatex"
-  "thesis.aux" 1743248042 371 4465f2be73ed658cf8f19b9524ed697c "lualatex"
+  "./thud.bib" 1743284459 870 8914d4b8799a86a5d1c385b1b419faec ""
+  "thesis-analisi.aux" 1743628186 1865 978143ddf4f9dec7c4da02d6fcd9c40b "lualatex"
+  "thesis.aux" 1743628186 390 a28d66a9b04f6aea099aca82e579ed7e "lualatex"
   (generated)
   "thesis.bbl"
   "thesis.blg"
   (rewritten before read)
-["lualatex"] 1743248039.76956 "c:/Users/salva/Andrea/tex/tirocinio-tesi-ospedale/tesi/thesis.tex" "thesis.pdf" "thesis" 1743248044.14345 0
+["lualatex"] 1743628184.90198 "c:/Users/salva/Andrea/tex/tirocinio-tesi-ospedale/tesi/thesis.tex" "thesis.pdf" "thesis" 1743628187.7697 0
   "//?/c:/users/salva/appdata/local/programs/miktex/fonts/opentype/public/lm/lmmono10-regular.otf" 1256929440 64684 c6f5a48921f83c1a51d9384f785ddd5a ""
   "//?/c:/users/salva/appdata/local/programs/miktex/fonts/opentype/public/lm/lmroman10-bold.otf" 1256929440 111240 1d60e9def74b1102bb4defa7cb772ee3 ""
   "//?/c:/users/salva/appdata/local/programs/miktex/fonts/opentype/public/lm/lmroman10-italic.otf" 1256929440 118828 5d91d27a335c65bda4818de63abc25ce ""
@@ -176,15 +176,15 @@
   "C:/Users/salva/AppData/Roaming/MiKTeX/tex/generic/config/language.dat" 1736244203 2269 c2be9efecb8e53facf8213ae101f16af ""
   "banners/banner_uniud_italian.pdf" 1739116881 311097 43520a8d67752a5d14b2af2b86c05575 ""
   "book.thud.tex" 1739116880 8194 cc88fdb259aa89be92cf1f36cf80a0cc ""
-  "c:/Users/salva/Andrea/tex/tirocinio-tesi-ospedale/tesi/thesis.tex" 1743248036 4829 23526641fef4485cfc29d0de65346247 ""
-  "pdfa.xmpi" 1743248041 5042 d8304957a51b3e94276e8526b32fb324 "lualatex"
-  "thesis-analisi.aux" 1743248042 1019 52e35ba7694ea9857a84b1dd0c29d47f "lualatex"
-  "thesis-analisi.tex" 1743205099 2081 68d3665a4b7d6fd28eaf2e8225531796 ""
-  "thesis.aux" 1743248042 371 4465f2be73ed658cf8f19b9524ed697c "lualatex"
-  "thesis.bbl" 1743248039 472 da5648ca8b3d16c0cb316d17b7d7e3ca "bibtex thesis"
-  "thesis.out" 1743248042 487 e636cc5dd222912d130723836d2e7276 "lualatex"
-  "thesis.tex" 1743248036 4829 23526641fef4485cfc29d0de65346247 ""
-  "thesis.toc" 1743248042 248 7db7444c18c7a42619581cacb8d42daf "lualatex"
+  "c:/Users/salva/Andrea/tex/tirocinio-tesi-ospedale/tesi/thesis.tex" 1743285880 4884 163e992065a5b62c8a0593bc4f82171d ""
+  "pdfa.xmpi" 1743628186 5042 9e0e242cb49dc9bd985671c1a4fa2886 "lualatex"
+  "thesis-analisi.aux" 1743628186 1865 978143ddf4f9dec7c4da02d6fcd9c40b "lualatex"
+  "thesis-analisi.tex" 1743628184 12246 f95e39838b0d26297d5077f01b0eef88 ""
+  "thesis.aux" 1743628186 390 a28d66a9b04f6aea099aca82e579ed7e "lualatex"
+  "thesis.bbl" 1743344534 664 42c729d27618d4c119e350b900019437 "bibtex thesis"
+  "thesis.out" 1743628186 1359 c19e152dd70e99f23897bad534fe2831 "lualatex"
+  "thesis.tex" 1743285880 4884 163e992065a5b62c8a0593bc4f82171d ""
+  "thesis.toc" 1743628186 636 d44ad081401b78f6ef731bad40970078 "lualatex"
   "thud.cls" 1739116880 6747 34fd740a843e0f4c23172ea0cfac1b63 ""
   (generated)
   "pdfa.xmpi"
