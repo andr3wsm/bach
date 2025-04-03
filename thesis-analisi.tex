@@ -108,7 +108,56 @@ Si registrano anche eventuali esami svolti nel periodo precedente alla visita.
 \subsection{Tabella per il parto}
 
 Durante il ricovero ospedaliero per il periodo di travaglio e parto si registrano dati relativi sia al processo di espulsione (comprese tempistiche o complicazioni) sia parametri fisiologici della partoriente e dei nascituri.
+I valori delle colonne da \column{APGAR} a \column{Sesso neonato} sono riferite ai neonati: se il parto è gemellare sono presenti due (o eventualmente più) valori, separati da uno spazio, per ciascuna di queste colonne, mantenendo ovviamente lo stesso ordine.
 
 \begin{itemize}
-\item \column{Data}: 
+\item \column{Data}: data del parto (?) o del ricovero in ospedale.
+\item \column{PZ}: cognome e nome della paziente.
+\item \column{S.G.}: età (stato) gestazionale, espresso sempre come settimane+giorni.
+\item \column{Parità}: stringa di cifre che sintetizzano le gravidanze precedenti della paziente.
+Si considerano: il numero di figli nati a termine, il numero di figli nati pretermine, il numero di aborti (spontanei cossì come per interruzione volontaria di gravidanza), il numero totale di figli nati vivi; la stringa risultante è costituita di questi valori, nell'ordine riportato (ad esempio 1021, 0000), e quindi è costituita generalmente di 4 caratteri, ma occasionalmente può averne di più se la paziente ha avuto un numero notevole di gravidanze.
+\item \column{Travaglio}: indica il metodo di induzione del travaglio. Può avere i seguenti valori: indotto, spontaneo, senza travaglio. L'ultimo caso corrisponde a parti cesarei programmati.
+\item \column{Motivo induzione}: indica il motivo dell'induzione del travaglio come descrizione testuale.
+\item \column{Metodo induzione}: indica il metodo di induzione del travaglio. Solitamente corrisponde a una lista di abbreviazioni che rappresentano farmaci o metodi meccanici di induzione.
+\item \column{Parto}: indica il tipo di parto, con i seguenti valori possibili: spontaneo, cesareo, operativo.
+\item \column{Motivo parto operativo}: se il tipo di parto è operativo, riporta i motivi dell'attuazione, come descrizione testuale.
+\item \column{Se TC}: se il tipo di parto è cesareo, riporta se è stato programmato come tale, con i seguenti valori possibili: programmato, urgente.
+\item \column{Motivo TC}: se il tipo di parto è cesareo, riporta i motivi dell'attuazione, come descrizione testuale.
+\item \column{Episiotomia}: indica se è stata svolta l'episiotomia, con valori possibili Sì o No.
+\item \column{Motivo episiotomia}: se è sstata eseguita l'episiotomia, ne riporta il motivo come descrizione testuale.
+\item \column{Lacerazioni}: indica il grado di lacerazioni. I valori possibili sono i seguenti: 0 (equivalenti: No, vuoto), 1, 2, 3, 4, AL (altro) 
+\item \column{Tracheloraffia}: indica la presenza di lacerazioni nel collo dell'utero, con valori possibili Sì o No.
+\item \column{Perineo integro}: indica se il perineo è rimasto integro, con valori Sì o No.
+\item \column{Secondamento}: indica la modalità di espulsione della placenta nel processo del parto. I valori possibili sono i seguenti: attivo, strumentale, manuale, scovolamento.
+\item \column{Perdite}: indica la perdita ematica sofferta durante il parto, quantificata in mL.
+\item \column{Robson}: classificazione del parto con valori della scala di Robson.
+\item \column{Analgesia}: indica se è stata somministrato un analgesico, con valori Sì o No.
+\item \column{Tipo analgesia}: indica il tipo di analgesia somministrata. I valori possibili sono: spinale, epidurale (equivalente: peridurale), spinale e peridurale, calinox.
+\item \column{APGAR}: valore di \enquote{vitalità} del neonato su una scala di valori interi da 0 a 10. Viene misurato al 1° minuto dalla nascita, al 5° minuto e occasionalmente anche al 10° minuto (ad esempio, 7/7/8).
+\item \column{TIN}: indica se il neonato è stato sottoposto a terapia intensiva neonatale, con valori possibili Sì o No.
+\item \column{pH}, \column{BE}: risultati delle analisi eseguite sul sangue del cordone ombelicale, espressi come valori reali.
+\item \column{Sesso neonato}: indica il sesso attribuito al neonato, con valori possibili M o F.
+\end{itemize}
+
+\subsection{Rilevazione del cardiotocografo}
+
+Durante il travaglio viene usato il cardiotocografo, uno strumento che rileva il battito cardiaco del feto (o anche di più feti nel caso di parti gemellari) e l'entità delle contrazioni uterine \cite{Ayr18}.
+Questa apparecchiatura registra e salva i dati, in modo da poterli esportare in forma grafica o tabellare.
+In particolare consideriamo il file risultato dall'esportazione in forma di foglio di calcolo, in cui vengono indicati alcuni dati identificativi della paziente.
+
+\begin{itemize}
+\item \column{Nome}, \column{Cognome}: informazioni personali della paziente.
+\item \column{Num. progressivo}: identificativo progressivo, indicato come numero intero, attribuito dalla macchina alla registrazione.
+\item \column{Data e ora inizio tracciato}: timestamp del momento che la macchina assume come \enquote{0 secondi}.
+\end{itemize}
+
+I diversi sensori dello strumento sono sincronizzati e rilevano i rispettivi valori 4 volte al secondo.
+La tabella contiene quindi una riga per ogni rilevazione, ciascuna delle quali ha i seguenti campi.
+
+\begin{itemize}
+\item \column{Secondi}, \column{Decimi}: indicazione del momento di rilevazione, rispetto al tempo di inizio tracciato indicato all'inizio della tabella. Entrambi i valori sono interi, con \column{Decimi} che indica i centesimi~[\textit{sic}] di secondo (0, 25, 50, 75).
+\item \column{FCF}, \column{FCF (2)}, \column{FCF (3)}: indicano la frequenza cardiaca fetale, come valore intero, rilevata da ciascuno dei tre sensori di cui è dotato lo strumento. Anche se la gravidanza è singola, non è necessariamente il sensore 1 a rilevare il battito del feto. Un valore assente, sia per sensori non utilizzati sia per eventuali errori nella rilevazione, è indicato nella tabella con -1.
+Nel caso di parti gemellari non è possibile stabilire con precisione, eccetto rari casi, a quale neonato corrisponde ciascun tracciato.
+\item \column{TOCO}: misura la contrazione uterina, indicata come valore intero.
+\item \column{FCM}: misura la frequenza cardiaca materna, indicata sempre come valore intero.
 \end{itemize}
