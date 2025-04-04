@@ -31,9 +31,10 @@ I diversi momenti nel corso della gravidanza in cui vengono registrati dati rela
 Oltre agli esiti di queste visite si vorrebbero conservare informazioni su eventuali patologie delle pazienti, potendo contare sulla presenza di un ambulatorio specifico per le gravidanze \emph{a rischio} che monitora anche le terapie seguite.
 
 \section{Supporti software in uso}
+\label{usednow}
 
 Come presentato nella sezione \ref{problem} i medici lamentano la mancanza di un software, personalizzato e parallelo ai sistemi di refertazione \enquote{ufficiali} attualmente in uso, che favorisca la lettura dei dati ai fini di consultazione e analisi statistica sull'insieme di pazienti.
-In mancanza di uno strumento centralizzato adatto, nel corso degli ultimi anni (principalmente a partire dal 2023) il personale della Clinica ha registrato i dati di interesse attraverso altri strumenti, affiancati quindi ai referti, variabili sia nel livello di strutturazione dei dati sia nelle modalità di interazione.
+In assenza di uno strumento centralizzato adatto, nel corso degli ultimi anni (principalmente a partire dal 2023) il personale della Clinica ha registrato i dati di interesse attraverso altri strumenti, affiancati quindi ai referti, variabili sia nel livello di strutturazione dei dati sia nelle modalità di interazione.
 
 Le informazioni raccolte dalle visite vengono registrate principalmente in semplici fogli di calcolo tabellari, accessibili dai diversi calcolatori del reparto e compilati manualmente: elencheremo i diversi campi di queste tabelle con il relativo significato e i possibili valori che possono assumere.
 A questi si aggiunge un software più complesso e strutturato, ma giudicato non adatto alle esigenze del personale medico.
@@ -198,10 +199,37 @@ Il contenuto della base di dati, se esportato come tabella in formato CSV, arriv
 \item \column{Data Secondamento}: indica data e ora di espulsione della placenta.
 \item \column{Complicazioni}: descrizione testuale di eventuali complicazioni avvenute nel processo di travaglio e parto.
 \item \column{Indicazioni operativo}: dettagli sullo svolgimento del parto, se operativo.
-\item \column{Ind ?}: indicazione del motivo o dei motivi dell'induzione del travaglio. Sono presenti diverse colonne, ciascuna che indica una motivazione (al posto di \column{?}): \column{ipertensione preesistente}, \column{ipertensione gestazionale}, \column{proteinuria isolata}, \column{iugr}, \column{gdm}, \column{preeclampsia}, \column{macrosomia}, \column{protratta}, \column{pma}, \column{oligoamnios}, \column{poliidramnios}, \column{altro}, \column{pprom}, \column{prom}, \column{colestasi}, \column{mef}, \column{prodromi prolungati}. Per indicare che l'induzione è stata svolta per uno o più determinati motivi la colonna riporta la lettera Y, altrimenti è lasciata vuota.
+\item \column{Ind ?}: indicazione del motivo o dei motivi dell'induzione del travaglio. Sono presenti diverse colonne, ciascuna rappresentativa di una motivazione (al posto di \column{?}): \column{ipertensione preesistente}, \column{ipertensione gestazionale}, \column{proteinuria isolata}, \column{iugr}, \column{gdm}, \column{preeclampsia}, \column{macrosomia}, \column{protratta}, \column{pma}, \column{oligoamnios}, \column{poliidramnios}, \column{altro}, \column{pprom}, \column{prom}, \column{colestasi}, \column{mef}, \column{prodromi prolungati}. Per indicare che l'induzione è stata svolta per uno o più determinati motivi la colonna riporta la lettera Y, altrimenti è lasciata vuota.
 \item \column{Minuti induzione-inizio travaglio}: tempo trascorso tra l'induzione del travaglio e l'inizio del travaglio, indicato come valore intero.
 \item \column{Minuti induzione-parto}: tempo trascorso tra l'induzione del travaglio e l'espulsione, indicato come valore intero.à
 \item \column{Bishop}: indicatore relativo alla preparazione del collo dell'utero all'induzione del travaglio, riportato come valore intero su una scala da 0 a 16.
 \end{itemize}
+
+\subsection{Tabella per gravidanze a rischio}
+\label{pregnanciesatrisk}
+
+Un insieme più ristretto di pazienti viene seguito nel corso della gravidanza da un ambulatorio appossito, detto appunto \enquote{gravidanze a rischio}, in presenza di determinate patologie.
+
+\begin{itemize}
+\item \column{Nome}, \column{Cognome}, \column{DdN}: dati identificativi della paziente.
+\item \column{Patologie}: diverse colonne che riportano patologie, una per colonna, sofferte dalla paziente e che sono trattate o sorvegliate da questo ambulatorio.
+\item \column{Terapie seguite}: descrizione testuale delle terapie seguite. Può non essere indicata una terapia per tutte le patologie.
+\end{itemize}
+
+\section{Requisiti funzionali del sistema}
+\label{functionalrequirements}
+
+La richiesta avanzata dal personale medico è di un software integrato e centralizzato che permetta la visualizzazione, in prima analisi, e la manipolazione, in una fase successiva, dei dati relativi a gravidanze e parti, come esposto precedentente (Sezione \ref{problem}).
+
+Il sistema dovrà permettere di visualizzare, aggiungere, modificare ed eliminare le informazioni che attualmente sono contenute nei diversi supporti esposti nella Sezione \ref{usednow}.
+In sintesi, i dati riguardano dettagli personali della paziente e di sue eventuali patologie; dettagli della gravidanza, del suo decorso e delle visite svolte; informazioni su travaglio, parto e parametri fisiologici dei neonati; esiti dei vari esami eseguiti nel corso della gravidanza.
+
+La progettazione di un software personalizzato permette di valutare l'aggiunta di requisiti che prima potevano non essere stati considerati o non venivano realizzati per la mancanza di supporti adeguati.
+In particolare, oltre a quanto esposto nella Sezione \ref{usednow}, i medici vogliono poter memorizzare informazioni sui seguenti aspetti non trattati prima.
+\begin{enumerate}
+\item Visite ecografiche biometriche, le quali contengono  i seguenti indicatori (in forma di valori numerici): BPD, CC, AC, FL, PFS, PIAO, PIACM, stato della crescita del feto. Quest'ultimo campo ha come valori possibili: crescita regolare, FGR, SGA.
+\item Esiti di esami vari, eseguiti anche al di fuori delle principali visite elencate nella Sezione \ref{problem}, di una lista eventualmente espandibile su necessità del personale medico. Gli esami danno esiti in forma perlopiù di indici numerici, comprendenti ma non limitati a: HB, TSH, AST/ALT, glicemia, curva da carico di glucosio, sierologie varie, gruppo sanguigno, test di Coombs indiretto.
+\item Dettagli su problemi concomitanti, patologie e terapie seguite (anche al di fuori di quelle controllate nell'ambulatorio \enquote{gravidanze a rischio}) e altri aspetti come interventi, trasfusioni o allergie, da indicare in forma testuale o debolmente strutturata.
+\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%
