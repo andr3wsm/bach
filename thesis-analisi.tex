@@ -106,6 +106,7 @@ Si registrano anche eventuali esami svolti nel periodo precedente alla visita.
 \end{itemize}
 
 \subsection{Tabella per il parto}
+\label{delivery}
 
 Durante il ricovero ospedaliero per il periodo di travaglio e parto si registrano dati relativi sia al processo di espulsione (comprese tempistiche o complicazioni) sia parametri fisiologici della partoriente e dei nascituri.
 I valori delle colonne da \column{APGAR} a \column{Sesso neonato} sono riferite ai neonati: se il parto è gemellare sono presenti due (o eventualmente più) valori, separati da uno spazio, per ciascuna di queste colonne, mantenendo ovviamente lo stesso ordine.
@@ -114,7 +115,7 @@ I valori delle colonne da \column{APGAR} a \column{Sesso neonato} sono riferite 
 \item \column{Data}: data del parto (?) o del ricovero in ospedale.
 \item \column{PZ}: cognome e nome della paziente.
 \item \column{S.G.}: età (stato) gestazionale, espresso sempre come settimane+giorni.
-\item \column{Parità}: stringa di cifre che sintetizzano le gravidanze precedenti della paziente.
+\item \column{Parità}: stringa di cifre che sintetizzano le gravidanze della paziente che hanno preceduto quella corrente.
 Si considerano: il numero di figli nati a termine, il numero di figli nati pretermine, il numero di aborti (spontanei cossì come per interruzione volontaria di gravidanza), il numero totale di figli nati vivi; la stringa risultante è costituita di questi valori, nell'ordine riportato (ad esempio 1021, 0000), e quindi è costituita generalmente di 4 caratteri, ma occasionalmente può averne di più se la paziente ha avuto un numero notevole di gravidanze.
 \item \column{Travaglio}: indica il metodo di induzione del travaglio. Può avere i seguenti valori: indotto, spontaneo, senza travaglio. L'ultimo caso corrisponde a parti cesarei programmati.
 \item \column{Motivo induzione}: indica il motivo dell'induzione del travaglio come descrizione testuale.
@@ -140,6 +141,7 @@ Si considerano: il numero di figli nati a termine, il numero di figli nati prete
 \end{itemize}
 
 \subsection{Rilevazione del cardiotocografo}
+\label{cardiotocograph}
 
 Durante il travaglio viene usato il cardiotocografo, uno strumento che rileva il battito cardiaco del feto (o anche di più feti nel caso di parti gemellari) e l'entità delle contrazioni uterine \cite{Ayr18}.
 Questa apparecchiatura registra e salva i dati, in modo da poterli esportare in forma grafica o tabellare.
@@ -148,7 +150,7 @@ In particolare consideriamo il file risultato dall'esportazione in forma di fogl
 \begin{itemize}
 \item \column{Nome}, \column{Cognome}: informazioni personali della paziente.
 \item \column{Num. progressivo}: identificativo progressivo, indicato come numero intero, attribuito dalla macchina alla registrazione.
-\item \column{Data e ora inizio tracciato}: timestamp del momento che la macchina assume come \enquote{0 secondi}.
+\item \column{Data e ora inizio tracciato}: timestamp (in formato leggibile) del momento che la macchina assume come \enquote{0 secondi}.
 \end{itemize}
 
 I diversi sensori dello strumento sono sincronizzati e rilevano i rispettivi valori 4 volte al secondo.
@@ -161,3 +163,45 @@ Nel caso di parti gemellari non è possibile stabilire con precisione, eccetto r
 \item \column{TOCO}: misura la contrazione uterina, indicata come valore intero.
 \item \column{FCM}: misura la frequenza cardiaca materna, indicata sempre come valore intero.
 \end{itemize}
+
+\subsection{Gynbase}
+\label{gynbase}
+\newcommand{\Gynbase}{\emph{Gynbase}}
+
+Tra gli strumenti utilizzati dal personale medico del reparto figura il software \Gynbase{}, che si occupa di gestire i dati relativi alla gravidanza e al parto.
+\Gynbase{} è un sistema proprietario che opera su una base di dati relazionale accessibile attraverso un'interfaccia grafica dedicata.
+Tale programma è predisposto per contenere categorie di dati che non sono direttamente di interesse per la Clinica, per cui non sempre viene compilato quando i dati sono già presenti nelle tabelle esposte precedentemente (Sezioni \ref{firsttrimester}, \ref{secondtrimester}, \ref{delivery}).
+Il contenuto della base di dati, se esportato come tabella in formato CSV, arriva a comprendere circa 150 colonne; analizzeremo quindi gli attributi riportati come di interesse per il personale medico e che non si sovrappongono ad alti già esposti.
+
+\begin{itemize}
+\item \column{ID Paziente}: identificativo numerico progressivo attribuito dal sistema alla paziente.
+\item \column{ID Gravidanza}: identificativo numerico progressivo attribuito dal sistema alla gravidanza. Questo numero è unico per l'intera base di dati.
+\item \column{Cognome}, \column{Nome}, \column{Nata}: dati personali della paziente.
+\item \column{Altezza cm}: altezza della paziente, come valore intero in centrimetri.
+\item \column{Kg pre gravidanza}: peso della paziente, riportato da lei oppure misurato alla visita del primo trimestre.
+\item \column{BMI pre gravidanza}: indice di massa corporea calcolato a partire da peso e altezza all'inizio della gravidanza.
+\item \column{Età al concepimento}: indica l'età alla data stimata di concepimento, riportata come numero intero.
+\item \column{UM}: riporta la data dell'ultima mestruazione.
+\item \column{EPP}: riporta la data prevista del parto.
+\item \column{PIH}: indica\footnote{
+    I valori attesi della colonna \column{PIH}, così come delle seguenti \column{GDM}, \column{Tireopatia} e di altre colonne, sarebbero valori booleani del tipo Sì/No o 0/1. In realtà nel file CSV generato dal sistema viene riportato l'identificativo della paziente per significare \enquote{vero}/\enquote{sì} mentre invece è lasciato vuoto per significare \enquote{falso}/\enquote{no}. Il risultato è che i dati, in questo formato, non sono facilmente leggibili dall'utente.
+} se la paziente ha sofferto di ipertensione gestazionale (\emph{pregnancy-induced hypertension}).
+\item \column{GDM}: indica se la paziente ha sofferto di diabete gestazionale (\emph{gestational diabetes mellitus}).
+\item \column{Tireopatia}: indica se la paziente ha sofferto di tiropatia.
+\item \column{Data Espulsione}: indica data e ora\footnote{
+    Data e ora vengono indicate in formato \texttt{DD/MM/YYYY HH:MM}, oppure con valore \enquote{date missing} se assente.
+} del parto.
+\item \column{Data Fase Attiva}: indica data e ora dell'inizio della fase attiva.
+\item \column{Data Membrane}: indica data e ora della rottura delle membrane.
+\item \column{Data Completa}: indica data e ora del raggiungimento della dilatazione completa.
+\item \column{Data Fase Attiva 2}: indica data e ora dell'inizio della fase di contrazioni.
+\item \column{Data Secondamento}: indica data e ora di espulsione della placenta.
+\item \column{Complicazioni}: descrizione testuale di eventuali complicazioni avvenute nel processo di travaglio e parto.
+\item \column{Indicazioni operativo}: dettagli sullo svolgimento del parto, se operativo.
+\item \column{Ind ?}: indicazione del motivo o dei motivi dell'induzione del travaglio. Sono presenti diverse colonne, ciascuna che indica una motivazione (al posto di \column{?}): \column{ipertensione preesistente}, \column{ipertensione gestazionale}, \column{proteinuria isolata}, \column{iugr}, \column{gdm}, \column{preeclampsia}, \column{macrosomia}, \column{protratta}, \column{pma}, \column{oligoamnios}, \column{poliidramnios}, \column{altro}, \column{pprom}, \column{prom}, \column{colestasi}, \column{mef}, \column{prodromi prolungati}. Per indicare che l'induzione è stata svolta per uno o più determinati motivi la colonna riporta la lettera Y, altrimenti è lasciata vuota.
+\item \column{Minuti induzione-inizio travaglio}: tempo trascorso tra l'induzione del travaglio e l'inizio del travaglio, indicato come valore intero.
+\item \column{Minuti induzione-parto}: tempo trascorso tra l'induzione del travaglio e l'espulsione, indicato come valore intero.à
+\item \column{Bishop}: indicatore relativo alla preparazione del collo dell'utero all'induzione del travaglio, riportato come valore intero su una scala da 0 a 16.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%
