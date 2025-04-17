@@ -1,15 +1,6 @@
 %% Capitolo
 \chapter{Analisi del problema e dei requisiti}
 
-Lo sviluppo di una base di dati centralizzata per la Clinica Ostetrica dell'Ospedale di Udine si inserisce in un progetto di studio più ampio, mirato alla raccolta e all'analisi dei dati relativi a gravidanze e parti, al fine di migliorare l'assistenza fornita dal personale medico e la conseguente esperienza delle pazienti.
-Nell'ambito medico in generale la raccolta dati investe un ruolo cruciale: attraverso l'analisi e l'interpretazione dei risultati statistici è possibile in particolare:
-\begin{itemize}
-\item migliorare la cura del paziente individuando modelli, tendenze e fattori di rischio, consentendo così ai medici di predisporre strumenti di prevenzione adatti \cite{Cor20,McC16};
-\item promuovere la ricerca scientifica stimolando nuovi studi a partire dai risultati, potenzialmente inediti, estrapolati dalla mole di dati trattata dal personale ospedaliero;
-\item ottimizzare la gestione ospedaliera grazie alle informazioni su efficienza operativa, uso delle risorse e conseguenti risultati.
-\end{itemize}
-Più nello specifico, la Clinica Ostetrica presso l'Ospedale \enquote{Santa Maria della Misericordia} di Udine è interessata a sostituire i diversi strumenti software attualmente in uso con un sistema centralizzato, personalizzato secondo i requisiti dei medici e che migliori l'accesso ai dati sia per la sintesi dei dati della singola paziente sia per analisi statistiche di più ampia scala.
-
 \section{Presentazione del problema}
 \label{problem}
 
@@ -224,7 +215,8 @@ La richiesta avanzata dal personale medico è di un software integrato e central
 Il sistema dovrà permettere di visualizzare, aggiungere, modificare ed eliminare le informazioni che attualmente sono contenute nei diversi supporti esposti nella Sezione \ref{usednow}.
 In sintesi, i dati riguardano dettagli personali della paziente e di sue eventuali patologie; dettagli della gravidanza, del suo decorso e delle visite svolte; informazioni su travaglio, parto e parametri fisiologici dei neonati; esiti dei vari esami eseguiti nel corso della gravidanza.
 
-La progettazione di un software personalizzato permette di valutare l'aggiunta di requisiti che prima potevano non essere stati considerati o non venivano realizzati per la mancanza di supporti adeguati.
+Analizzando le tabelle attualmente in uso possiamo dedurre le informazioni di interesse che dovranno sicuramente essere rese accessibili dal sistema che realizziamo.
+Questo è anche il momento più indicato per valutare l'aggiunta di requisiti che prima potevano non essere stati considerati o non venivano realizzati per la mancanza di supporti adeguati.
 In particolare, oltre a quanto esposto nella Sezione \ref{usednow}, i medici vogliono poter memorizzare informazioni sui seguenti aspetti non trattati prima.
 \begin{enumerate}
 \item Visite ecografiche biometriche, le quali contengono  i seguenti indicatori (in forma di valori numerici): BPD, CC, AC, FL, PFS, PIAO, PIACM, stato della crescita del feto. Quest'ultimo campo ha come valori possibili: crescita regolare, FGR, SGA.
