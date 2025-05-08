@@ -3,5 +3,7 @@
 \section{Scelte di modellazione}
 
 L'analisi dei requisiti e dei supporti esistenti (Sezione \ref{usednow}) evidenzia come elemento centrale le gravidanze, i cui dati vengono registrati nel corso di diversi momenti.
+Le informazioni da legare alla paziente piuttosto che alla gravidanza sono essenzialmente quelle che la identificano personalmente.
+Si introduce un identificativo per la paziente che risulta essere effettivamente univoco, ovvero il codice fiscale, assumendo che tutte le pazienti trattate abbiano un codice fiscale assegnato; ciò semplifica la rappresentazione dell'identificativo personale, che nello schema logico verrà inserito in quasi tutte le tabelle, rispetto alla tripla composta da nome, cognome e data di nascita, e previene i possibili, seppur rarissimi, casi di corrispondenza di questi dati per persone diverse.
 
 \section{Schema E-R}

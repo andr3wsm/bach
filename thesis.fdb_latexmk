@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex thesis"] 1744910675.11546 "thesis.aux" "thesis.bbl" "thesis" 1744925222.24961 0
+["bibtex thesis"] 1746538605.92969 "thesis.aux" "thesis.bbl" "thesis" 1746546291.39242 0
   "./plain_italian.bst" 1739116880 20656 b9f53fc1e71a9c29c62ec7586a3d5fef ""
   "./thud.bib" 1744910488 1428 c6ae1c84f6a7453e637f19ce72e90555 ""
-  "thesis.aux" 1744925221 4795 6891f2c98782eb93db24f3d10003e1d1 "lualatex"
+  "thesis.aux" 1746546290 5063 f5ab8ba1a3a5d209b3dc92e020f07922 "lualatex"
   (generated)
   "thesis.bbl"
   "thesis.blg"
   (rewritten before read)
-["lualatex"] 1744925219.62947 "c:/Users/salva/Andrea/tex/tirocinio-tesi-ospedale/tesi/thesis.tex" "thesis.pdf" "thesis" 1744925222.25019 0
+["lualatex"] 1746546287.19842 "c:/Users/salva/Andrea/tex/tirocinio-tesi-ospedale/tesi/thesis.tex" "thesis.pdf" "thesis" 1746546291.39313 0
   "//?/c:/users/salva/appdata/local/programs/miktex/fonts/opentype/public/lm/lmmono10-regular.otf" 1256929440 64684 c6f5a48921f83c1a51d9384f785ddd5a ""
   "//?/c:/users/salva/appdata/local/programs/miktex/fonts/opentype/public/lm/lmmono9-regular.otf" 1256929440 63076 649b48710517d49fb67ce305ff6982d9 ""
   "//?/c:/users/salva/appdata/local/programs/miktex/fonts/opentype/public/lm/lmroman10-bold.otf" 1256929440 111240 1d60e9def74b1102bb4defa7cb772ee3 ""
@@ -20,7 +20,7 @@
   "//?/c:/users/salva/appdata/local/programs/miktex/fonts/opentype/public/lm/lmroman8-regular.otf" 1256929440 111948 007834bc78aaaf72e203a5b19ed3b49a ""
   "//?/c:/users/salva/appdata/local/programs/miktex/fonts/opentype/public/lm/lmroman9-regular.otf" 1256929440 112680 58aba3776a198b7a968d5ef9fa96ffb1 ""
   "//?/c:/users/salva/appdata/local/programs/miktex/fonts/opentype/public/lm/lmromancaps10-regular.otf" 1256929440 108740 23eb2cc190a2848c3b3be00e44d6e3ff ""
-  "C:/Users/salva/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1741337524 83772 d8ac154ca97738afefb4f2c3ab6a363f ""
+  "C:/Users/salva/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1746030045 120144 1897fc0281d252df91cfe7dfc81e1ddf ""
   "C:/Users/salva/AppData/Local/MiKTeX/luatex-cache/generic/fonts/otl/lmmono10-regular.luc" 1739117029 81851 823e87c32a8b2f0d678c8ed889e7042c ""
   "C:/Users/salva/AppData/Local/MiKTeX/luatex-cache/generic/fonts/otl/lmmono9-regular.luc" 1743794910 81889 17d6f05df2bba92619937bb6c18e613a ""
   "C:/Users/salva/AppData/Local/MiKTeX/luatex-cache/generic/fonts/otl/lmroman10-bold.luc" 1739117030 128424 7ed355a2174aa1b91b53e5f6e33ec1db ""
@@ -189,17 +189,17 @@
   "C:/Users/salva/AppData/Roaming/MiKTeX/tex/generic/config/language.dat" 1736244203 2269 c2be9efecb8e53facf8213ae101f16af ""
   "banners/banner_uniud_italian.pdf" 1739116881 311097 43520a8d67752a5d14b2af2b86c05575 ""
   "book.thud.tex" 1739116880 8194 cc88fdb259aa89be92cf1f36cf80a0cc ""
-  "c:/Users/salva/Andrea/tex/tirocinio-tesi-ospedale/tesi/thesis.tex" 1744909864 5028 1acbc286493b26c00dd164e6140c47c9 ""
-  "pdfa.xmpi" 1744925220 5042 59146f60727d907556403e3edb2d5fda "lualatex"
-  "thesis-analisi.tex" 1744923727 24615 fec91abbc4d390dfb07e7e1b6add043a ""
-  "thesis-concettuale.tex" 1744925218 279 f50451d22747786a89193323c4c90d64 ""
-  "thesis-intro.tex" 1744911681 4285 3270d0dd36abfe5da00d0e0afa8ba4eb ""
-  "thesis-next.tex" 1744905755 273 130e9a2a91c98d2b3529e04371fe3a89 ""
-  "thesis.aux" 1744925221 4795 6891f2c98782eb93db24f3d10003e1d1 "lualatex"
-  "thesis.bbl" 1744910675 1058 5440c1f7a7348e83fceedd5d77a86615 "bibtex thesis"
-  "thesis.out" 1744925221 4463 9de746a133ede0af973ecfafd549becc "lualatex"
-  "thesis.tex" 1744909864 5028 1acbc286493b26c00dd164e6140c47c9 ""
-  "thesis.toc" 1744925221 2202 649c4b9db6e8343dec80548756d60eb1 "lualatex"
+  "c:/Users/salva/Andrea/tex/tirocinio-tesi-ospedale/tesi/thesis.tex" 1746536695 5032 ed58f220bb29bce2d604210fb02aa28e ""
+  "pdfa.xmpi" 1746546289 5042 b52b30ed3ea2bc8d0f09cf1118467696 "lualatex"
+  "thesis-analisi.tex" 1746546286 25826 2a0b26ddd73b7a9693888a16d80e8946 ""
+  "thesis-concettuale.tex" 1746541396 908 fe02ec00a504e3f223c727951cd4ecc6 ""
+  "thesis-intro.tex" 1746533239 4386 40e6ae675033f5d5c6def286fa1740d9 ""
+  "thesis-next.tex" 1746536541 309 034520035b6297106801831765f3ce17 ""
+  "thesis.aux" 1746546290 5063 f5ab8ba1a3a5d209b3dc92e020f07922 "lualatex"
+  "thesis.bbl" 1746538606 1058 5440c1f7a7348e83fceedd5d77a86615 "bibtex thesis"
+  "thesis.out" 1746546290 4914 19dad158198db3ee76d96a1555888adc "lualatex"
+  "thesis.tex" 1746536695 5032 ed58f220bb29bce2d604210fb02aa28e ""
+  "thesis.toc" 1746546290 2388 cdc7e4993c5f2070b3bc40cf85ebf534 "lualatex"
   "thud.cls" 1739116880 6747 34fd740a843e0f4c23172ea0cfac1b63 ""
   (generated)
   "pdfa.xmpi"

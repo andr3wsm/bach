@@ -53,9 +53,9 @@ In alcuni casi il rischio viene indicato in modo più preciso come rapporto 1:X,
 La scelta di indicare il rischio con una lettera, con l'intera parola o come rapporto dipende dall'operatore che compila la tabella.
 \item \column{Morfologia fetale}: indica se sono presenti anomalie nella morfologia fetale, con valori 0/1.
 \item \column{Anomalie segnalate}: se il campo precedente ha valore 1, indica le anomalie morfologiche riscontrate come descrizione testuale.
-\item \column{NT}: esito dell'esame della translucenza nucale, indica lo spessore della plica nucale in millimetri espresso come numero reale.
+\item \column{NT}: esito dell'esame della translucenza nucale, indica lo spessore della plica nucale in millimetri espresso come numero reale. Il risultato può essere accompagnato da una descrizione testuale.
 \item \column{Esito genetica}: risultati di test genetici, eseguiti opzionalmente, successivamente alla visita. I risultati sono molto variabili e indicati come descrizione testuale.
-\item \column{Premorfo indicata?}: riporta, se è stata effettuata, l'esito dell'eventuale ecografia premorfologica.
+\item \column{Premorfo indicata?}: inidca se viene consigliata un'ecografia premorfologica, con valori 0/1 ed eventualmente la motivazione nel caso 1.
 \item \column{NIPT}: riporta se è stato effettuato il test prenatale non-invasivo (\emph{Noninvasive Prenatal Testing}).
 \item \column{esito NIPT}: esito dell'esame NIPT, riportato come descrizione testuale.
 \item \column{BS/BSOB}: indice morfologico misurato sulle dimensioni del tronco encefalico (BS) e della distanza dall'osso occipitale (BSOB), indicato come valore reale.
@@ -69,7 +69,7 @@ La scelta di indicare il rischio con una lettera, con l'intera parola o come rap
 I campi \column{Spontanea} e \column{PMA} sono mutuamente esclusivi; gli altri campi, da \column{IUI} a \column{Ovodonazione}, sono compilati solo nel caso di procreazione medicalmente assistita.
 \item \column{Peso}, \column{Altezza}, \column{BMI}: parametri fisici della paziente alla visita.
 \item \column{Fumo}: indica se la paziente ha fumato nel periodo precedente alla visita, con valori 0/1.
-\item \column{Diabete pregestazionale}: indica se la paziente soffre di diabete non dovuto alla gravidanza.
+\item \column{Diabete pregestazionale}: indica se la paziente soffre di diabete pregestazionale (precedente o non dovuto alla gravidanza).
 \item \column{Malattie autoimmuni}: indica, se ne soffre, le malattie autoimmuni della paziente, elencate in forma testuale.
 \item \column{Pregressa PE}: indica se ha sofferto di preeclampsia (PE) in gravidanze precedenti.
 \item \column{PE}, \column{IUGR}, \column{Eseguita ASA}, \column{EG al parto}: attributi predisposti per la compilazione alla conclusione del percorso di gravidanza, dato che si riferiscono a dati registrati alla fine della gravidanza o al momento del parto. In realtà questi campi normalmente non vengono compilati e le informazioni si possono reperire nella tabella che contiene i dati del parto.
@@ -104,12 +104,12 @@ Durante il ricovero ospedaliero per il periodo di travaglio e parto si registran
 I valori delle colonne da \column{APGAR} a \column{Sesso neonato} sono riferite ai neonati: se il parto è gemellare sono presenti due (o eventualmente più) valori, separati da uno spazio, per ciascuna di queste colonne, mantenendo ovviamente lo stesso ordine.
 
 \begin{itemize}
-\item \column{Data}: data del parto (?) o del ricovero in ospedale.
+\item \column{Data}: data del parto.
 \item \column{PZ}: cognome e nome della paziente.
 \item \column{S.G.}: età (stato) gestazionale, espresso sempre come settimane+giorni.
 \item \column{Parità}: stringa di cifre che sintetizzano le gravidanze della paziente che hanno preceduto quella corrente.
 Si considerano: il numero di figli nati a termine, il numero di figli nati pretermine, il numero di aborti (spontanei cossì come per interruzione volontaria di gravidanza), il numero totale di figli nati vivi; la stringa risultante è costituita di questi valori, nell'ordine riportato (ad esempio 1021, 0000), e quindi è costituita generalmente di 4 caratteri, ma occasionalmente può averne di più se la paziente ha avuto un numero notevole di gravidanze.
-\item \column{Travaglio}: indica il metodo di induzione del travaglio. Può avere i seguenti valori: indotto, spontaneo, senza travaglio. L'ultimo caso corrisponde a parti cesarei programmati.
+\item \column{Travaglio}: indica il metodo di induzione del travaglio. Può avere i seguenti valori: indotto, spontaneo, pilotato, senza travaglio. L'ultimo caso corrisponde a parti cesarei programmati.
 \item \column{Motivo induzione}: indica il motivo dell'induzione del travaglio come descrizione testuale.
 \item \column{Metodo induzione}: indica il metodo di induzione del travaglio. Solitamente corrisponde a una lista di abbreviazioni che rappresentano farmaci o metodi meccanici di induzione.
 \item \column{Parto}: indica il tipo di parto, con i seguenti valori possibili: spontaneo, cesareo, operativo.
@@ -207,6 +207,14 @@ Un insieme più ristretto di pazienti viene seguito nel corso della gravidanza d
 \item \column{Terapie seguite}: descrizione testuale delle terapie seguite. Può non essere indicata una terapia per tutte le patologie.
 \end{itemize}
 
+\section{Problemi riscontrati con i sistemi attuali}
+
+L'insieme di tabelle e fogli di calcolo utilizzato attualmente dai medici del reparto è essenzialmente creato su misura, ovvero sono pensati per contenere le informazioni di loro interesse perché essi stessi ne hanno definito lo schema.
+Nonostante ciò, questi strumenti sono molto più semplici di una base di dati ben strutturata e questo ne evidenzia gli aspetti negativi.
+
+L'uso di tabelle, rispetto al contenuto testuale dei referti, permette di organizzare almeno visivamente l'insieme di informazioni che si vogliono conservare per ciascuna paziente, ma non vengono imposti vincoli di correttezza o di coerenza dei dati effettivamente inseriti.
+Le operazioni di accesso ai dati (a partire dai dati identificativi della paziente) sono veloci se si considera una singola visita ma se si vuole analizzare l'intero periodo della gravidanza è necessario leggere contemporaneamente più tabelle; sotto questo aspetto l'interfaccia grafica fornita dai diversi software per visualizzare fogli di calcolo non è ottimale per tali scopi.
+
 \section{Requisiti funzionali del sistema}
 \label{functionalrequirements}
 
@@ -219,7 +227,7 @@ Analizzando le tabelle attualmente in uso possiamo dedurre le informazioni di in
 Questo è anche il momento più indicato per valutare l'aggiunta di requisiti che prima potevano non essere stati considerati o non venivano realizzati per la mancanza di supporti adeguati.
 In particolare, oltre a quanto esposto nella Sezione \ref{usednow}, i medici vogliono poter memorizzare informazioni sui seguenti aspetti non trattati prima.
 \begin{enumerate}
-\item Visite ecografiche biometriche, le quali contengono  i seguenti indicatori (in forma di valori numerici): BPD, CC, AC, FL, PFS, PIAO, PIACM, stato della crescita del feto. Quest'ultimo campo ha come valori possibili: crescita regolare, FGR, SGA.
+\item Visite ecografiche biometriche, le quali contengono  i seguenti indicatori (in forma di valori numerici): BPD, CC, AC, FL, PFS, PIAO, PIACM, stato della crescita del feto. Quest'ultimo dato ha come valori possibili: crescita regolare, FGR, SGA.
 \item Esiti di esami vari, eseguiti anche al di fuori delle principali visite elencate nella Sezione \ref{problem}, di una lista eventualmente espandibile su necessità del personale medico. Gli esami danno esiti in forma perlopiù di indici numerici, comprendenti ma non limitati a: HB, TSH, AST/ALT, glicemia, curva da carico di glucosio, sierologie varie, gruppo sanguigno, test di Coombs indiretto.
 \item Dettagli su problemi concomitanti, patologie e terapie seguite (anche al di fuori di quelle controllate nell'ambulatorio \enquote{gravidanze a rischio}) e altri aspetti come interventi, trasfusioni o allergie, da indicare in forma testuale o debolmente strutturata.
 \end{enumerate}
