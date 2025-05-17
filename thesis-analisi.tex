@@ -1,7 +1,7 @@
 %% Capitolo
-\chapter{Analisi del problema e dei requisiti}
+\chapter{Analisi del dominio e dei requisiti}
 
-\section{Presentazione del problema}
+\section{Stato di fatto}
 \label{problem}
 
 Il personale medico utilizza sistemi informatici specifici, integrati e uniformati a livello di azienda sanitaria o di sistema sanitario regionale, per compilare e conservare referti di visite ed esami vari; ciò permette il funzionamento dei fascicoli sanitari digitalizzati attualmente in uso.
@@ -21,7 +21,7 @@ I diversi momenti nel corso della gravidanza in cui vengono registrati dati rela
 
 Oltre agli esiti di queste visite si vorrebbero conservare informazioni su eventuali patologie delle pazienti, potendo contare sulla presenza di un ambulatorio specifico per le gravidanze \emph{a rischio} che monitora anche le terapie seguite.
 
-\section{Supporti software in uso}
+\section{Tecnologie e collezioni di dati in uso}
 \label{usednow}
 
 Come presentato nella sezione \ref{problem} i medici lamentano la mancanza di un software, personalizzato e parallelo ai sistemi di refertazione \enquote{ufficiali} attualmente in uso, che favorisca la lettura dei dati ai fini di consultazione e analisi statistica sull'insieme di pazienti.
@@ -207,7 +207,7 @@ Un insieme più ristretto di pazienti viene seguito nel corso della gravidanza d
 \item \column{Terapie seguite}: descrizione testuale delle terapie seguite. Può non essere indicata una terapia per tutte le patologie.
 \end{itemize}
 
-\section{Problemi riscontrati con i sistemi attuali}
+\section{Problemi riscontrati con le soluzioni attuali}
 
 L'insieme di tabelle e fogli di calcolo utilizzato attualmente dai medici del reparto è essenzialmente creato su misura, ovvero sono pensati per contenere le informazioni di loro interesse perché essi stessi ne hanno definito lo schema.
 Nonostante ciò, questi strumenti sono molto più semplici di una base di dati ben strutturata e questo ne evidenzia gli aspetti negativi.
@@ -215,7 +215,7 @@ Nonostante ciò, questi strumenti sono molto più semplici di una base di dati b
 L'uso di tabelle, rispetto al contenuto testuale dei referti, permette di organizzare almeno visivamente l'insieme di informazioni che si vogliono conservare per ciascuna paziente, ma non vengono imposti vincoli di correttezza o di coerenza dei dati effettivamente inseriti.
 Le operazioni di accesso ai dati (a partire dai dati identificativi della paziente) sono veloci se si considera una singola visita ma se si vuole analizzare l'intero periodo della gravidanza è necessario leggere contemporaneamente più tabelle; sotto questo aspetto l'interfaccia grafica fornita dai diversi software per visualizzare fogli di calcolo non è ottimale per tali scopi.
 
-\section{Requisiti funzionali del sistema}
+\section{Requisiti funzionali del nuovo sistema}
 \label{functionalrequirements}
 
 La richiesta avanzata dal personale medico è di un software integrato e centralizzato che permetta la visualizzazione, in prima analisi, e la manipolazione, in una fase successiva, dei dati relativi a gravidanze e parti, come esposto precedentente (Sezione \ref{problem}).
@@ -233,3 +233,5 @@ In particolare, oltre a quanto esposto nella Sezione \ref{usednow}, i medici vog
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%
+
+% aggiungere: motivazioni dell'uso di DB relazionale
