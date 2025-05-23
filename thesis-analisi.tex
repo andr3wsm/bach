@@ -227,11 +227,31 @@ Analizzando le tabelle attualmente in uso possiamo dedurre le informazioni di in
 Questo è anche il momento più indicato per valutare l'aggiunta di requisiti che prima potevano non essere stati considerati o non venivano realizzati per la mancanza di supporti adeguati.
 In particolare, oltre a quanto esposto nella Sezione \ref{usednow}, i medici vogliono poter memorizzare informazioni sui seguenti aspetti non trattati prima.
 \begin{enumerate}
-\item Visite ecografiche biometriche, le quali contengono  i seguenti indicatori (in forma di valori numerici): BPD, CC, AC, FL, PFS, PIAO, PIACM, stato della crescita del feto. Quest'ultimo dato ha come valori possibili: crescita regolare, FGR, SGA.
+\item Dati relativi ai neonati, in particolare peso, altezza e circonferenza cranica, misurati alla nascita.
+\item Visite ecografiche biometriche. Possono essere svolte più visite biometriche nel corso della gravidanza (tendenzialmente 1 o 2) e si raccolgono dati relativi ai seguenti indicatori:
+    \begin{itemize}
+    \item BPD (diametro biparietale);
+    \item CC (circonferenza cranica);
+    \item AC (circonferenza addominale);
+    \item FL (lunghezza del femore);
+    \item EFW (peso fetale stimato);
+    \item PIAO ?;
+    \item PIACM ?;
+    \item stato della crescita del feto (crescita regolare, FGR oppure SGA).
+    \end{itemize}
 \item Esiti di esami vari, eseguiti anche al di fuori delle principali visite elencate nella Sezione \ref{problem}, di una lista eventualmente espandibile su necessità del personale medico. Gli esami danno esiti in forma perlopiù di indici numerici, comprendenti ma non limitati a: HB, TSH, AST/ALT, glicemia, curva da carico di glucosio, sierologie varie, gruppo sanguigno, test di Coombs indiretto.
 \item Dettagli su problemi concomitanti, patologie e terapie seguite (anche al di fuori di quelle controllate nell'ambulatorio \enquote{gravidanze a rischio}) e altri aspetti come interventi, trasfusioni o allergie, da indicare in forma testuale o debolmente strutturata.
 \end{enumerate}
 
-%%%%%%%%%%%%%%%%%%
+\section{Scelta di una base di dati di tipo relazionale}
 
-% aggiungere: motivazioni dell'uso di DB relazionale
+% completare
+
+Considerando i requisiti esposti nella sezione \ref{functionalrequirements}, proponiamo l'utilizzo di una base di dati basata su un modello relazionale.
+Nel modello relazionale \cite{Cod70} i dati vengono strutturati attraverso relazioni (o equivalentemente, tabelle), ciascuna composta di attributi (colonne) e istanziata come insieme di tuple (righe o record).
+Una base di dati relazionale si può interrogare con un linguaggio formale basato sulla logica del prim'ordine e dipendente solo dalla struttura logica del sistema, risultando quindi più intuitivo nell'utilizzo e compatibile con linguaggi di programmazione e ambienti software complessi.
+
+Gli strumenti software che operano su basi di dati relazionali (RDBMS) permettono di definire vincoli di integrità che contribuiscono al mantenimento della coerenza dei dati, all'assenza di ambiguità e all'efficienza delle interazioni con il sistema.
+Il linguaggio SQL, il più diffuso tra i linguaggi di interrogazione per basi di dati relazionali, è supportato da tutti i principali linguaggi di programmazione e ambienti di sviluppo, prestandosi così a integrarsi facilmente in applicazioni complesse e che permettono, ad esempio, l'interazione attraverso un'interfaccia grafica dedicata.
+
+La modellazione del dominio in cui operiamo viene fatta prima a livello concettuale definendo uno schema nel modello \enquote{Entità-Relazione} e successivamente traducendolo in uno schema logico nel modello relazionale.

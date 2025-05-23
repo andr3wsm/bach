@@ -17,10 +17,7 @@ I referti sono costituiti di solo testo, oltre a mancare di una struttura logica
 Questo sistema parallelo, costruito progressivamente secondo le esigenze specifiche dei suoi utenti, è in uso da circa x anni.
 I medici hanno evidenziato delle problematiche nel suo utilizzo, relative principalmente alla velocità nell'acceso alle informazioni e all'insorgenza di ambiguità legate alla compilazione esclusivamente manuale e da parte di persone diverse.
 
-Al fine di fornire uno strumento informatico che sia più funzionale, accessibile e coerente proponiamo lo sviluppo e l'implementazione di una base di dati di tipo relazionale.
-Nel modello relazionale \cite{Cod70} i dati vengono strutturati attraverso relazioni (o equivalentemente, tabelle), ciascuna composta di attributi (colonne) e istanziata come insieme di tuple (righe o record).
-Una base di dati relazionale si può interrogare con un linguaggio formale basato sulla logica del prim'ordine e dipendente solo dalla struttura logica del sistema, risultando quindi più intuitivo nell'utilizzo e compatibile con linguaggi di programmazione e ambienti software complessi.
-Gli strumenti software che operano su basi di dati relazionali (RDBMS) permettono di definire vincoli di integrità che contribuiscono al mantenimento della coerenza dei dati, all'assenza di ambiguità e all'efficienza delle interazioni con il sistema.
+Al fine di fornire uno strumento informatico che sia più funzionale, accessibile e coerente proponiamo lo sviluppo e l'implementazione di una base di dati di tipo relazionale che sia modellata sulle esigenze specifiche del contesto in cui verrà utilizzata.
 
 \section{Realizzazione del progetto}
 
@@ -28,7 +25,7 @@ Il processo comprende una prima fase di analisi dei requisiti, volta a individua
 La correttezza dello schema concettuale ottenuto a questo stadio è cruciale perché la risoluzione di eventuali errori nella fase di acquisizione dei requisiti richiede una quantità molto più elevata di tempo e risorse rispetto a quelli introdotti successivamente, ad esempio nell'implementazione.
 
 A partire dal modello concettuale del dominio costruiamo uno schema logico relazionale che permette la definizione di operazioni di base sui dati, come interrogazioni e inserimenti.
-L'ultima fase consiste nell'implementazione con software specifici (nel nostro caso, PostgreSQL?) che permettono l'interazione attraverso il linguaggio SQL.
-Mostreremo quindi un insieme di analisi di dati ottenibili grazie a interrogazioni sulla base di dati.
+L'ultima fase consiste nell'implementazione con software specifici che permettono l'interazione attraverso il linguaggio SQL.
+Mostreremo quindi un insieme di analisi di dati ottenibili grazie a interrogazioni sulla base di dati, per evidenziare in particolar modo le azioni rese possibili dal nuovo sistema che non erano possibili o praticabili con gli strumenti precedenti.
 
 % completare con anticipazione delle conclusioni
