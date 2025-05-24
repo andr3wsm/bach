@@ -24,7 +24,7 @@ Oltre agli esiti di queste visite si vorrebbero conservare informazioni su event
 \section{Tecnologie e collezioni di dati in uso}
 \label{usednow}
 
-Come presentato nella sezione \ref{problem} i medici lamentano la mancanza di un software, personalizzato e parallelo ai sistemi di refertazione \enquote{ufficiali} attualmente in uso, che favorisca la lettura dei dati ai fini di consultazione e analisi statistica sull'insieme di pazienti.
+Come presentato nella Sezione \ref{problem} i medici lamentano la mancanza di un software, personalizzato e parallelo ai sistemi di refertazione \enquote{ufficiali} attualmente in uso, che favorisca la lettura dei dati ai fini di consultazione e analisi statistica sull'insieme di pazienti.
 In assenza di uno strumento centralizzato adatto, nel corso degli ultimi anni (principalmente a partire dal 2023) il personale della Clinica ha registrato i dati di interesse attraverso altri strumenti, affiancati quindi ai referti, variabili sia nel livello di strutturazione dei dati sia nelle modalità di interazione.
 
 Le informazioni raccolte dalle visite vengono registrate principalmente in semplici fogli di calcolo tabellari, accessibili dai diversi calcolatori del reparto e compilati manualmente: elencheremo i diversi campi di queste tabelle con il relativo significato e i possibili valori che possono assumere.
@@ -151,7 +151,7 @@ La tabella contiene quindi una riga per ogni rilevazione, ciascuna delle quali h
 \begin{itemize}
 \item \column{Secondi}, \column{Decimi}: indicazione del momento di rilevazione, rispetto al tempo di inizio tracciato indicato all'inizio della tabella. Entrambi i valori sono interi, con \column{Decimi} che indica i centesimi~[\textit{sic}] di secondo (0, 25, 50, 75).
 \item \column{FCF}, \column{FCF (2)}, \column{FCF (3)}: indicano la frequenza cardiaca fetale, come valore intero, rilevata da ciascuno dei tre sensori di cui è dotato lo strumento. Anche se la gravidanza è singola, non è necessariamente il sensore 1 a rilevare il battito del feto. Un valore assente, sia per sensori non utilizzati sia per eventuali errori nella rilevazione, è indicato nella tabella con -1.
-Nel caso di parti gemellari non è possibile stabilire con precisione, eccetto rari casi, a quale neonato corrisponde ciascun tracciato.
+Nel caso di parti gemellari è comunque possibile stabilire a quale neonato corrisponde ciascun tracciato.
 \item \column{TOCO}: misura la contrazione uterina, indicata come valore intero.
 \item \column{FCM}: misura la frequenza cardiaca materna, indicata sempre come valore intero.
 \end{itemize}
@@ -245,13 +245,38 @@ In particolare, oltre a quanto esposto nella Sezione \ref{usednow}, i medici vog
 
 \section{Scelta di una base di dati di tipo relazionale}
 
-% completare
+\subsection{Modello relazionale}
 
-Considerando i requisiti esposti nella sezione \ref{functionalrequirements}, proponiamo l'utilizzo di una base di dati basata su un modello relazionale.
 Nel modello relazionale \cite{Cod70} i dati vengono strutturati attraverso relazioni (o equivalentemente, tabelle), ciascuna composta di attributi (colonne) e istanziata come insieme di tuple (righe o record).
-Una base di dati relazionale si può interrogare con un linguaggio formale basato sulla logica del prim'ordine e dipendente solo dalla struttura logica del sistema, risultando quindi più intuitivo nell'utilizzo e compatibile con linguaggi di programmazione e ambienti software complessi.
-
-Gli strumenti software che operano su basi di dati relazionali (RDBMS) permettono di definire vincoli di integrità che contribuiscono al mantenimento della coerenza dei dati, all'assenza di ambiguità e all'efficienza delle interazioni con il sistema.
-Il linguaggio SQL, il più diffuso tra i linguaggi di interrogazione per basi di dati relazionali, è supportato da tutti i principali linguaggi di programmazione e ambienti di sviluppo, prestandosi così a integrarsi facilmente in applicazioni complesse e che permettono, ad esempio, l'interazione attraverso un'interfaccia grafica dedicata.
-
+Uno schema relazionale corretto e ben strutturato mira a prevenire inconsistenze e dati duplicati.
+Gli strumenti software che operano su basi di dati relazionali (RDBMS) permettono di definire vincoli di integrità che contribuiscono al mantenimento della coerenza dei dati, all'assenza di ambiguità e all'efficienza delle interazioni con il sistema attraverso controlli automatici.
 La modellazione del dominio in cui operiamo viene fatta prima a livello concettuale definendo uno schema nel modello \enquote{Entità-Relazione} e successivamente traducendolo in uno schema logico nel modello relazionale.
+
+Le basi di dati relazionali si possono interrogare con semplici richieste (\emph{query}) in SQL, un linguaggio dichiarativo basato sulla logica del prim'ordine.
+Questo linguaggio è supportato da tutti i principali linguaggi di programmazione e ambienti di sviluppo, prestandosi così a integrarsi facilmente in applicazioni complesse e che permettono, ad esempio, l'interazione attraverso un'interfaccia grafica dedicata.
+In questo modo solo il programmatore ha la necessità di conoscere i dettagli implementativi dello schema mentre l'utente finale, anche se inesperto, può operare sui dati a livello più astratto e vicino al modello concettuale del dominio.
+
+\subsection{Confronto con altri modelli}
+
+Altri modelli di basi di dati possono avere altri vantaggi specifici, ma spesso perdono su alcuni dei punti forti del modello relazionale.
+\begin{itemize}
+\item Il modello gerarchico prevede una struttura ad albero, composto da nodi che possono avere un numero arbitrario di figli ma solo un genitore ciascuno. Questo pone molti limiti sullo schema da realizzare e spesso richiede di duplicare dati.
+\item Il modello reticolare estende quello gerarchico permettendo un numero arbitrario di genitori, formando quindi un grafo generico. La struttura così ottenuta, eccessivamente libera nella sua topologia, rende più difficoltosa l'interrogazione.
+\item Il modello a documento, che sta prendendo piede come principale modello di tipo \emph{NoSQL}, prevede che i record siano memorizzati come documenti strutturati ma senza uno schema comune. Questo facilita la memorizzazione di dati con caratteristiche eterogenee ma allo stesso tempo rende più difficoltose le operazioni che legano documenti diversi, come le \emph{join}.
+\end{itemize}
+
+\subsection{Applicazione al caso di studio}
+
+Considerando i requisiti esposti nella Sezione \ref{functionalrequirements}, proponiamo l'utilizzo di una base di dati basata su un modello relazionale.
+Le informazioni trattate dal personale medico seguono schemi ben strutturati, come dimostra l'organizzazione tabellare utilizzata finora, e a tali schemi possiamo ricondurre le entità e le relazioni a livello astratto.
+Riconosciamo infatti entità come la paziente, la gravidanza, la visita, il parto, il neonato, ciascuna con un insieme di attributi.
+Tra di esse sussistono relazioni che seguono schemi costanti, come la relazione tra gravidanze e visite, tra gravidanze e malattie o tra parti e neonati.
+
+Una base di dati relazionale permette di gestire in modo naturale diversi vincoli di integrità, soprattutto per quanto riguarda gli attributi identificativi (detti \enquote{chiavi}) sia il numero di entità coinvolte in determinate relazioni (detto \emph{cardinalità}).
+Nel caso reale che stiamo trattando è possibile porre vincoli sul numero di visite di ciascun tipo effettuate nel corso della gravidanza, così come sul numero di bambini nati da un parto o di esami svolti in ciascuna visita.
+
+Si vuole che il sistema risultante costituisca, in prima fase, un magazzino dati (\emph{data warehouse}\footnote{
+    L'accezione di \emph{data warehouse} \cite{Ded16}, concetto distinto da \emph{database}, evidenzia come il sistema integri dati provenienti da più fonti in un unico schema e sia orientato alla visualizzazione più che alle operazioni di modifica.
+})
+
+Nel Capitolo \ref{conceptual} si mostra lo schema Entità-Relazione costruito a partire dai requisiti e vengono illustrate le scelte operate a livello concettuale, con tutti i dettagli relativi alle entità presenti, alle relazioni tra esse e agli attributi.

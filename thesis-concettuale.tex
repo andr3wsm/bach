@@ -1,15 +1,68 @@
 \chapter{Progettazione concettuale}
+\label{conceptual}
 
-\section{Scelte di modellazione}
+\newcommand{\ent}[1]{{\Large #1}}
+\newcommand{\card}[1]{{\footnotesize #1}}
+\newcommand{\CZU}{\card{(0,1)}}
+\newcommand{\CZN}{\card{(0,n)}}
+\newcommand{\CUU}{\card{(1,1)}}
+\newcommand{\CUN}{\card{(1,n)}}
 
-L'analisi dei requisiti e dei supporti esistenti (Sezione \ref{usednow}) evidenzia come elemento centrale le gravidanze, i cui dati vengono registrati nel corso di diversi momenti.
+La figura \ref{completeerdiagram} mostra lo schema della base di dati nel modello Entità Relazione in una versione semplificata per evidenziare le entità e le relazioni presenti.
+I quattro contorni tratteggiati identificano quattro aree del diagramma (gravidanza, visite, parto, neonato) che verranno illustrate dettagliatamente con gli attributi presenti.
+
+L'analisi dei requisiti e dei supporti esistenti (Sezione \ref{usednow}) evidenzia come elemento centrale le gravidanze.
 Solo poche informazioni sono legate alla paziente piuttosto che alla gravidanza e sono essenzialmente quelle che la identificano personalmente.
-Si introduce un identificativo per la paziente che risulta essere effettivamente univoco, ovvero il codice fiscale, assumendo che tutte le pazienti trattate abbiano un codice fiscale assegnato; ciò semplifica la rappresentazione dell'identificativo personale, che nello schema logico verrà inserito in quasi tutte le tabelle, rispetto alla tripla composta da nome, cognome e data di nascita, e previene i possibili, seppur rarissimi, casi di corrispondenza di questi dati per persone diverse.
 
 \begin{figure}
-\includesvg{vectors/modello-er-originale.svg}
-\caption{Schema Entità-Relazione semplificato contenente soltanto entità e relazioni del modello. Le aree tratteggiate delimitano i diversi ingrandimenti nei quali vengono specificati gli attributi delle entità e relazioni coinvolte.}
-\label{completeerdiagram}
+    \centering
+    \includesvg{vectors/modello-er-originale.svg}
+    \caption{Schema Entità-Relazione. Visione d'insieme semplificata, contenente soltanto entità e relazioni del modello. Le aree tratteggiate delimitano i diversi ingrandimenti nei quali vengono specificati gli attributi delle entità e relazioni coinvolte.}
+    \label{completeerdiagram}
 \end{figure}
 
-\section{Schema Entità-Relazione}
+\section{Area concettuale della gravidanza}
+
+La Figura \ref{pregnancyerdiagram} mostra l'ingrandimento dello schema Entità-Relazione per quanto riguarda le entità Paziente, Gravidanza e Malattia.
+
+\subsubsection{Paziente}
+
+Si introduce un identificativo per la paziente che risulta essere effettivamente univoco, ovvero il codice fiscale, assumendo che tutte le pazienti trattate abbiano un codice fiscale assegnato.
+Ciò semplifica la rappresentazione dell'identificativo personale, che nello schema logico verrà inserito in quasi tutte le tabelle, rispetto alla tripla composta da nome, cognome e data di nascita, e previene i possibili, seppur rarissimi, casi di corrispondenza di questi dati per persone diverse.
+
+\subsubsection{Gravidanza}
+
+Ci sono due chiavi candidate, entrambe parziali in quanto l'entità è debole verso Paziente:
+\begin{itemize}
+\item la parità registrata all'inizio della gravidanza;
+\item la data del primo ingresso, attributo derivato e corrispondente alla data della prima visita effettuata, se ce n'è stata una, altrimenti alla data del parto.
+\end{itemize}
+
+A questa entità fanno riferimento alcuni attributi che vengono registrati durante la visita del primo trimestre, oltre all'esito della gravidanza e alla data del primo ingresso.
+Decidere se assegnare tali attributi a \enquote{Gravidanza} oppure a \enquote{Visita I° trimestre} può essere talvolta arbitrario: preferiamo quindi assegnare alla prima quelle informazioni che si possono considerare come proprie della gravidanza in sé (come la presenza di feti gemellari o il tipo di PMA), mentre alla seconda le informazioni sulla paziente che i si riferiscono al giorno o al periodo della visita (come ad esempio peso o altezza).
+
+In generale la presenza di attributi opzionali, come è evidente per molti degli attributi dell'entità Gravidanza, è dovuta non tanto alla mancanza del dato, ovvero che non sia presente a livello concettuale, bensì alla mancata conoscenza di un suo valore, da attribuirsi a un'errata compilazione dei record o a un dettaglio anamnestico non riportato dalla paziente.
+Nell'uso del valore \emph{NULL} si ritrova questa stessa ambiguità \cite[pg.~19, 42]{Sil11}.
+Si intende lasciare la possibilità di avere dati mancanti proprio per questi motivi.
+% data warehouse
+
+\begin{figure}
+    \centering
+    \includesvg{vectors/modello-er-originale-gravidanza.svg}
+    \caption{Schema Entità Relazione. Ingrandimento dell'area gravidanza.}
+    \label{pregnancyerdiagram}
+\end{figure}
+
+\section{Area concettuale delle visite}
+
+\begin{figure}
+    \centering
+    \includesvg{vectors/modello-er-originale-visite.svg}
+    \caption{Schema Entità Relazione. Ingrandimento dell'area visite.}
+    \label{visitserdiagram}
+\end{figure}
+
+
+\section{Area concettuale del parto}
+
+\section{Area concettuale del neonato}
