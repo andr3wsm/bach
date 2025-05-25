@@ -120,14 +120,38 @@ La data del parto è coerente con le tempistiche indicate se il parto non è ces
 \subsubsection{Travaglio}
 
 Le informazioni sul travaglio sono applicabili a tutti e soli i parti che non sono cesarei programmati.
+Se il travaglio è indotto sono presenti anche i dati relativi al metodo e alle tempistiche dell'induzione.
 
 \section{Area concettuale del neonato}
 
 \begin{figure}
+    \label{newbornerdiagram}
     \centering
     \includesvg{vectors/modello-er-originale-neonato.svg}
     \caption{Schema Entità Relazione. Ingrandimento dell'area neonato.}
-    \label{newbornerdiagram}
 \end{figure}
 
 La Figura \ref{newbornerdiagram} mostra l'ingrandimento dello schema Entità-Relazione per quanto riguarda le entità Neonato e quelle relative alle misurazioni del cardiotocografo.
+
+\subsubsection{Neonato}
+
+Nell'entità Neonato la chiave parziale è l'ora di nascita.
+Questo, ugualmente ad altri indicatori dell'ordine di nascita, è necessario per distinguere i gemelli nati in una stessa gravidanza.
+
+Le informazioni relative al neonato sono le seguenti:
+\begin{itemize}
+\item peso, altezza e sesso attribuito;
+\item indice di Apgar, misurato in diversi momenti dopo la nascita;
+\item BE: \emph{base excess}, eccesso di basi;
+\item pH: acidità del sangue;
+\item CC: circonferenza cranica;
+\item TIN: terapia intensiva neonatale.
+\end{itemize}
+
+\subsubsection{Tracciato e misurazioni}
+
+Nello schema la sigla CTG sta per \enquote{cardiotocografo}.
+Un tracciato è identificabile sia con il parto in cui viene registrato sia con il numero progressivo, che viene assegnato unico dal sistema in uso nel reparto.
+
+Ogni misurazione del tracciato riporta i valori FCM (frequenza cardiaca materna) e TOCO (tocogramma).
+I valori FCF (frequenza cardiaca fetale) possono essere multipli in ogni misurazione, quindi non sono contenute in un attributo dell'entità Misurazione TCG bensì nella relazione tra essa e Neonato.
