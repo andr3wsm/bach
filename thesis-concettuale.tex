@@ -58,6 +58,11 @@ Sempre sull'attributo \enquote{Parità} si pone il seguente vincolo.
 Se una paziente ha più di una gravidanza, per ogni coppia di gravidanze successive i valori degli attributi (non derivati) sono non decrescenti e almeno uno di essi è strettamente crescente.
 \end{quote}
 
+Le relazioni che l'entità Gravidanza intrattiene con le diverse visite e con Parto hanno tutte partecipazione parziale, per cui viene imposto il seguente vincolo.
+\begin{quote}
+Una gravidanza viene registrata solo se viene effettuata almeno una visita oppure se termina con un parto.
+\end{quote}
+
 \subsubsection{Malattia}
 
 L'entità \enquote{Malattia} rappresenta le patologie che possono presentarsi in concomitanza con la gravidanza.
@@ -76,6 +81,24 @@ Le informazioni riguardo alle eventuali terapie seguite sono memorizzate nell'at
 
 La Figura \ref{visitserdiagram} mostra l'ingrandimento dello schema Entità-Relazione per quanto riguarda le entità relative alle visite e all'entità Esame.
 
+\subsubsection{Visite}
+
+Dividiamo le possibili visite in quattro entità: Visita I° trimestre, Visita II° trimestre, Visita biometrica, Visita di altro tipo.
+Gli attributi di queste entità fanno riferimento principalmente alla data e alle informazioni rilevate dalla paziente come età, epoca gestazionale o anomalie fetali.
+Gli esiti degli esami svolti per una determinata visita non sono modellati come attributi delle visite ma come attributi della relazione che lega Visita e Esame, in modo che gli esami da registrare possano essere modificati nel tempo senza agire sullo schema della base di dati.
+
+I diversi attributi \enquote{Età}, presenti in tutte le entità, sono calcolati a partire dalla data di nascita della paziente.
+L'entità \enquote{Visita di altro tipo} raccoglie le istanze di visite che altrimenti non rientrerebbero in nessuna delle tre categorie specifiche ma per le quali si vogliono comunque registrare esiti di esami svolti.
+
+La scelta di organizzare l'entità \enquote{Visita} come unione (o categoria) piuttosto che come una generalizzazione è dovuta alla cardinalità delle relazioni che i quattro tipi di visita intrattengono con l'entità Gravidanza.
+Tutte le visite sono entità deboli rispetto a Gravidanza, ma le visite biometriche o di altro tipo possono essere svolte più volte nel corso di una gravidanza e quindi richiedono un attributo che sia chiave parziale, che invece sarebbe scorretto mettere per le visite del primo e del secondo trimestre le quali sono effettuate una sola volta ciascuna.
+Se fossero state modellate come specializzazioni di un'unica entità Visita si sarebbero creati numerosi cicli e vincoli aggiuntivi da imporre. 
+
+\subsubsection{Esame}
+
+L'entità Esame rappresenta l'esame in generale, mentre l'esito di uno specifico esame svolto si ritrova nella relazione tra Esame e Visita.
+Il tipo di dato dell'esito dipende dall'esame, ma l'aspetto implementativo viene trattato a livello di schema logico.
+
 \section{Area concettuale del parto}
 
 \begin{figure}
@@ -84,6 +107,19 @@ La Figura \ref{visitserdiagram} mostra l'ingrandimento dello schema Entità-Rela
     \caption{Schema Entità Relazione. Ingrandimento dell'area parto.}
     \label{deliveryerdiagram}
 \end{figure}
+
+La Figura \ref{deliveryerdiagram} mostra l'ingrandimento dello schema Entità-Relazione per quanto riguarda le entità Parto, con le sue specializzazioni, e Travaglio.
+
+\subsubsection{Parto}
+
+Le diverse specializzazioni dell'entità Parto sono totali e disgiunte.
+Solo alcune informazioni, come data o informazioni su analgesia e perdite ematiche, sono applicabili ad ogni tipo di parto: gli altri attributi si trovano nelle entità che specializzano Parto, in alcuni casi con sovrapposizioni.
+Ad esempio, i dati sul travaglio e sulle tempistiche del parto sono applicabili a tutti i tipi di parto eccetto i parti cesarei programmati, mentre le lacerazioni e il secondamento sono dati presenti nei parti naturali e operativi.
+La data del parto è coerente con le tempistiche indicate se il parto non è cesareo urgente.
+
+\subsubsection{Travaglio}
+
+Le informazioni sul travaglio sono applicabili a tutti e soli i parti che non sono cesarei programmati.
 
 \section{Area concettuale del neonato}
 

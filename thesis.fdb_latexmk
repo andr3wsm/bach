@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex thesis"] 0 "thesis.aux" "thesis.bbl" "thesis" 1748129124.66757 -1
+["bibtex thesis"] 1748181922.49062 "thesis.aux" "thesis.bbl" "thesis" 1748181992.93231 0
   "./plain_italian.bst" 1748115837 21772 b9f53fc1e71a9c29c62ec7586a3d5fef ""
   "./thud.bib" 1748116306 2091 fe5798d7be3b4b8cc5935275f6a02c39 ""
-  "thesis.aux" 1748129122 8445 1066f314c2600fd2d0bbe9b7e3e72fee "lualatex"
+  "thesis.aux" 1748181989 8830 98827a50f1a4fd311be4a62d383aa9f2 "lualatex"
   (generated)
   "thesis.bbl"
   "thesis.blg"
   (rewritten before read)
-["lualatex"] 1748129119.13452 "c:/Users/salva/Andrea/uni/tesi 2025/tesi/thesis.tex" "thesis.pdf" "thesis" 1748129124.66842 0
+["lualatex"] 1748181985.36166 "c:/Users/salva/Andrea/uni/tesi 2025/tesi/thesis.tex" "thesis.pdf" "thesis" 1748181992.93303 0
   "//?/c:/users/salva/appdata/local/programs/miktex/fonts/opentype/public/lm/lmmono10-regular.otf" 1256929440 64684 c6f5a48921f83c1a51d9384f785ddd5a ""
   "//?/c:/users/salva/appdata/local/programs/miktex/fonts/opentype/public/lm/lmmono9-regular.otf" 1256929440 63076 649b48710517d49fb67ce305ff6982d9 ""
   "//?/c:/users/salva/appdata/local/programs/miktex/fonts/opentype/public/lm/lmroman10-bold.otf" 1256929440 111240 1d60e9def74b1102bb4defa7cb772ee3 ""
@@ -218,26 +218,26 @@
   "banners/banner_uniud_italian.pdf" 1748115837 311097 43520a8d67752a5d14b2af2b86c05575 ""
   "book.thud.tex" 1748115837 8455 cc88fdb259aa89be92cf1f36cf80a0cc ""
   "c:/Users/salva/Andrea/uni/tesi 2025/tesi/thesis.tex" 1748116821 5204 aaea2d27ef5a0086416e43ce6a9c01bb ""
-  "pdfa.xmpi" 1748129120 5042 724cccaec92991c2b4eb9f9696e9e191 "lualatex"
+  "pdfa.xmpi" 1748181987 5042 2a634700642c529d1a1cd3e5e98a2819 "lualatex"
   "svg-inkscape/modello-er-originale-gravidanza_svg-tex.pdf" 1748116594 32251 6bdd07997ddbc1b94e7bbaa698587398 ""
   "svg-inkscape/modello-er-originale-gravidanza_svg-tex.pdf_tex" 1748116594 17724 d90f521cf7841f262ae49d592491262b ""
   "svg-inkscape/modello-er-originale-neonato_svg-tex.pdf" 1748124407 20265 ea1c869e96f3e34ce034e30a0d2f4a10 ""
   "svg-inkscape/modello-er-originale-neonato_svg-tex.pdf_tex" 1748124407 11422 eac8d2066c00e996e4834b0d6f56ebbe ""
-  "svg-inkscape/modello-er-originale-parto_svg-tex.pdf" 1748129115 29737 ec8a0e696e36e660c80871254cbc3ef4 ""
-  "svg-inkscape/modello-er-originale-parto_svg-tex.pdf_tex" 1748129115 16245 737403736a02a73ee64333134f7297e2 ""
-  "svg-inkscape/modello-er-originale-visite_svg-tex.pdf" 1748116743 29161 9e35d733d1275871d433357ebc1dda67 ""
-  "svg-inkscape/modello-er-originale-visite_svg-tex.pdf_tex" 1748116743 14726 b362ca054ff6e1c3973da70c47a8815c ""
+  "svg-inkscape/modello-er-originale-parto_svg-tex.pdf" 1748181719 30194 10e1700e6c4666c69b3bbbf04ef310d2 ""
+  "svg-inkscape/modello-er-originale-parto_svg-tex.pdf_tex" 1748181719 16359 b1c24e430f35cd8940916c1fc74ecf5d ""
+  "svg-inkscape/modello-er-originale-visite_svg-tex.pdf" 1748178975 29741 1efd0e5b0b6e15efced3bcded5e173f8 ""
+  "svg-inkscape/modello-er-originale-visite_svg-tex.pdf_tex" 1748178975 14960 911c24d33fd413e3ffa78b2c4a12f36a ""
   "svg-inkscape/modello-er-originale_svg-tex.pdf" 1748118221 19678 87496f9746943d5c5eed32785a5407a8 ""
   "svg-inkscape/modello-er-originale_svg-tex.pdf_tex" 1748118221 10591 a6157a92f9dbb9546602f35a13dcfdb3 ""
   "thesis-analisi.tex" 1748118854 30904 43adc22558febbb280dd783885f907e6 ""
-  "thesis-concettuale.tex" 1748129111 6372 77c72bd29d845e3682128218217bee99 ""
+  "thesis-concettuale.tex" 1748181984 9630 53a6c976202067abd368f61ddc180ac4 ""
   "thesis-intro.tex" 1748115837 3799 36a85882bfbb0527c88c59d983318c25 ""
   "thesis-next.tex" 1748115837 457 732d61511013588730b77912beb37a9c ""
-  "thesis.aux" 1748129122 8445 1066f314c2600fd2d0bbe9b7e3e72fee "lualatex"
-  "thesis.bbl" 1748124426 1566 9aca930e0c9c07f08a5070f516193d2e "bibtex thesis"
-  "thesis.out" 1748129122 6771 1104e4458737bc215d23621c107ecaca "lualatex"
+  "thesis.aux" 1748181989 8830 98827a50f1a4fd311be4a62d383aa9f2 "lualatex"
+  "thesis.bbl" 1748181922 1566 9aca930e0c9c07f08a5070f516193d2e "bibtex thesis"
+  "thesis.out" 1748181989 6771 1104e4458737bc215d23621c107ecaca "lualatex"
   "thesis.tex" 1748116821 5204 aaea2d27ef5a0086416e43ce6a9c01bb ""
-  "thesis.toc" 1748129122 3236 27de746d00c577b4b729630971f877af "lualatex"
+  "thesis.toc" 1748181989 3457 3cb430fa839a3247d480f7b1c346dc30 "lualatex"
   "thud.cls" 1748115837 6945 34fd740a843e0f4c23172ea0cfac1b63 ""
   (generated)
   "pdfa.xmpi"
