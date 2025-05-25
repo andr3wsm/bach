@@ -8,12 +8,6 @@
 \newcommand{\CUU}{\card{(1,1)}}
 \newcommand{\CUN}{\card{(1,n)}}
 
-La figura \ref{completeerdiagram} mostra lo schema della base di dati nel modello Entità Relazione in una versione semplificata per evidenziare le entità e le relazioni presenti.
-I quattro contorni tratteggiati identificano quattro aree del diagramma (gravidanza, visite, parto, neonato) che verranno illustrate dettagliatamente con gli attributi presenti.
-
-L'analisi dei requisiti e dei supporti esistenti (Sezione \ref{usednow}) evidenzia come elemento centrale le gravidanze.
-Solo poche informazioni sono legate alla paziente piuttosto che alla gravidanza e sono essenzialmente quelle che la identificano personalmente.
-
 \begin{figure}
     \centering
     \includesvg{vectors/modello-er-originale.svg}
@@ -21,7 +15,22 @@ Solo poche informazioni sono legate alla paziente piuttosto che alla gravidanza 
     \label{completeerdiagram}
 \end{figure}
 
+La figura \ref{completeerdiagram} mostra lo schema della base di dati nel modello Entità Relazione in una versione semplificata per evidenziare le entità e le relazioni presenti.
+I quattro contorni tratteggiati identificano quattro aree del diagramma (gravidanza, visite, parto, neonato) che verranno illustrate dettagliatamente con gli attributi presenti.
+L'analisi dei requisiti e dei supporti esistenti (Sezione \ref{usednow}) evidenzia come elemento centrale le gravidanze: solo poche informazioni sono legate alla paziente piuttosto che alla gravidanza e sono essenzialmente quelle che la identificano personalmente.
+
+In generale la presenza di attributi opzionali è dovuta non tanto alla mancanza del dato, ovvero che non sia presente a livello concettuale, bensì alla mancata conoscenza di un suo valore, da attribuirsi a un'errata compilazione dei record o a un dettaglio anamnestico non riportato dalla paziente.
+Nell'uso del valore \emph{NULL} si ritrova questa stessa ambiguità \cite{Sil11}.
+Si intende lasciare la possibilità di avere dati mancanti per permettere un'integrazione che sia compatibile con i sistemi attualmente in uso, in modo da implementare il sistema come \emph{data warehouse}, oltre a renderlo tollerante rispetto a eventuali omissioni di informazioni.
+
 \section{Area concettuale della gravidanza}
+
+\begin{figure}
+    \centering
+    \includesvg{vectors/modello-er-originale-gravidanza.svg}
+    \caption{Schema Entità Relazione. Ingrandimento dell'area gravidanza.}
+    \label{pregnancyerdiagram}
+\end{figure}
 
 La Figura \ref{pregnancyerdiagram} mostra l'ingrandimento dello schema Entità-Relazione per quanto riguarda le entità Paziente, Gravidanza e Malattia.
 
@@ -32,26 +41,29 @@ Ciò semplifica la rappresentazione dell'identificativo personale, che nello sch
 
 \subsubsection{Gravidanza}
 
-Ci sono due chiavi candidate, entrambe parziali in quanto l'entità è debole verso Paziente:
-\begin{itemize}
-\item la parità registrata all'inizio della gravidanza;
-\item la data del primo ingresso, attributo derivato e corrispondente alla data della prima visita effettuata, se ce n'è stata una, altrimenti alla data del parto.
-\end{itemize}
-
 A questa entità fanno riferimento alcuni attributi che vengono registrati durante la visita del primo trimestre, oltre all'esito della gravidanza e alla data del primo ingresso.
 Decidere se assegnare tali attributi a \enquote{Gravidanza} oppure a \enquote{Visita I° trimestre} può essere talvolta arbitrario: preferiamo quindi assegnare alla prima quelle informazioni che si possono considerare come proprie della gravidanza in sé (come la presenza di feti gemellari o il tipo di PMA), mentre alla seconda le informazioni sulla paziente che i si riferiscono al giorno o al periodo della visita (come ad esempio peso o altezza).
 
-In generale la presenza di attributi opzionali, come è evidente per molti degli attributi dell'entità Gravidanza, è dovuta non tanto alla mancanza del dato, ovvero che non sia presente a livello concettuale, bensì alla mancata conoscenza di un suo valore, da attribuirsi a un'errata compilazione dei record o a un dettaglio anamnestico non riportato dalla paziente.
-Nell'uso del valore \emph{NULL} si ritrova questa stessa ambiguità \cite{Sil11}.
-Si intende lasciare la possibilità di avere dati mancanti proprio per questi motivi.
-% data warehouse
+Identifichiamo due chiavi candidate, entrambe parziali in quanto l'entità è debole verso Paziente:
+\begin{itemize}
+\item la data del primo ingresso, attributo derivato e corrispondente alla data della prima visita effettuata, se ce n'è stata una, altrimenti alla data del parto;
+\item la parità registrata all'inizio della gravidanza.
+\end{itemize}
 
-\begin{figure}
-    \centering
-    \includesvg{vectors/modello-er-originale-gravidanza.svg}
-    \caption{Schema Entità Relazione. Ingrandimento dell'area gravidanza.}
-    \label{pregnancyerdiagram}
-\end{figure}
+L'attributo \enquote{Parità} è composto.
+Nei sistemi attualmente in uso è scritto solitamente in un unico campo, usando quindi la rappresentazione testuale che è calcolata come concatenazione del numero di figli nati a termine, del numero di figli nati pretermine, del numero di aborti (comprendente sia aborti spontanei sia interruzioni volontarie di gravidanza) e del numero totale di figli nati vivi, in questo ordine.
+
+Sempre sull'attributo \enquote{Parità} si pone il seguente vincolo.
+\begin{quote}
+Se una paziente ha più di una gravidanza, per ogni coppia di gravidanze successive i valori degli attributi (non derivati) sono non decrescenti e almeno uno di essi è strettamente crescente.
+\end{quote}
+
+\subsubsection{Malattia}
+
+L'entità \enquote{Malattia} rappresenta le patologie che possono presentarsi in concomitanza con la gravidanza.
+Attualmente vengono registrate in modo sistematico solo per le pazienti seguite nell'ambulatorio \enquote{gravidanze a rischio} (vedi Sezione \ref{pregnanciesatrisk}) ma è applicabile alla gravidanza di qualsiasi paziente.
+È importante considerare che le malattie possono variare tra le diverse gravidanze della stessa paziente.
+Le informazioni riguardo alle eventuali terapie seguite sono memorizzate nell'attributo della relazione che lega gravidanza e malattie.
 
 \section{Area concettuale delle visite}
 
@@ -62,7 +74,24 @@ Si intende lasciare la possibilità di avere dati mancanti proprio per questi mo
     \label{visitserdiagram}
 \end{figure}
 
+La Figura \ref{visitserdiagram} mostra l'ingrandimento dello schema Entità-Relazione per quanto riguarda le entità relative alle visite e all'entità Esame.
 
 \section{Area concettuale del parto}
 
+\begin{figure}
+    \centering
+    \includesvg{vectors/modello-er-originale-parto.svg}
+    \caption{Schema Entità Relazione. Ingrandimento dell'area parto.}
+    \label{deliveryerdiagram}
+\end{figure}
+
 \section{Area concettuale del neonato}
+
+\begin{figure}
+    \centering
+    \includesvg{vectors/modello-er-originale-neonato.svg}
+    \caption{Schema Entità Relazione. Ingrandimento dell'area neonato.}
+    \label{newbornerdiagram}
+\end{figure}
+
+La Figura \ref{newbornerdiagram} mostra l'ingrandimento dello schema Entità-Relazione per quanto riguarda le entità Neonato e quelle relative alle misurazioni del cardiotocografo.
