@@ -125,10 +125,10 @@ Se il travaglio è indotto sono presenti anche i dati relativi al metodo e alle 
 \section{Area concettuale del neonato}
 
 \begin{figure}
-    \label{newbornerdiagram}
     \centering
     \includesvg{vectors/modello-er-originale-neonato.svg}
     \caption{Schema Entità Relazione. Ingrandimento dell'area neonato.}
+    \label{newbornerdiagram}
 \end{figure}
 
 La Figura \ref{newbornerdiagram} mostra l'ingrandimento dello schema Entità-Relazione per quanto riguarda le entità Neonato e quelle relative alle misurazioni del cardiotocografo.
@@ -155,3 +155,7 @@ Un tracciato è identificabile sia con il parto in cui viene registrato sia con 
 
 Ogni misurazione del tracciato riporta i valori FCM (frequenza cardiaca materna) e TOCO (tocogramma).
 I valori FCF (frequenza cardiaca fetale) possono essere multipli in ogni misurazione, quindi non sono contenute in un attributo dell'entità Misurazione TCG bensì nella relazione tra essa e Neonato.
+Si impone quindi il seguente vincolo.
+\begin{quote}
+Per ogni misurazione deve essere presente almeno uno tra: il valore FCM, il valore TOCO e un valore FCF per un neonato associato.
+\end{quote}
