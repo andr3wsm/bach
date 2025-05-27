@@ -1,0 +1,45 @@
+\chapter{Progettazione logica}
+
+Lo schema concettuale presentato nel Capitolo \ref{conceptual} rappresenta in modo accurato il dominio a livello astratto ma la traduzione in uno schema logico nel modello relazionale richiede la semplificazione di alcune strutture concettuali.
+In seguito a questo passaggio di ristrutturazione si definisce uno schema logico, costituito da un insieme di relazioni con eventuali vincoli posti su di esse.
+
+\section{Ristrutturazione dello schema Entità-Relazione}
+
+Il formalismo del modello Entità-Relazione permette di utilizzare strutture piuttosto complesse a livello concettuale, come ad esempio le relazioni di specializzazione o gli attributi multivalore.
+Per facilitare la traduzione in uno schema logico nel modello relazionale è necessario operare una ristrutturazione o semplificazione dello schema iniziale \cite{Atz23}, con l'obiettivo di ottenere soltanto entità senza specializzazioni o categorie, attributi semplici e relazioni binarie.
+Nella fase di ristrutturazione si valuta se è opportuno mantenere gli attributi ridondanti per motivi di efficienza e si scelgono gli attributi chiave delle entità che hanno più candidati possibili.
+
+%% MANCA schema ristrutturato completo
+
+Lo schema ristrutturato, mostrato in Figura \ref{}, rimane espresso nel modello Entità-Relazione, ma non si può più considerare puramente concettuale perché introduce modifiche dettate non dalle caratteristiche del dominio ma da aspetti implementativi e ottimizzazione delle prestazioni.
+Dopo la ristrutturazione, la traduzione può essere fatta in modo meccanico perché i costrutti più elementari del modello Entità-Relazione hanno dei corrispettivi diretti nel modello relazionale.
+
+\subsection{Ristrutturazione dell'area concettuale della gravidanza}
+
+
+\begin{figure}
+    \centering
+    \includesvg{vectors/modello-er-ristrutturato-gravidanza.svg}
+    \caption{Schema Entità-Relazione ristrutturato. Ingrandimento dell'area gravidanza.}
+\label{pregnancyrerdiagram}
+\end{figure}
+
+La Figura \ref{pregnancyrerdiagram} mostra l'ingrandimento dello schema Entità-Relazione ristrutturato per quanto riguarda le entità Paziente, Gravidanza e Malattia.
+
+\subsubsection{Gravidanza}
+
+Nell'entità Gravidanza semplifichiamo gli attributi composti in attributi semplici, legandoli quindi direttamente alla gravidanza.
+Si rimuove la \enquote{rappresentazione testuale}, presente nello schema concettuale come attributo derivato e direttamente calcolabile a partire dagli altri componenti dell'attributo composto Parità.
+Viene mantenuto il vincolo posto sulla non decrescenza o crescenza stretta dei componenti dell'attributo Parità.
+
+Gravidanza è entità debole ed è identificata dalla relazione con Paziente.
+Tra le due chiavi parziali possibili si sceglie l'attributo Data primo ingresso perché è costituito da un solo attributo invece che da quattro diversi, risultando quindi molto più semplice da utilizzare come identificatore della gravidanza nelle diverse relazioni in cui questa entità partecipa.
+La quadrupla di attributi risultante dalla decomposizione di Parità, in quanto chiave candidata nel modello concettuale, mantiene le proprietà di chiave e quindi si pone un ulteriore vincolo di unicità\footnote{
+    Il vincolo di non avere valore \emph{NULL} è già espresso dall'assenza dell'indicazione (0,1) su tutti gli attributi, quindi nessuno di essi è opzionale.
+}.
+\begin{quote}
+La quadrupla di attributi che compongono la parità deve essere unica per ogni paziente.
+\end{quote}
+
+\section{Schema logico relazionale}
+

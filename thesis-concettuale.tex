@@ -24,6 +24,7 @@ Nell'uso del valore \emph{NULL} si ritrova questa stessa ambiguità \cite{Sil11}
 Si intende lasciare la possibilità di avere dati mancanti per permettere un'integrazione che sia compatibile con i sistemi attualmente in uso, in modo da implementare il sistema come \emph{data warehouse}, oltre a renderlo tollerante rispetto a eventuali omissioni di informazioni.
 
 \section{Area concettuale della gravidanza}
+\label{pregnancyconceptual}
 
 \begin{figure}
     \centering
@@ -71,6 +72,7 @@ Attualmente vengono registrate in modo sistematico solo per le pazienti seguite 
 Le informazioni riguardo alle eventuali terapie seguite sono memorizzate nell'attributo della relazione che lega gravidanza e malattie.
 
 \section{Area concettuale delle visite}
+\label{visitsconceptual}
 
 \begin{figure}
     \centering
@@ -100,6 +102,7 @@ L'entità Esame rappresenta l'esame in generale, mentre l'esito di uno specifico
 Il tipo di dato dell'esito dipende dall'esame, ma l'aspetto implementativo viene trattato a livello di schema logico.
 
 \section{Area concettuale del parto}
+\label{deliveryconceptual}
 
 \begin{figure}
     \centering
@@ -123,6 +126,7 @@ Le informazioni sul travaglio sono applicabili a tutti e soli i parti che non so
 Se il travaglio è indotto sono presenti anche i dati relativi al metodo e alle tempistiche dell'induzione.
 
 \section{Area concettuale del neonato}
+\label{newbornconceptual}
 
 \begin{figure}
     \centering
