@@ -9,13 +9,17 @@ Il formalismo del modello Entità-Relazione permette di utilizzare strutture piu
 Per facilitare la traduzione in uno schema logico nel modello relazionale è necessario operare una ristrutturazione o semplificazione dello schema iniziale \cite{Atz23}, con l'obiettivo di ottenere soltanto entità senza specializzazioni o categorie, attributi semplici e relazioni binarie.
 Nella fase di ristrutturazione si valuta se è opportuno mantenere gli attributi ridondanti per motivi di efficienza e si scelgono gli attributi chiave delle entità che hanno più candidati possibili.
 
-%% MANCA schema ristrutturato completo
+\begin{figure}
+    \centering
+    \includesvg{vectors/modello-er-ristrutturato.svg}
+    \caption{Schema Entità-Relazione ristrutturato. Visione d'insieme semplificata, contenente soltanto entità e relazioni del modello.}
+    \label{completererdiagram}
+\end{figure}
 
-Lo schema ristrutturato, mostrato in Figura \ref{}, rimane espresso nel modello Entità-Relazione, ma non si può più considerare puramente concettuale perché introduce modifiche dettate non dalle caratteristiche del dominio ma da aspetti implementativi e ottimizzazione delle prestazioni.
+Lo schema ristrutturato, mostrato in Figura \ref{completererdiagram}, rimane espresso nel modello Entità-Relazione, ma non si può più considerare puramente concettuale perché introduce modifiche dettate non dalle caratteristiche del dominio ma da aspetti implementativi e ottimizzazione delle prestazioni.
 Dopo la ristrutturazione, la traduzione può essere fatta in modo meccanico perché i costrutti più elementari del modello Entità-Relazione hanno dei corrispettivi diretti nel modello relazionale.
 
 \subsection{Ristrutturazione dell'area concettuale della gravidanza}
-
 
 \begin{figure}
     \centering
@@ -25,6 +29,7 @@ Dopo la ristrutturazione, la traduzione può essere fatta in modo meccanico perc
 \end{figure}
 
 La Figura \ref{pregnancyrerdiagram} mostra l'ingrandimento dello schema Entità-Relazione ristrutturato per quanto riguarda le entità Paziente, Gravidanza e Malattia.
+Di queste solo Gravidanza ha subito delle modifiche rispetto allo schema concettuale.
 
 \subsubsection{Gravidanza}
 
@@ -41,5 +46,32 @@ La quadrupla di attributi risultante dalla decomposizione di Parità, in quanto 
 La quadrupla di attributi che compongono la parità deve essere unica per ogni paziente.
 \end{quote}
 
-\section{Schema logico relazionale}
+\subsection{Ristrutturazione dell'area concettuale delle visite}
 
+\begin{figure}
+    \centering
+    \includesvg{vectors/modello-er-ristrutturato-visite.svg}
+    \caption{Schema Entità-Relazione ristrutturato. Ingrandimento dell'area visite.}
+\label{visitsrerdiagram}
+\end{figure}
+
+La Figura \ref{visitsrerdiagram} mostra l'ingrandimento dello schema Entità-Relazione ristrutturato per quanto riguarda le entità relative alle visite e all'entità Esame.
+Quest'ultima non ha subito modifiche nella ristrutturazione.
+
+\subsubsection{Visite}
+
+Considerando la presenza di molti attributi in comune, le diverse entità coinvolte nella categoria Visita collassano in un'unica entità.
+Si introduce quindi un attributo ulteriore che indica a quale delle quattro classi di visite appartiene ogni istanza dell'entità Visita.
+
+L'entità Visita rimane debole rispetto a Gravidanza, come erano tutte le diverse visite presenti nello schema concettuale, introducendo come chiave parziale la data per tutte.
+L'attributo \enquote{Anomalie morfologiche fetali} della visita del primo trimestre e l'equivalente \enquote{Anomalie fetali} della visita del secondo trimestre confluiscono in un unico attributo.
+L'attributo BMI, calcolabile facilmente a partire da peso e altezza, è ridondante e si può rimuovere.
+
+Come conseguenza della semplificazione della categoria, la relazione che Visita ha con Esame modifica la partecipazione rendendola parziale, dato che non è richiesto che ad ogni visita vengano effettuati esami.
+Le diverse relazioni che legavano le entità originali a Gravidanza si riducono a una sola relazione sulla quale si pongono nuovi vincoli per rispettare la cardinalità imposta dalle relazioni originali.
+\begin{quote}
+Ogni gravidanza può effettuare al massimo una sola visita del primo trimestre. \\
+Ogni gravidanza può effettuare al massimo una sola visita del secondo trimestre.
+\end{quote}
+
+\section{Schema logico relazionale}
