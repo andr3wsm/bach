@@ -8,13 +8,6 @@
 \newcommand{\CUU}{\card{(1,1)}}
 \newcommand{\CUN}{\card{(1,n)}}
 
-\begin{figure}
-    \centering
-    \includesvg{vectors/modello-er-originale.svg}
-    \caption{Schema Entità-Relazione. Visione d'insieme semplificata, contenente soltanto entità e relazioni del modello. Le aree tratteggiate delimitano i diversi ingrandimenti nei quali vengono specificati gli attributi delle entità e relazioni coinvolte.}
-    \label{completeerdiagram}
-\end{figure}
-
 La figura \ref{completeerdiagram} mostra lo schema della base di dati nel modello Entità Relazione in una versione semplificata per evidenziare le entità e le relazioni presenti.
 I quattro contorni tratteggiati identificano quattro aree del diagramma (gravidanza, visite, parto, neonato) che verranno illustrate dettagliatamente con gli attributi presenti.
 L'analisi dei requisiti e dei supporti esistenti (Sezione \ref{usednow}) evidenzia come elemento centrale le gravidanze: solo poche informazioni sono legate alla paziente piuttosto che alla gravidanza e sono essenzialmente quelle che la identificano personalmente.
@@ -25,13 +18,6 @@ Si intende lasciare la possibilità di avere dati mancanti per permettere un'int
 
 \section{Area concettuale della gravidanza}
 \label{pregnancyconceptual}
-
-\begin{figure}
-    \centering
-    \includesvg{vectors/modello-er-originale-gravidanza.svg}
-    \caption{Schema Entità Relazione. Ingrandimento dell'area gravidanza.}
-    \label{pregnancyerdiagram}
-\end{figure}
 
 La Figura \ref{pregnancyerdiagram} mostra l'ingrandimento dello schema Entità-Relazione per quanto riguarda le entità Paziente, Gravidanza e Malattia.
 
@@ -74,13 +60,6 @@ Le informazioni riguardo alle eventuali terapie seguite sono memorizzate nell'at
 \section{Area concettuale delle visite}
 \label{visitsconceptual}
 
-\begin{figure}
-    \centering
-    \includesvg{vectors/modello-er-originale-visite.svg}
-    \caption{Schema Entità Relazione. Ingrandimento dell'area visite.}
-    \label{visitserdiagram}
-\end{figure}
-
 La Figura \ref{visitserdiagram} mostra l'ingrandimento dello schema Entità-Relazione per quanto riguarda le entità relative alle visite e all'entità Esame.
 
 \subsubsection{Visite}
@@ -104,18 +83,11 @@ Il tipo di dato dell'esito dipende dall'esame, ma l'aspetto implementativo viene
 \section{Area concettuale del parto}
 \label{deliveryconceptual}
 
-\begin{figure}
-    \centering
-    \includesvg{vectors/modello-er-originale-parto.svg}
-    \caption{Schema Entità Relazione. Ingrandimento dell'area parto.}
-    \label{deliveryerdiagram}
-\end{figure}
-
 La Figura \ref{deliveryerdiagram} mostra l'ingrandimento dello schema Entità-Relazione per quanto riguarda le entità Parto, con le sue specializzazioni, e Travaglio.
 
 \subsubsection{Parto}
 
-Le diverse specializzazioni dell'entità Parto sono totali e disgiunte.
+Le diverse specializzazioni dell'entità Parto sono totali e sono possibili le seguenti sovrapposizioni: naturale e operativo, naturale e cesareo urgente, operativo e cesareo urgente.
 Solo alcune informazioni, come data o informazioni su analgesia e perdite ematiche, sono applicabili ad ogni tipo di parto: gli altri attributi si trovano nelle entità che specializzano Parto, in alcuni casi con sovrapposizioni.
 Ad esempio, i dati sul travaglio e sulle tempistiche del parto sono applicabili a tutti i tipi di parto eccetto i parti cesarei programmati, mentre le lacerazioni e il secondamento sono dati presenti nei parti naturali e operativi.
 La data del parto è coerente con le tempistiche indicate se il parto non è cesareo urgente.
@@ -127,13 +99,6 @@ Se il travaglio è indotto sono presenti anche i dati relativi al metodo e alle 
 
 \section{Area concettuale del neonato}
 \label{newbornconceptual}
-
-\begin{figure}
-    \centering
-    \includesvg{vectors/modello-er-originale-neonato.svg}
-    \caption{Schema Entità Relazione. Ingrandimento dell'area neonato.}
-    \label{newbornerdiagram}
-\end{figure}
 
 La Figura \ref{newbornerdiagram} mostra l'ingrandimento dello schema Entità-Relazione per quanto riguarda le entità Neonato e quelle relative alle misurazioni del cardiotocografo.
 
@@ -163,3 +128,38 @@ Si impone quindi il seguente vincolo.
 \begin{quote}
 Per ogni misurazione deve essere presente almeno uno tra: il valore FCM, il valore TOCO e un valore FCF per un neonato associato.
 \end{quote}
+
+\begin{figure}
+    \centering
+    \includesvg{vectors/modello-er-originale.svg}
+    \caption{Schema Entità-Relazione. Visione d'insieme semplificata, contenente soltanto entità e relazioni del modello. Le aree tratteggiate delimitano i diversi ingrandimenti nei quali vengono specificati gli attributi delle entità e relazioni coinvolte.}
+    \label{completeerdiagram}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includesvg{vectors/modello-er-originale-gravidanza.svg}
+    \caption{Schema Entità-Relazione. Ingrandimento dell'area gravidanza.}
+    \label{pregnancyerdiagram}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includesvg{vectors/modello-er-originale-visite.svg}
+    \caption{Schema Entità-Relazione. Ingrandimento dell'area visite.}
+    \label{visitserdiagram}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includesvg{vectors/modello-er-originale-parto.svg}
+    \caption{Schema Entità-Relazione. Ingrandimento dell'area parto.}
+    \label{deliveryerdiagram}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includesvg{vectors/modello-er-originale-neonato.svg}
+    \caption{Schema Entità-Relazione. Ingrandimento dell'area neonato.}
+    \label{newbornerdiagram}
+\end{figure}

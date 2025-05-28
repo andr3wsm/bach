@@ -15,8 +15,8 @@ Per i medici della Clinica che ha richiesto la realizzazione di un nuovo sistema
 I diversi momenti nel corso della gravidanza in cui vengono registrati dati relativi alla paziente (come parametri fisiologici o esami svolti) si sintetizzano nei seguenti.
 
 \begin{enumerate}
-\item Una visita nel primo trimestre di gravidanza, svolta tra le xesima e la xesima settimana, volta principalmente all'esame chiamato \emph{translucenza nucale} e a un accertamento delle condizioni iniziali della gravidanza.
-\item Una visita nel secondo trimestre, detta \emph{morfologica}, che punta ad analizzare lo sviluppo del feto, svolta tra la xesima e la xesima settimana.
+\item Una visita nel primo trimestre di gravidanza, svolta tra le 11° e la 13° settimana, volta principalmente all'esame chiamato \emph{translucenza nucale} e a un accertamento delle condizioni iniziali della gravidanza.
+\item Una visita nel secondo trimestre, detta \emph{morfologica}, che punta ad analizzare lo sviluppo del feto, svolta tra la 19° e la 21° settimana.
 \item Una o più visite ecografiche, dette anche \emph{biometriche}, svolte nel corso del terzo trimestre.
 \item Il travaglio e il parto, con informazioni sull'intero processo inclusi dati sui neonati.
 \end{enumerate}
@@ -29,7 +29,7 @@ Oltre agli esiti di queste visite si vorrebbero conservare informazioni su event
 \label{usednow}
 
 Come presentato nella Sezione \ref{problem} i medici lamentano la mancanza di un software, personalizzato e parallelo ai sistemi di refertazione \enquote{ufficiali} attualmente in uso, che favorisca la lettura dei dati ai fini di consultazione e analisi statistica sull'insieme di pazienti.
-In assenza di uno strumento centralizzato adatto, nel corso degli ultimi anni (principalmente a partire dal 2023) il personale della Clinica ha registrato i dati di interesse attraverso altri strumenti, affiancati quindi ai referti, variabili sia nel livello di strutturazione dei dati sia nelle modalità di interazione.
+In assenza di uno strumento centralizzato adatto, nel corso degli ultimi anni (principalmente a partire dal 2022-2023) il personale della Clinica ha registrato i dati di interesse attraverso altri strumenti, affiancati quindi ai referti, variabili sia nel livello di strutturazione dei dati sia nelle modalità di interazione.
 
 Le informazioni raccolte dalle visite vengono registrate principalmente in semplici fogli di calcolo tabellari, accessibili dai diversi calcolatori del reparto e compilati manualmente: elencheremo i diversi campi di queste tabelle con il relativo significato e i possibili valori che possono assumere.
 A questi si aggiunge un software più complesso e strutturato, ma giudicato non adatto alle esigenze del personale medico.
@@ -67,12 +67,12 @@ La scelta di indicare il rischio con una lettera, con l'intera parola o come rap
 \item \column{PAPP-A}, \column{freeBHCG}, \column{PLGF}: esami svolti sul sangue della paziente per la rilevazione di proteine e materiale genetico, danno valori reali.
 \item \column{UTPI}: indice di pulsatilità dell'arteria uterina, espresso come valore reale.
 \item \column{PAM}: pressione arteriosa media materna, misurata come valore intero in mmHg.
-\item \column{Esito <34}, \column{Esito <37}: esiti di esami, espressi come rapporto di rischio.
+\item \column{Esito <34}, \column{Esito <37}: misure della predisposizione alla preeclampsia, rispettivamente entro le 34 e le 37 settimane di gravidanza, espresse come rapporto di rischio.
 \item \column{Prescrizione ASA}: indica se c'è stata prescrizione di cardioaspirina, con valori 0/1.
 \item \column{Spontanea}, \column{PMA}, \column{IUI}, \column{FIVET}, \column{ICSI}, \column{Ovodonazione}: informazioni su concepimento ed eventuale tipo di procreazione medicalmente assistita, tutti con valori 0/1.
-I campi \column{Spontanea} e \column{PMA} sono mutuamente esclusivi; gli altri campi, da \column{IUI} a \column{Ovodonazione}, sono compilati solo nel caso di procreazione medicalmente assistita.
+I campi \column{Spontanea} e \column{PMA} sono mutuamente esclusivi; gli altri campi, da \column{IUI} a \column{Ovodonazione}, sono compilati solo nel caso di procreazione medicalmente assistita, con \column{IUI}, \column{FIVET} e \column{ICSI} mutuamente esclusivi.
 \item \column{Peso}, \column{Altezza}, \column{BMI}: parametri fisici della paziente alla visita.
-\item \column{Fumo}: indica se la paziente ha fumato nel periodo precedente alla visita, con valori 0/1.
+\item \column{Fumo}: indica se la paziente fuma attualmente, con valori 0/1.
 \item \column{Diabete pregestazionale}: indica se la paziente soffre di diabete pregestazionale (precedente o non dovuto alla gravidanza).
 \item \column{Malattie autoimmuni}: indica, se ne soffre, le malattie autoimmuni della paziente, elencate in forma testuale.
 \item \column{Pregressa PE}: indica se ha sofferto di preeclampsia (PE) in gravidanze precedenti.
@@ -122,12 +122,14 @@ Si considerano: il numero di figli nati a termine, il numero di figli nati prete
 \item \column{Motivo TC}: se il tipo di parto è cesareo, riporta i motivi dell'attuazione, come descrizione testuale.
 \item \column{Episiotomia}: indica se è stata svolta l'episiotomia, con valori possibili Sì o No.
 \item \column{Motivo episiotomia}: se è sstata eseguita l'episiotomia, ne riporta il motivo come descrizione testuale.
-\item \column{Lacerazioni}: indica il grado di lacerazioni. I valori possibili sono i seguenti: 0 (equivalenti: No, vuoto), 1, 2, 3, 4, AL (altro) 
+\item \column{Lacerazioni}: indica il grado di lacerazioni. I valori possibili sono i seguenti: 0 (equivalenti: No, vuoto), 1, 2, 3, 4, AL (altro). Si applica a tutti i parti eccetto quelli cesarei programmati.
 \item \column{Tracheloraffia}: indica la presenza di lacerazioni nel collo dell'utero, con valori possibili Sì o No.
 \item \column{Perineo integro}: indica se il perineo è rimasto integro, con valori Sì o No.
 \item \column{Secondamento}: indica la modalità di espulsione della placenta nel processo del parto. I valori possibili sono i seguenti: attivo, strumentale, manuale, scovolamento.
 \item \column{Perdite}: indica la perdita ematica sofferta durante il parto, quantificata in mL.
-\item \column{Robson}: classificazione del parto con valori della scala di Robson.
+\item \column{Robson}: classificazione del parto con valori della scala di Robson\footnote{
+    Valori possibili nella classificazione di Robson: 1, 2a, 2b, 3, 4a, 4b, 5.1, 5.2, 6, 7, 8, 9, 10.
+}.
 \item \column{Analgesia}: indica se è stata somministrato un analgesico, con valori Sì o No.
 \item \column{Tipo analgesia}: indica il tipo di analgesia somministrata. I valori possibili sono: spinale, epidurale (equivalente: peridurale), spinale e peridurale, calinox.
 \item \column{APGAR}: valore di \enquote{vitalità} del neonato su una scala di valori interi da 0 a 10. Viene misurato al 1° minuto dalla nascita, al 5° minuto e occasionalmente anche al 10° minuto (ad esempio, 7/7/8).
@@ -190,7 +192,7 @@ Il contenuto della base di dati, se esportato come tabella in formato CSV, arriv
 \item \column{Data Fase Attiva}: indica data e ora dell'inizio della fase attiva.
 \item \column{Data Membrane}: indica data e ora della rottura delle membrane.
 \item \column{Data Completa}: indica data e ora del raggiungimento della dilatazione completa.
-\item \column{Data Fase Attiva 2}: indica data e ora dell'inizio della fase di contrazioni.
+\item \column{Data Fase Attiva 2}: indica data e ora dell'inizio della fase di espulsione o di spinta.
 \item \column{Data Secondamento}: indica data e ora di espulsione della placenta.
 \item \column{Complicazioni}: descrizione testuale di eventuali complicazioni avvenute nel processo di travaglio e parto.
 \item \column{Indicazioni operativo}: dettagli sullo svolgimento del parto, se operativo.
@@ -219,6 +221,14 @@ Nonostante ciò, questi strumenti sono molto più semplici di una base di dati b
 L'uso di tabelle, rispetto al contenuto testuale dei referti, permette di organizzare almeno visivamente l'insieme di informazioni che si vogliono conservare per ciascuna paziente, ma non vengono imposti vincoli di correttezza o di coerenza dei dati effettivamente inseriti.
 Le operazioni di accesso ai dati (a partire dai dati identificativi della paziente) sono veloci se si considera una singola visita ma se si vuole analizzare l'intero periodo della gravidanza è necessario leggere contemporaneamente più tabelle; sotto questo aspetto l'interfaccia grafica fornita dai diversi software per visualizzare fogli di calcolo non è ottimale per tali scopi.
 
+Il personale medico riporta anche difficoltà e insoddisfazione nell'uso del software Gynbase che, nonostante appaia meglio strutturato dal punto di vista grafico e concettuale, in realtà presenta aspetti negativi che emergono nel corso degli anni di esperienza.
+I punti di criticità più importanti sono:
+\begin{itemize}
+    \item la mancanza di controlli o avvisi su dati incompatibili (ad esempio sull'ordine cronologico di determinati momenti del parto);
+    \item il fatto che le stesse informazioni possono essere richieste in aree diverse del programma e quindi vengono duplicate, portando a evidenti inconsistenze se non c'è un adeguato controllo da parte di chi si interfaccia con il sistema;
+    \item la poca chiarezza dell'interfaccia, in particolare nella distinzione tra informazioni necessarie e opzionali.
+\end{itemize}
+
 \section{Requisiti funzionali del nuovo sistema}
 \label{functionalrequirements}
 
@@ -239,13 +249,21 @@ In particolare, oltre a quanto esposto nella Sezione \ref{usednow}, i medici vog
     \item AC (circonferenza addominale);
     \item FL (lunghezza del femore);
     \item EFW (peso fetale stimato);
-    \item PIAO ?;
-    \item PIACM ?;
+    \item PIAO (valutazione flussimetrica dell'arteria ombelicale);
+    \item PIACM (valutazione flussimetrica dell'arteria cerebrale media fetale);
+    \item valutazione del dotto venoso;
     \item stato della crescita del feto (crescita regolare, FGR oppure SGA).
     \end{itemize}
 \item Esiti di esami vari, eseguiti anche al di fuori delle principali visite elencate nella Sezione \ref{problem}, di una lista eventualmente espandibile su necessità del personale medico. Gli esami danno esiti in forma perlopiù di indici numerici, comprendenti ma non limitati a: HB, TSH, AST/ALT, glicemia, curva da carico di glucosio, sierologie varie, gruppo sanguigno, test di Coombs indiretto.
 \item Dettagli su problemi concomitanti, patologie e terapie seguite (anche al di fuori di quelle controllate nell'ambulatorio \enquote{gravidanze a rischio}) e altri aspetti come interventi, trasfusioni o allergie, da indicare in forma testuale o debolmente strutturata.
 \end{enumerate}
+
+Riguardo invece alle informazioni presenti nei sistemi già in uso (Sezione \ref{usednow}) vengono fatte alcune precisazioni:
+\begin{itemize}
+\item I parti naturali e operativi possono essere eseguiti o meno con la manovra di Kristeller.
+\item Un parto gemellare può avere delle complicazioni tali da portare un gemello a nascere naturalmente e l'altro con un parto cesareo oppure operativo. In questi casi si vogliono mantenere informazioni sugli aspetti caratteristici di entrambi i tipi di parto avvenuti.
+\item Durante il travaglio possono essere somministrati (se farmacologici) o eseguiti (se meccanici) diversi metodi di induzione. Le informazioni su metodo, tempo di somministrazione, motivo, valutazione di Bishop, completamento della procedura, numero di cicli eseguiti e quantità somministrata si vogliono mantenere per ciascuna somministrazione.
+\end{itemize}
 
 \section{Scelta di una base di dati di tipo relazionale}
 

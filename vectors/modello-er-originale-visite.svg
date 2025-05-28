@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="135.14493mm"
-   height="256.50723mm"
-   viewBox="0 0 135.14492 256.50723"
+   width="141.06958mm"
+   height="256.50421mm"
+   viewBox="0 0 141.06957 256.50421"
    version="1.1"
    id="svg1"
    inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
@@ -23,15 +23,15 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="0.97890836"
-     inkscape:cx="238.53101"
-     inkscape:cy="479.61589"
+     inkscape:zoom="1.3843855"
+     inkscape:cx="270.51714"
+     inkscape:cy="243.06814"
      inkscape:window-width="1920"
      inkscape:window-height="991"
      inkscape:window-x="-9"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer2"
      inkscape:rotation="-90" />
   <defs
      id="defs1" />
@@ -40,11 +40,10 @@
      id="layer2"
      inkscape:label="Livello 2"
      transform="translate(-79.055724,-59.901154)"
-     style="display:inline"
-     sodipodi:insensitive="true">
+     style="display:inline">
     <path
        style="fill:#ffffff;fill-opacity:1;stroke:#888888;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:2.4, 2.4;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
-       d="m 88.727864,101.68939 c -5.3027,0 -9.57168,4.31545 -9.57168,9.67581 v 195.26436 c 0,5.36039 4.26898,9.67581 9.57168,9.67581 H 204.52738 c 5.30268,0 9.57068,-4.31542 9.57068,-9.67581 V 111.3652 c 0,-5.36036 -4.268,-9.67581 -9.57068,-9.67581 z"
+       d="m 88.727864,101.68939 c -5.3027,0 -9.57168,4.31545 -9.57168,9.67581 v 195.26436 c 0,5.36039 4.26898,9.67581 9.57168,9.67581 H 210.45209 c 5.30268,0 9.57068,-4.31542 9.57068,-9.67581 V 111.3652 c 0,-5.36036 -4.268,-9.67581 -9.57068,-9.67581 z"
        id="path58"
        sodipodi:nodetypes="sssssssss" />
     <path
@@ -167,26 +166,26 @@
     <circle
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-linejoin:round;stroke-opacity:1;paint-order:markers fill stroke"
        id="circle27"
-       cx="152.84097"
+       cx="151.1517"
        cy="-191.99577"
        r="1.5767375"
        transform="rotate(90)" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
-       d="m 190.41904,152.84099 h -4.33422"
+       d="m 190.41904,151.15171 h -4.33422"
        id="path27"
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;stroke-width:0.264583"
-       x="152.64108"
+       x="150.95181"
        y="-194.80367"
        id="text33"
        transform="rotate(90)"><tspan
          sodipodi:role="line"
          id="tspan33"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke-width:0.264583"
-         x="152.64108"
+         x="150.95181"
          y="-194.80367">Data</tspan></text>
     <circle
        style="display:inline;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-linejoin:round;stroke-opacity:1;paint-order:markers fill stroke"
@@ -263,50 +262,50 @@
     <circle
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-linejoin:round;stroke-opacity:1;paint-order:markers fill stroke"
        id="circle61"
-       cx="162.02443"
+       cx="160.33516"
        cy="-191.99577"
        r="1.5767375"
        transform="rotate(90)" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
-       d="m 190.41904,162.02444 h -4.33422"
+       d="m 190.41904,160.33516 h -4.33422"
        id="path61"
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;stroke-width:0.264583"
-       x="161.82454"
+       x="160.13527"
        y="-194.80367"
        id="text61"
        transform="rotate(90)"><tspan
          sodipodi:role="line"
          id="tspan61"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke-width:0.264583"
-         x="161.82454"
+         x="160.13527"
          y="-194.80367">E.G.</tspan></text>
     <circle
        style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-linejoin:round;stroke-dasharray:0.4, 0.6;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
        id="circle78-7"
-       cx="170.36285"
+       cx="168.67358"
        cy="-191.99577"
        r="1.5767375"
        transform="rotate(90)" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
-       d="m 190.41904,170.36285 h -4.33422"
+       d="m 190.41904,168.67357 h -4.33422"
        id="path101"
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;stroke-width:0.264583"
-       x="170.24879"
+       x="168.55952"
        y="-194.80367"
        id="text113"
        transform="rotate(90)"><tspan
          sodipodi:role="line"
          id="tspan113"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke-width:0.264583"
-         x="170.24879"
+         x="168.55952"
          y="-194.80367">Età</tspan></text>
     <circle
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-linejoin:round;stroke-opacity:1;paint-order:markers fill stroke"
@@ -975,12 +974,12 @@
          y="-166.56306">\CZU</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
-       d="M 207.31181,187.59023 H 186.08482"
+       d="M 207.31181,188.73894 H 186.08482"
        id="path132"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
-       d="M 201.18537,192.18505 H 186.08482"
+       d="M 201.18537,193.33376 H 186.08482"
        id="path134"
        sodipodi:nodetypes="cc" />
     <rect
@@ -988,44 +987,44 @@
        id="rect134"
        width="8.8439798"
        height="4.0492034"
-       x="187.76306"
+       x="188.91177"
        y="-196.20959"
        transform="rotate(90)" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
-       x="192.14198"
+       x="193.2907"
        y="-193.15378"
        id="text134"
        transform="rotate(90)"><tspan
          sodipodi:role="line"
          id="tspan134"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
-         x="192.14198"
+         x="193.2907"
          y="-193.15378">\CZU</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
        id="rect135"
        width="8.8439798"
        height="4.0492034"
-       x="183.16824"
+       x="184.31696"
        y="-200.25879"
        transform="rotate(90)" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
-       x="187.54715"
+       x="188.69586"
        y="-197.203"
        id="text135"
        transform="rotate(90)"><tspan
          sodipodi:role="line"
          id="tspan135"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
-         x="187.54715"
+         x="188.69586"
          y="-197.203">\CZU</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
-       d="m 195.05893,196.77988 h -8.97411"
+       d="m 195.05893,197.92859 h -8.97411"
        id="path137"
        sodipodi:nodetypes="cc" />
     <rect
@@ -1033,75 +1032,75 @@
        id="rect137"
        width="8.8439798"
        height="4.0492034"
-       x="192.35788"
+       x="193.50659"
        y="-192.1604"
        transform="rotate(90)" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
-       x="196.7368"
+       x="197.88551"
        y="-189.10458"
        id="text137"
        transform="rotate(90)"><tspan
          sodipodi:role="line"
          id="tspan137"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
-         x="196.7368"
+         x="197.88551"
          y="-189.10458">\CZU</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;stroke-width:0.264583"
-       x="199.33531"
+       x="200.48402"
        y="-195.37027"
        id="text138"
        transform="rotate(90)"><tspan
          sodipodi:role="line"
          id="tspan138"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;text-anchor:start;stroke-width:0.264583"
-         x="199.33531"
+         x="200.48402"
          y="-195.37027">Anomalie morfologiche fetali</tspan></text>
     <circle
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-linejoin:round;stroke-opacity:1;paint-order:markers fill stroke"
        id="circle142"
-       cx="196.77988"
+       cx="197.92859"
        cy="-196.63565"
        r="1.5767375"
        transform="rotate(90)" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;stroke-width:0.264583"
-       x="194.74048"
+       x="195.88919"
        y="-201.4967"
        id="text142"
        transform="rotate(90)"><tspan
          sodipodi:role="line"
          id="tspan142"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;text-anchor:start;stroke-width:0.264583"
-         x="194.74048"
+         x="195.88919"
          y="-201.4967">Pressione arteriosa materna</tspan></text>
     <circle
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-linejoin:round;stroke-opacity:1;paint-order:markers fill stroke"
        id="circle143"
-       cx="192.18504"
+       cx="193.33376"
        cy="-202.76208"
        r="1.5767375"
        transform="rotate(90)" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;stroke-width:0.264583"
-       x="190.14566"
+       x="191.29437"
        y="-207.62314"
        id="text143"
        transform="rotate(90)"><tspan
          sodipodi:role="line"
          id="tspan143"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;text-anchor:start;stroke-width:0.264583"
-         x="190.14566"
+         x="191.29437"
          y="-207.62314">Prescrizione ASA</tspan></text>
     <circle
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-linejoin:round;stroke-opacity:1;paint-order:markers fill stroke"
        id="circle144"
-       cx="187.59023"
+       cx="188.73894"
        cy="-208.88855"
        r="1.5767375"
        transform="rotate(90)" />
@@ -1266,26 +1265,26 @@
     <circle
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-linejoin:round;stroke-opacity:1;paint-order:markers fill stroke"
        id="circle1"
-       cx="178.84961"
+       cx="177.16034"
        cy="-191.99577"
        r="1.5767375"
        transform="rotate(90)" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
-       d="m 190.41904,178.84962 h -4.33422"
+       d="m 190.41904,177.16034 h -4.33422"
        id="path1"
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;stroke-width:0.264583"
-       x="178.64972"
+       x="176.96045"
        y="-194.80367"
        id="text1"
        transform="rotate(90)"><tspan
          sodipodi:role="line"
          id="tspan1"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke-width:0.264583"
-         x="178.64972"
+         x="176.96045"
          y="-194.80367">Note</tspan></text>
     <circle
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-linejoin:round;stroke-opacity:1;paint-order:markers fill stroke"
@@ -1527,5 +1526,49 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke-width:0.264583"
          x="217.57063"
          y="-107.10184">Note</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="M 212.79057,183.65273 H 186.08482"
+       id="path8"
+       sodipodi:nodetypes="cc" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+       id="rect8"
+       width="8.8439798"
+       height="4.0492034"
+       x="179.23076"
+       y="-205.73755"
+       transform="rotate(90)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+       x="183.60966"
+       y="-202.68176"
+       id="text8"
+       transform="rotate(90)"><tspan
+         sodipodi:role="line"
+         id="tspan8"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke:none;stroke-width:2;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+         x="183.60966"
+         y="-202.68176">\CZU</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;stroke-width:0.264583"
+       x="186.20818"
+       y="-213.1019"
+       id="text9"
+       transform="rotate(90)"><tspan
+         sodipodi:role="line"
+         id="tspan9"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;text-anchor:start;stroke-width:0.264583"
+         x="186.20818"
+         y="-213.1019">UTPI</tspan></text>
+    <circle
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-linejoin:round;stroke-opacity:1;paint-order:markers fill stroke"
+       id="circle9"
+       cx="183.65274"
+       cy="-214.36731"
+       r="1.5767375"
+       transform="rotate(90)" />
   </g>
 </svg>

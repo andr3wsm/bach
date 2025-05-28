@@ -9,27 +9,13 @@ Il formalismo del modello Entità-Relazione permette di utilizzare strutture piu
 Per facilitare la traduzione in uno schema logico nel modello relazionale è necessario operare una ristrutturazione o semplificazione dello schema iniziale \cite{Atz23}, con l'obiettivo di ottenere soltanto entità senza specializzazioni o categorie, attributi semplici e relazioni binarie.
 Nella fase di ristrutturazione si valuta se è opportuno mantenere gli attributi ridondanti per motivi di efficienza e si scelgono gli attributi chiave delle entità che hanno più candidati possibili.
 
-\begin{figure}
-    \centering
-    \includesvg{vectors/modello-er-ristrutturato.svg}
-    \caption{Schema Entità-Relazione ristrutturato. Visione d'insieme semplificata, contenente soltanto entità e relazioni del modello.}
-    \label{completererdiagram}
-\end{figure}
-
 Lo schema ristrutturato, mostrato in Figura \ref{completererdiagram}, rimane espresso nel modello Entità-Relazione, ma non si può più considerare puramente concettuale perché introduce modifiche dettate non dalle caratteristiche del dominio ma da aspetti implementativi e ottimizzazione delle prestazioni.
 Dopo la ristrutturazione, la traduzione può essere fatta in modo meccanico perché i costrutti più elementari del modello Entità-Relazione hanno dei corrispettivi diretti nel modello relazionale.
 
 \subsection{Ristrutturazione dell'area concettuale della gravidanza}
 
-\begin{figure}
-    \centering
-    \includesvg{vectors/modello-er-ristrutturato-gravidanza.svg}
-    \caption{Schema Entità-Relazione ristrutturato. Ingrandimento dell'area gravidanza.}
-\label{pregnancyrerdiagram}
-\end{figure}
-
 La Figura \ref{pregnancyrerdiagram} mostra l'ingrandimento dello schema Entità-Relazione ristrutturato per quanto riguarda le entità Paziente, Gravidanza e Malattia.
-Di queste solo Gravidanza ha subito delle modifiche rispetto allo schema concettuale.
+Di queste solo Gravidanza subisce delle modifiche rispetto allo schema concettuale.
 
 \subsubsection{Gravidanza}
 
@@ -48,15 +34,8 @@ La quadrupla di attributi che compongono la parità deve essere unica per ogni p
 
 \subsection{Ristrutturazione dell'area concettuale delle visite}
 
-\begin{figure}
-    \centering
-    \includesvg{vectors/modello-er-ristrutturato-visite.svg}
-    \caption{Schema Entità-Relazione ristrutturato. Ingrandimento dell'area visite.}
-\label{visitsrerdiagram}
-\end{figure}
-
 La Figura \ref{visitsrerdiagram} mostra l'ingrandimento dello schema Entità-Relazione ristrutturato per quanto riguarda le entità relative alle visite e all'entità Esame.
-Quest'ultima non ha subito modifiche nella ristrutturazione.
+Quest'ultima non subisce modifiche nella ristrutturazione.
 
 \subsubsection{Visite}
 
@@ -73,5 +52,64 @@ Le diverse relazioni che legavano le entità originali a Gravidanza si riducono 
 Ogni gravidanza può effettuare al massimo una sola visita del primo trimestre. \\
 Ogni gravidanza può effettuare al massimo una sola visita del secondo trimestre.
 \end{quote}
+
+\subsection{Ristrutturazione dell'area concettuale del parto}
+
+La Figura \ref{deliveryrerdiagram} mostra l'ingrandimento dello schema Entità-Relazione ristrutturato per quanto riguarda le entità parto, con le sue specializzazioni, e Travaglio.
+Entrambe subiscono modifiche rispetto allo schema originale.
+
+\subsubsection{Parto}
+
+Considerando il fatto che la complessa gerarchia di specializzazioni dell'entità Parto è totale e sovrapposta, scegliamo di ristrutturarla ottenendo un'unica entità Parto a cui si aggiungono tutti gli attributi delle entità figlie più un attributo \enquote{Tipo di parto} per differenziare il tipo effettivo\footnote{
+    Considerando le sovrapposizioni possibili esposte nella Sezione \ref{deliveryconceptual}, i valori del dominio dell'attributo Tipo di parto sono: naturale, operativo, cesareo programmato, cesareo urgente, naturale e operativo, naturale e cesareo urgente, operativo e cesareo urgente.
+}.
+Gli attributi composti come Tempi e Secondamento vengono scomposti e si legano direttamente a Parto; quelli che prima erano obbligatori per le entità figlie diventano opzionali nell'entità Parto ristrutturata.
+
+\subsubsection{Travaglio e induzione}
+
+L'attributo composto e multivalore Induzione diventa un'entità a sé stante, con il tempo di somministrazione come chiave parziale.
+L'entità Travaglio rimane senza nessun attributo, quindi la rimuoviamo per legare direttamente Parto e Induzione; l'entità Induzione diventa quindi debole rispetto a Parto.
+
+\subsection{Ristrutturazione dell'area concettuale del neonato}
+
+La Figura \ref{newbornrerdiagram} mostra l'ingrandimento dello schema Entità-Relazione ristrutturato per quanto riguarda le entità Neonato, Tracciato CTG e Misurazione CTG.
+Le differenze rispetto allo schema originale sono minime: nell'entità Neonato l'attributo composto APGAR viene diviso nelle sue componenti che vengono collegate direttamente a Neonato, mentre nell'entità Tracciato CTG si sceglie come chiave la relazione identificante con l'entità Parto.
+
+\begin{figure}
+    \centering
+    \includesvg{vectors/modello-er-ristrutturato.svg}
+    \caption{Schema Entità-Relazione ristrutturato. Visione d'insieme semplificata, contenente soltanto entità e relazioni del modello. Le aree tratteggiate delimitano gli stessi ingrandimenti dello schema concettuale originale.}
+    \label{completererdiagram}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includesvg{vectors/modello-er-ristrutturato-gravidanza.svg}
+    \caption{Schema Entità-Relazione ristrutturato. Ingrandimento dell'area gravidanza.}
+\label{pregnancyrerdiagram}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includesvg{vectors/modello-er-ristrutturato-visite.svg}
+    \caption{Schema Entità-Relazione ristrutturato. Ingrandimento dell'area visite.}
+\label{visitsrerdiagram}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includesvg{vectors/modello-er-ristrutturato-parto.svg}
+    \caption{Schema Entità-Relazione ristrutturato. Ingrandimento dell'area parto.}
+\label{deliveryrerdiagram}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includesvg{vectors/modello-er-ristrutturato-neonato.svg}
+    \caption{Schema Entità-Relazione ristrutturato. Ingrandimento dell'area neonato.}
+\label{newbornrerdiagram}
+\end{figure}
+
+\newpage
 
 \section{Schema logico relazionale}
