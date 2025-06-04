@@ -1,0 +1,58 @@
+Table gravidanza {
+  id integer [pk]
+}
+
+Table parto {
+  gravidanza integer [pk]
+  tipo_parto varchar [not null]
+  data_parto date [not null]
+  eta integer [not null]
+  epoca_gestazionale integer [not null]
+  tempo_secondamento timestamp [not null]
+  tipo_secondamento varchar [not null]
+  analgesia varchar
+  perdita_ematica integer
+  robson varchar [not null]
+  annotazioni text
+}
+
+Ref: parto.gravidanza > gravidanza.id
+
+Table cesareo_programmato {
+  parto integer [pk]
+  motivo varchar
+}
+
+Ref: cesareo_programmato.parto - parto.gravidanza
+
+Table parto_con_travaglio {
+  parto integer [pk]
+  sottotipo_parto varchar [not null]
+  motivo varchar
+  lacerazioni varchar [not null]
+  kristeller bool
+  tempo_rottura_membrane timestamp
+  tempo_inizio_fase_attiva timestamp
+  tempo_dilatazione_completa timestamp
+  tempo_inizio_fase_espulsiva timestamp
+  tempo_espulsione timestamp
+}
+
+Ref: parto_con_travaglio.parto - parto.gravidanza
+
+Table induzione {
+  parto integer
+  tempo_somministrazione timestamp
+  motivo varchar [not null]
+  metodo varchar [not null]
+  bishop integer [not null]
+  quantita_somministrata integer [not null]
+  cicli_eseguiti integer [not null]
+  completamento integer [not null]
+
+  indexes {
+    (parto, tempo_somministrazione) [pk]
+  }
+}
+
+Ref: induzione.parto > parto_con_travaglio.parto

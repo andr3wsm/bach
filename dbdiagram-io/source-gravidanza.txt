@@ -1,0 +1,50 @@
+Table paziente {
+  codice_fiscale varchar [pk]
+  nome varchar [not null]
+  cognome varchar [not null]
+  data_nascita date [not null]
+}
+
+Table gravidanza {
+  id integer [pk]
+  paziente varchar
+  data_primo_ingresso date
+  figli_nati_vivi integer [not null]
+  aborti_avuti integer [not null]
+  figli_nati_pretermine integer [not null]
+  figli_nati_a_termine integer [not null]
+  parita varchar [not null]
+  eta_concepimento integer
+  gemellare bool [not null]
+  esito varchar
+  pma_tipo varchar
+  pma_ovodonazione bool
+  pregresso_gdm bool [not null]
+  pregressa_pih bool [not null]
+  pregressa_tireopatia bool [not null]
+  pregressa_preeclampsia bool [not null]
+  data_prevista_parto date
+  ultima_mestruazione_ecografica date
+  ultima_mestruazione_anamnestica date
+  annotazioni text
+}
+
+Ref: gravidanza.paziente > paziente.codice_fiscale
+
+Table malattia {
+  codice varchar [pk]
+  nome varchar [not null]
+}
+
+Table in_concomitanza_con {
+  gravidanza integer
+  malattia varchar
+  terapia text
+
+  indexes {
+    (gravidanza, malattia) [pk]
+  }
+}
+
+Ref: in_concomitanza_con.gravidanza > gravidanza.id
+Ref: in_concomitanza_con.malattia > malattia.codice

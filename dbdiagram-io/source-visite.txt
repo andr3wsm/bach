@@ -1,0 +1,46 @@
+Table gravidanza {
+  id integer [pk]
+}
+Table visita {
+  gravidanza integer
+  data_visita date
+  epoca_gestazionale integer [not null]
+  eta integer [not null]
+  categoria_visita varchar [not null]
+  pressione_arteriosa_materna integer
+  anomalie_morfologiche_fetali text
+  prescrizione_asa bool
+  decorso text
+  fuma bool
+  premorfologica_indicata bool
+  stato_crescita varchar
+  utpi float
+  altezza float
+  peso float
+  annotazioni text
+
+  indexes {
+    (gravidanza, data_visita) [pk]
+  }
+}
+
+Ref: visita.gravidanza > gravidanza.id
+
+Table esame {
+  nome varchar [pk]
+}
+
+Table fatto_per {
+  esame varchar
+  gravidanza integer
+  data_visita date
+  esito varchar
+  data_esame date
+
+  indexes {
+    (esame, gravidanza, data_visita) [pk]
+  }
+}
+
+Ref: fatto_per.esame > esame.nome
+Ref: fatto_per.gravidanza > visita.gravidanza

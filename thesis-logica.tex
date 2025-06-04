@@ -20,16 +20,18 @@ Di queste solo Gravidanza subisce delle modifiche rispetto allo schema concettua
 \subsubsection{Gravidanza}
 
 Nell'entità Gravidanza semplifichiamo gli attributi composti in attributi semplici, legandoli quindi direttamente alla gravidanza.
-Si rimuove la \enquote{rappresentazione testuale}, presente nello schema concettuale come attributo derivato e direttamente calcolabile a partire dagli altri componenti dell'attributo composto Parità.
 Viene mantenuto il vincolo posto sulla non decrescenza o crescenza stretta dei componenti dell'attributo Parità.
 
-Gravidanza è entità debole ed è identificata dalla relazione con Paziente.
-Tra le due chiavi parziali possibili si sceglie l'attributo Data primo ingresso perché è costituito da un solo attributo invece che da quattro diversi, risultando quindi molto più semplice da utilizzare come identificatore della gravidanza nelle diverse relazioni in cui questa entità partecipa.
-La quadrupla di attributi risultante dalla decomposizione di Parità, in quanto chiave candidata nel modello concettuale, mantiene le proprietà di chiave e quindi si pone un ulteriore vincolo di unicità\footnote{
+Gravidanza è entità debole ed è identificata dalla relazione con Paziente e nello schema concettuale sono state identificate più possibili chiavi parziali, ovvero la parità e la data di primo ingresso.
+Considerando che la maggior parte delle entità dell'intero schema sono deboli, direttamente o indirettamente, rispetto alla gravidanza, si otterrà che nello schema logico (vedi Sezione \ref{logical}) in quasi tutte le tabelle sarà presente una chiave esterna che fa riferimento alla gravidanza.
+Per questo motivo, al fine di alleggerire il numero di colonne presenti in ciascuna tabella e facilitare l'interrogazione, introduciamo un valore numerico identificativo come attributo chiave dell'entità Gravidanza ristrutturata.
+
+La parità e la data del primo ingresso, in quanto chiavi candidate nel modello concettuale, mantengono le proprietà di chiave e quindi viene posto un ulteriore vincolo di unicità\footnote{
     Il vincolo di non avere valore \emph{NULL} è già espresso dall'assenza dell'indicazione (0,1) su tutti gli attributi, quindi nessuno di essi è opzionale.
 }.
 \begin{quote}
-La quadrupla di attributi che compongono la parità deve essere unica per ogni paziente.
+La quadrupla di attributi che compongono la parità deve essere unica per ogni paziente. \\
+La data di primo ingresso deve essere unica per ogni paziente.
 \end{quote}
 
 \subsection{Ristrutturazione dell'area concettuale delle visite}
@@ -60,15 +62,22 @@ Entrambe subiscono modifiche rispetto allo schema originale.
 
 \subsubsection{Parto}
 
-Considerando il fatto che la complessa gerarchia di specializzazioni dell'entità Parto è totale e sovrapposta, scegliamo di ristrutturarla ottenendo un'unica entità Parto a cui si aggiungono tutti gli attributi delle entità figlie più un attributo \enquote{Tipo di parto} per differenziare il tipo effettivo\footnote{
-    Considerando le sovrapposizioni possibili esposte nella Sezione \ref{deliveryconceptual}, i valori del dominio dell'attributo Tipo di parto sono: naturale, operativo, cesareo programmato, cesareo urgente, naturale e operativo, naturale e cesareo urgente, operativo e cesareo urgente.
-}.
-Gli attributi composti come Tempi e Secondamento vengono scomposti e si legano direttamente a Parto; quelli che prima erano obbligatori per le entità figlie diventano opzionali nell'entità Parto ristrutturata.
+Nello schema concettuale originale l'entità Parto è specializzata in più entità su due livelli.
+Consideriamo il primo livello di specializzazione, articolata in parti cesarei programmati e parti di altro tipo, che è totale e disgiunta: ristrutturiamo la specializzazione con un'entità Parto, che contiene gli attributi comuni, e le due entità Cesareo programmato e Parto con travaglio, deboli rispetto a Parto, che contengono gli attributi specifici.
+Per mantenere le proprietà previste dalla specializzazione, ovvero totalità e disgiunzione, è necessario introdurre un vincolo ulteriore.
+\begin{quote}
+Ogni parto deve essere uno e uno solo tra cesareo programmato e parto con travaglio.
+\end{quote}
+
+Il secondo livello di specializzazione, che distingue parti naturali, operativi e cesarei urgenti, è totale e sovrapposta, con solo pochi attributi che non sono in comune a tutte le sottoentità.
+Eliminiamo quindi la specializzazione, legando anche gli attributi specifici delle sottoentità a Parto con travaglio.
+
+Gli attributi composti sia nell'entità Parto (Secondamento) sia nell'entità Parto con travaglio (Tempi) vengono scomposti nei relativi attributi che li compongono.
 
 \subsubsection{Travaglio e induzione}
 
 L'attributo composto e multivalore Induzione diventa un'entità a sé stante, con il tempo di somministrazione come chiave parziale.
-L'entità Travaglio rimane senza nessun attributo, quindi la rimuoviamo per legare direttamente Parto e Induzione; l'entità Induzione diventa quindi debole rispetto a Parto.
+L'entità Travaglio rimane senza nessun attributo, quindi la rimuoviamo per legare direttamente Parto con travaglio e Induzione; l'entità Induzione diventa quindi debole rispetto a Parto con travaglio.
 
 \subsection{Ristrutturazione dell'area concettuale del neonato}
 
@@ -113,3 +122,4 @@ Le differenze rispetto allo schema originale sono minime: nell'entità Neonato l
 \newpage
 
 \section{Schema logico relazionale}
+\label{logical}

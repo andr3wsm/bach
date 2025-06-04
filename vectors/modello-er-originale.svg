@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="165.04506mm"
+   width="169.49844mm"
    height="213.64496mm"
-   viewBox="0 0 165.04505 213.64495"
+   viewBox="0 0 169.49843 213.64495"
    version="1.1"
    id="svg1"
    inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
@@ -23,15 +23,15 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="0.97890837"
-     inkscape:cx="210.94926"
-     inkscape:cy="449.99104"
+     inkscape:zoom="0.69219275"
+     inkscape:cx="174.08446"
+     inkscape:cy="8.6681059"
      inkscape:window-width="1920"
      inkscape:window-height="991"
      inkscape:window-x="-9"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer2"
      inkscape:rotation="-90" />
   <defs
      id="defs1" />
@@ -39,7 +39,7 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Livello 2"
-     transform="translate(-36.503447,4.4245829)">
+     transform="translate(-32.050052,4.4245829)">
     <path
        style="fill:#ffffff;fill-opacity:1;stroke:#888888;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:2.4, 2.4;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
        d="m 118.0255,106.06743 c -3.02654,0 -6.99241,2.7954 -6.99241,6.26783 v 90.49009 c 0,3.47242 3.96587,6.26835 6.99241,6.26835 h 76.58497 c 3.02655,0 6.89642,-2.79593 6.89642,-6.26835 v -90.49009 c 0,-3.47243 -3.86987,-6.26783 -6.89642,-6.26783 z"
@@ -53,11 +53,11 @@
     <path
        id="rect60"
        style="fill:#ffffff;fill-opacity:1;stroke:#888888;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:2.4, 2.4;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
-       d="m 40.11563,-4.1904887 c -1.944691,0 -3.509864,1.4617552 -3.509864,3.27731937 v 1.66501465 l 0,60.41399268 c 0.01127,2.728634 2.365724,4.922697 5.29115,4.922697 h 25.54056 c 0.002,0 0.0032,5.17e-4 0.0052,5.17e-4 h 62.218426 c 1.94469,0 3.50986,-1.461761 3.50986,-3.277319 v -1.665015 l 0,-60.41864384 c -0.014,-2.72641496 -2.36691,-4.91804606 -5.29063,-4.91804606 h -25.54108 c -0.002,-3e-6 -0.003,-5.168e-4 -0.005,-5.168e-4 z"
+       d="m 35.661569,-4.1904887 c -1.944691,0 -3.509864,1.4617552 -3.509864,3.27731937 V 0.75184532 61.165838 c 0.01127,2.728634 2.365724,4.922697 5.29115,4.922697 h 29.994621 c 0.002,0 0.0032,5.17e-4 0.0052,5.17e-4 H 129.6611 c 1.94469,0 3.50986,-1.461761 3.50986,-3.277319 V 61.146718 0.72807416 c -0.014,-2.72641496 -2.36691,-4.91804606 -5.29063,-4.91804606 h -25.54108 c -0.002,-3e-6 -0.003,-5.168e-4 -0.005,-5.168e-4 z"
        sodipodi:nodetypes="ssccsssssccscss" />
     <path
        style="fill:#ffffff;fill-opacity:1;stroke:#888888;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:2.4, 2.4;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
-       d="m 40.115843,70.976076 c -1.944693,0 -3.509857,1.461754 -3.509857,3.27732 v 1.665014 8.094267 121.830383 c 0,1.81557 1.565164,3.27732 3.509857,3.27732 h 63.842227 c 1.94468,0 3.51041,-1.46175 3.51041,-3.27732 v -88.04845 -5.43037 c 0,-6.16354 5.51683,-10.30097 11.7235,-10.30097 h 8.68808 c 2.93245,0 5.29328,-2.204067 5.29328,-4.941816 V 75.91841 c 0,-2.737749 -2.36083,-4.941817 -5.29328,-4.941817 h -25.54099 c -0.002,-3e-6 -0.003,-5.17e-4 -0.005,-5.17e-4 z"
+       d="m 35.661782,70.976076 c -1.944693,0 -3.509857,1.461754 -3.509857,3.27732 v 1.665014 8.094267 121.830383 c 0,1.81557 1.565164,3.27732 3.509857,3.27732 h 68.296288 c 1.94468,0 3.51041,-1.46175 3.51041,-3.27732 v -88.04845 -5.43037 c 0,-6.16354 5.51683,-10.30097 11.7235,-10.30097 h 8.68808 c 2.93245,0 5.29328,-2.204067 5.29328,-4.941816 V 75.91841 c 0,-2.737749 -2.36083,-4.941817 -5.29328,-4.941817 h -25.54099 c -0.002,-3e-6 -0.003,-5.17e-4 -0.005,-5.17e-4 z"
        id="path1"
        sodipodi:nodetypes="ssccsssscsssssscss" />
   </g>
@@ -65,7 +65,7 @@
      inkscape:label="Livello 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-36.503447,4.4245829)">
+     transform="translate(-32.050052,4.4245829)">
     <path
        style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
        d="M 83.475525,74.959938 48.353069,62.312582"
@@ -120,6 +120,18 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle;stroke-width:0.264583"
          x="25.150927"
          y="-145.56972">Paziente</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#888888;fill-opacity:1;stroke-width:0.264583"
+       x="-1.3670791"
+       y="-195.584"
+       id="text2-1"
+       transform="rotate(90)"><tspan
+         sodipodi:role="line"
+         id="tspan2-9"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;text-anchor:start;fill:#888888;fill-opacity:1;stroke-width:0.264583"
+         x="-1.3670791"
+         y="-195.584">\textsc{Gravidanza}</tspan></text>
     <rect
        style="fill:#ffffff;stroke:#000000;stroke-width:0.212313;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect3"
@@ -988,5 +1000,41 @@
        d="M 48.353065,30.048363 V 40.285121"
        id="path3"
        sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#888888;fill-opacity:1;stroke-width:0.264583"
+       x="204.32452"
+       y="-195.584"
+       id="text4"
+       transform="rotate(90)"><tspan
+         sodipodi:role="line"
+         id="tspan4"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;text-anchor:end;fill:#888888;fill-opacity:1;stroke-width:0.264583"
+         x="204.32452"
+         y="-195.584">\textsc{Visite}</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#888888;fill-opacity:1;stroke-width:0.264583"
+       x="204.32452"
+       y="-36.90242"
+       id="text5"
+       transform="rotate(90)"><tspan
+         sodipodi:role="line"
+         id="tspan5"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;text-anchor:end;fill:#888888;fill-opacity:1;stroke-width:0.264583"
+         x="204.32452"
+         y="-36.90242">\textsc{Parto}</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#888888;fill-opacity:1;stroke-width:0.264583"
+       x="-1.1891232"
+       y="-35.532276"
+       id="text8"
+       transform="rotate(90)"><tspan
+         sodipodi:role="line"
+         id="tspan8"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;text-anchor:start;fill:#888888;fill-opacity:1;stroke-width:0.264583"
+         x="-1.1891232"
+         y="-35.532276">\textsc{Neonato}</tspan></text>
   </g>
 </svg>

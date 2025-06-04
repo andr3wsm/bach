@@ -1,0 +1,64 @@
+Table gravidanza {
+  id integer [pk]
+}
+
+Table parto {
+  gravidanza integer [pk]
+}
+
+Ref: parto.gravidanza > gravidanza.id
+
+Table tracciato {
+  parto integer [pk]
+  numero_progressivo varchar [not null]
+  tempo_inizio timestamp [not null]
+}
+
+Ref: tracciato.parto - parto.gravidanza
+
+Table misurazione {
+  tracciato integer
+  tempo timestamp
+  valore_fcm integer
+  valore_toco integer
+
+  indexes {
+    (tracciato, tempo) [pk]
+  }
+}
+
+Ref: misurazione.tracciato > tracciato.parto
+
+Table neonato {
+  parto integer
+  tempo_nascita timestamp
+  peso float
+  altezza float
+  sesso char
+  circonferenza_cranica float
+  base_excess float
+  ph float
+  terapia_intensiva bool [not null]
+
+  indexes {
+    (parto, tempo_nascita) [pk]
+  }
+}
+
+Ref: neonato.parto > parto.gravidanza
+
+Table misurazione_fcf {
+  tracciato integer
+  tempo_misurazione timestamp
+  tempo_nascita timestamp
+  valore_fcf integer
+
+  indexes {
+    (tracciato, tempo_misurazione, tempo_nascita) [pk]
+  }
+}
+
+Ref: misurazione_fcf.tracciato > misurazione.tracciato
+Ref: misurazione_fcf.tempo_misurazione > misurazione.tempo
+Ref: misurazione_fcf.tracciato > neonato.parto
+Ref: misurazione_fcf.tempo_nascita > neonato.tempo_nascita

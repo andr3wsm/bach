@@ -1,0 +1,204 @@
+Table paziente {
+  codice_fiscale varchar [pk]
+  nome varchar [not null]
+  cognome varchar [not null]
+  data_nascita date [not null]
+}
+
+Table gravidanza {
+  id integer [pk]
+  paziente varchar
+  data_primo_ingresso date
+  figli_nati_vivi integer [not null]
+  aborti_avuti integer [not null]
+  figli_nati_pretermine integer [not null]
+  figli_nati_a_termine integer [not null]
+  parita varchar [not null]
+  eta_concepimento integer
+  gemellare bool [not null]
+  esito varchar
+  pma_tipo varchar
+  pma_ovodonazione bool
+  pregresso_gdm bool [not null]
+  pregressa_pih bool [not null]
+  pregressa_tireopatia bool [not null]
+  pregressa_preeclampsia bool [not null]
+  data_prevista_parto date
+  ultima_mestruazione_ecografica date
+  ultima_mestruazione_anamnestica date
+  annotazioni text
+}
+
+Ref: gravidanza.paziente > paziente.codice_fiscale
+
+Table malattia {
+  codice varchar [pk]
+  nome varchar [not null]
+}
+
+Table in_concomitanza_con {
+  gravidanza integer
+  malattia varchar
+  terapia text
+
+  indexes {
+    (gravidanza, malattia) [pk]
+  }
+}
+
+Ref: in_concomitanza_con.gravidanza > gravidanza.id
+Ref: in_concomitanza_con.malattia > malattia.codice
+
+Table visita {
+  gravidanza integer
+  data_visita date
+  epoca_gestazionale integer [not null]
+  eta integer [not null]
+  categoria_visita varchar [not null]
+  pressione_arteriosa_materna integer
+  anomalie_morfologiche_fetali text
+  prescrizione_asa bool
+  decorso text
+  fuma bool
+  premorfologica_indicata bool
+  stato_crescita varchar
+  utpi float
+  altezza float
+  peso float
+  annotazioni text
+
+  indexes {
+    (gravidanza, data_visita) [pk]
+  }
+}
+
+Ref: visita.gravidanza > gravidanza.id
+
+Table esame {
+  nome varchar [pk]
+}
+
+Table fatto_per {
+  esame varchar
+  gravidanza integer
+  data_visita date
+  esito varchar
+  data_esame date
+
+  indexes {
+    (esame, gravidanza, data_visita) [pk]
+  }
+}
+
+Ref: fatto_per.esame > esame.nome
+Ref: fatto_per.gravidanza > visita.gravidanza
+
+Table parto {
+  gravidanza integer [pk]
+  tipo_parto varchar [not null]
+  data_parto date [not null]
+  eta integer [not null]
+  epoca_gestazionale integer [not null]
+  tempo_secondamento timestamp [not null]
+  tipo_secondamento varchar [not null]
+  analgesia varchar
+  perdita_ematica integer
+  robson varchar [not null]
+  annotazioni text
+}
+
+Ref: parto.gravidanza > gravidanza.id
+
+Table cesareo_programmato {
+  parto integer [pk]
+  motivo varchar
+}
+
+Ref: cesareo_programmato.parto - parto.gravidanza
+
+Table parto_con_travaglio {
+  parto integer [pk]
+  sottotipo_parto varchar [not null]
+  motivo varchar
+  lacerazioni varchar [not null]
+  kristeller bool
+  tempo_rottura_membrane timestamp
+  tempo_inizio_fase_attiva timestamp
+  tempo_dilatazione_completa timestamp
+  tempo_inizio_fase_espulsiva timestamp
+  tempo_espulsione timestamp
+}
+
+Ref: parto_con_travaglio.parto - parto.gravidanza
+
+Table induzione {
+  parto integer
+  tempo_somministrazione timestamp
+  motivo varchar [not null]
+  metodo varchar [not null]
+  bishop integer [not null]
+  quantita_somministrata integer [not null]
+  cicli_eseguiti integer [not null]
+  completamento integer [not null]
+
+  indexes {
+    (parto, tempo_somministrazione) [pk]
+  }
+}
+
+Ref: induzione.parto > parto_con_travaglio.parto
+
+Table tracciato {
+  parto integer [pk]
+  numero_progressivo varchar [not null]
+  tempo_inizio timestamp [not null]
+}
+
+Ref: tracciato.parto - parto.gravidanza
+
+Table misurazione {
+  tracciato integer
+  tempo timestamp
+  valore_fcm integer
+  valore_toco integer
+
+  indexes {
+    (tracciato, tempo) [pk]
+  }
+}
+
+Ref: misurazione.tracciato > tracciato.parto
+
+Table neonato {
+  parto integer
+  tempo_nascita timestamp
+  peso float
+  altezza float
+  sesso char
+  circonferenza_cranica float
+  base_excess float
+  ph float
+  terapia_intensiva bool [not null]
+
+  indexes {
+    (parto, tempo_nascita) [pk]
+  }
+}
+
+Ref: neonato.parto > parto.gravidanza
+
+Table misurazione_fcf {
+  tracciato integer
+  tempo_misurazione timestamp
+  tempo_nascita timestamp
+  valore_fcf integer
+
+  indexes {
+    (tracciato, tempo_misurazione, tempo_nascita) [pk]
+  }
+}
+
+Ref: misurazione_fcf.tracciato > misurazione.tracciato
+Ref: misurazione_fcf.tempo_misurazione > misurazione.tempo
+Ref: misurazione_fcf.tracciato > neonato.parto
+Ref: misurazione_fcf.tempo_nascita > neonato.tempo_nascita
