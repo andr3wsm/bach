@@ -123,3 +123,28 @@ Le differenze rispetto allo schema originale sono minime: nell'entità Neonato l
 
 \section{Schema logico relazionale}
 \label{logical}
+
+Lo schema logico è un insieme di relazioni composte di attributi, corrispondenti concettualmente a tabelle strutturate in colonne; ogni relazione può essere istanziata come insieme di tuple, corrispondenti all'insieme dei record nelle tabelle.
+Tra diverse tabelle possono sussistere vincoli di chiave esterna, ovvero situazioni in cui ogni istanza di un dato attributo di una relazione deve essere presente come istanza di attributo dell'altra relazione coinvolta.
+La Figura \ref{completereldiagram} mostra uno schema relazionale di massima contenente soltanto i nomi delle relazioni e i vincoli di chiave esterna tra relazioni.
+
+\begin{figure}
+    \centering
+    \includesvg{vectors/modello-relazionale.svg}
+    \caption{Schema relazionale. Visione d'insieme semplificata, contenente soltanto i nomi delle relazioni o tabelle dello schema e le relazioni di chiave esterna.}
+\label{completereldiagram}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includesvg{vectors/modello-relazionale-gravidanza.svg}
+    \caption{Schema relazionale. Ingrandimento dell'area gravidanza.}
+\label{pregnancyreldiagram}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includesvg{vectors/modello-relazionale-visite.svg}
+    \caption{Schema relazionale. Ingrandimento dell'area visite.}
+\label{visitsreldiagram}
+\end{figure}
