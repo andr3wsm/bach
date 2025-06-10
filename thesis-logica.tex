@@ -4,6 +4,7 @@ Lo schema concettuale presentato nel Capitolo \ref{conceptual} rappresenta in mo
 In seguito a questo passaggio di ristrutturazione si definisce uno schema logico, costituito da un insieme di relazioni con eventuali vincoli posti su di esse.
 
 \section{Ristrutturazione dello schema Entità-Relazione}
+\label{restructuring}
 
 Il formalismo del modello Entità-Relazione permette di utilizzare strutture piuttosto complesse a livello concettuale, come ad esempio le relazioni di specializzazione o gli attributi multivalore.
 Per facilitare la traduzione in uno schema logico nel modello relazionale è necessario operare una ristrutturazione o semplificazione dello schema iniziale \cite{Atz23}, con l'obiettivo di ottenere soltanto entità senza specializzazioni o categorie, attributi semplici e relazioni binarie.
@@ -32,6 +33,11 @@ La parità e la data del primo ingresso, in quanto chiavi candidate nel modello 
 \begin{quote}
 La quadrupla di attributi che compongono la parità deve essere unica per ogni paziente. \\
 La data di primo ingresso deve essere unica per ogni paziente.
+\end{quote}
+
+L'attributo composto relativo alla PMA viene scomposto in due attributi, Tipo e Ovodonazione, su cui si pone un ulteriore vincolo.
+\begin{quote}
+L'attributo Tipo PMA è presente se e solo se è presente l'attributo Ovodonazione PMA.
 \end{quote}
 
 \subsection{Ristrutturazione dell'area concettuale delle visite}
@@ -71,6 +77,11 @@ Ogni parto deve essere uno e uno solo tra cesareo programmato e parto con travag
 
 Il secondo livello di specializzazione, che distingue parti naturali, operativi e cesarei urgenti, è totale e sovrapposta, con solo pochi attributi che non sono in comune a tutte le sottoentità.
 Eliminiamo quindi la specializzazione, legando anche gli attributi specifici delle sottoentità a Parto con travaglio.
+Si impongono i seguenti vincoli.
+\begin{quote}
+L'attributo Motivo è presente se e solo se il parto è operativo o cesareo.
+L'attributo Kristeller è presente se e solo se il parto è naturale o operativo.
+\end{quote}
 
 Gli attributi composti sia nell'entità Parto (Secondamento) sia nell'entità Parto con travaglio (Tempi) vengono scomposti nei relativi attributi che li compongono.
 
@@ -121,12 +132,80 @@ Le differenze rispetto allo schema originale sono minime: nell'entità Neonato l
 
 \newpage
 
+\newcommand{\at}[1]{\texttt{#1}}
+\newcommand{\tab}[1]{\texttt{#1}}
+\newcommand{\val}[1]{\texttt{#1}}
+
 \section{Schema logico relazionale}
 \label{logical}
 
 Lo schema logico è un insieme di relazioni composte di attributi, corrispondenti concettualmente a tabelle strutturate in colonne; ogni relazione può essere istanziata come insieme di tuple, corrispondenti all'insieme dei record nelle tabelle.
 Tra diverse tabelle possono sussistere vincoli di chiave esterna, ovvero situazioni in cui ogni istanza di un dato attributo di una relazione deve essere presente come istanza di attributo dell'altra relazione coinvolta.
+
+La traduzione da schema concettuale ristrutturato (Sezione \ref{restructuring}) a schema logico è molto lineare perché il primo dei due viene elaborato appositamente, a partire dallo schema concettuale originale (Sezione \ref{conceptual}), per avvicinarsi alla modellazione tipica degli schemi relazionali.
+In generale tutte le entità vengono mantenute con i rispettivi attributi, andando a costituire \enquote{relazioni}; tra le relazioni concettuali, invece, solo le relazioni molti a molti costituiscono relazioni logiche vere e proprie, mentre le altre fanno confluire i loro attributi nelle tabelle delle entità dal lato in cui hanno molteplicità uno.
+
 La Figura \ref{completereldiagram} mostra uno schema relazionale di massima contenente soltanto i nomi delle relazioni e i vincoli di chiave esterna tra relazioni.
+Negli schemi successivi, che mostrano i diversi ingrandimenti, utilizziamo la seguente notazione: le icone a forma di chiave indicano gli attributi che compongono la chiave di ciascuna tabella, le frecce indicano i vincoli di chiave esterna e gli attributi coinvolti, gli attributi in corsivo sono opzionali.
+
+\subsection{Area della gravidanza}
+
+Le entità Paziente, Malattia e Gravidanza costituiscono tabelle a sé stanti.
+La relazione \enquote{ha} viene conservata nell'attributo \at{paziente} della tabella \tab{gravidanza}, mentre la relazione \enquote{avuta in concomitanza con}, che lega gravidanze e malattie, viene memorizzata in una tabella separata.
+Sintetizziamo di seguito i vincoli precedentementi posti sullo schema concettuale (Sezioni \ref{conceptual} e \ref{restructuring}) e riformulati come vincoli sullo schema logico.
+\begin{quote}
+La coppia (\at{paziente}, \at{data\_primo\_ingresso}) di \tab{gravidanza} è unica. \\
+La tupla (\at{paziente}, \at{figli\_nati\_vivi}, \at{figli\_nati\_pretermine}, \at{figli\_nati\_a\_termine}, \at{aborti\_avuti}) di \tab{gravidanza} è unica. \\
+Se una paziente ha più di una gravidanza, per ogni coppia di gravidanze successive i valori di \at{figli\_nati\_vivi}, \at{aborti\_avuti}, \at{figli\_nati\_pretermine}, \at{figli\_nati\_a\_termine} sono non decrescenti e almeno uno tra essi è crescente. \\
+In \tab{gravidanza} l'attributo \at{pma\_tipo} è presente se e solo se l'attributo \at{pma\_ovodonazione} è presente.
+\end{quote}
+
+\subsection{Area delle visite}
+
+Le entità Visita e Esame costituiscono tabelle a sé stanti. La relazione molti a molti \enquote{fatto per} diventa una tabella separata che lega esami e visite.
+
+% da chiarire
+Introduciamo un attributo \at{tipo} alla relazione \tab{esame} così ottenuta che descrive il tipo di dato dei valori di \at{esito} in \tab{fatto\_per}.
+Questo è utile a livello implementativo perché il tipo di dato dell'esito di un dato esame può variare in base all'esame stesso.
+L'attributo \at{categoria\_visita} di \tab{visita} ha uno dei seguenti valori: \val{primo\_trimestre}, \val{secondo\_trimestre}, \val{biometrica}, \val{altro\_tipo}.
+
+Riassumiamo di seguito i vincoli da porre su tale schema logico.
+\begin{quote}
+Per ogni gravidanza, in \tab{visita} esiste un solo record che ha valore \val{primo\_trimestre} nel campo \at{categoria\_visita}. \\
+Per ogni gravidanza, in \tab{visita} esiste un solo record che ha valore \val{secondo\_trimestre} nel campo \at{categoria\_visita}. \\
+Per ogni gravidanza deve essere presente almeno un record in \tab{visita} oppure in \tab{parto}.
+\end{quote}
+
+\subsection{Area del parto}
+
+Le entità Parto, Cesareo programmato, Parto con travaglio e Induzione formano ciascuna una tabella a sé stante mentre tutte le relazioni vengono rimosse e si introduce come attributo chiave (o parte della chiave) l'identificatore della gravidanza in tutte le tabelle.
+
+L'attributo \at{tipo\_parto} di \tab{parto} deve essere uno tra \val{cesareo\_programmato} e \val{parto\_con\_travaglio}.
+Di conseguenza si impone il seguente vincolo.
+\begin{quote}
+Il valore di \at{tipo\_parto} è \val{cesareo\_programmato} se e solo se il parto ha un record corrispondente in \tab{cesareo\_programmato}. \\
+Il valore di \at{tipo\_parto} è \val{parto\_con\_travaglio} se e solo se il parto ha un record corrispondente in \tab{parto\_con\_travaglio}\footnote{
+    Questo vincolo è equivalente e soddisfa il seguente: \enquote{Ogni Parto è uno e uno solo tra cesareo programmato e parto con travaglio}.
+}.
+\end{quote}
+
+L'attributo \at{sottotipo\_parto} di \tab{parto\_con\_travaglio} deve essere uno tra \val{naturale}, \val{operativo}, \val{cesareo\_urgente}, \val{naturale\_operativo}, \val{naturale\_cesareo\_urgente}, \val{operativo\_cesareo\_urgente}.
+Si impongono quindi i seguenti vincoli.
+\begin{quote}
+L'attributo \at{motivo} di \tab{parto\_con\_travaglio} è assente se e solo se \at{sottotipo\_parto} ha valore \val{naturale}. \\
+L'attributo \at{kristeller} di \tab{parto\_con\_travaglio} è assente se e solo se \at{sottotipo\_parto} ha valore \val{cesareo\_urgente}.
+\end{quote}
+
+\subsection{Area del neonato}
+
+Le entità Neonato, Tracciato e Misurazione costituiscono tabelle a sé stanti, mentre solo la relazione \enquote{fatta su} diventa una tabella a parte (con il nome di \tab{misurazione\_fcf}) e le altre vengono invece accorpate alle altre tabelle.
+
+Il ciclo di relazioni che si forma a livello concettuale, comprendente le entità Parto, Neonato, Misurazione e Tracciato, non crea problemi di integrità perche la relazione di \enquote{contatto}, ovvero \enquote{fatta su}, coinvolge entità che sono tutte deboli rispetto a Parto; ciò permette di includere questa proprietà imponendo il vincolo di chiave della tabella \tab{misurazione\_fcf}.
+
+È necessario imporre un ultimo vincolo.
+\begin{quote}
+Per ogni misurazione deve essere presente almeno uno tra l'attributo \val{valore\_fcm}, l'attributo \val{valore\_toco} e un record nella tabella \tab{misurazione\_fcf}.
+\end{quote}
 
 \begin{figure}
     \centering
