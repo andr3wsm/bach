@@ -10,6 +10,7 @@
 \newcommand{\pk}[1]{\textbf{#1} \faKey}
 \newcommand{\mbn}[1]{\emph{#1}}
 \newcommand{\ty}[1]{{\footnotesize #1}}
+\newcommand{\Con}{$\circ{}$} % simbolo di vincolo
 
 Il modello Entità-Relazione rappresenta il dominio a livello astratto attraverso entità, corrispondenti a elementi o concetti con caratteristiche proprie, e relazioni, ovvero legami che intercorrono tra entità.
 Le caratteristiche di un'entità o di una relazione sono rappresentate come attributi della stessa; ciascuna entità può avere uno o più attributi che compongono chiavi, ovvero che identificano l'istanza di entità.
@@ -49,14 +50,14 @@ L'attributo \enquote{Parità} è composto.
 Nei sistemi attualmente in uso è scritto solitamente in un unico campo, usando quindi la rappresentazione testuale che è calcolata come concatenazione del numero di figli nati a termine, del numero di figli nati pretermine, del numero di aborti (comprendente sia aborti spontanei sia interruzioni volontarie di gravidanza) e del numero totale di figli nati vivi, in questo ordine.
 
 Sempre sull'attributo \enquote{Parità} si pone il seguente vincolo.
-\begin{quote}
-Se una paziente ha più di una gravidanza, per ogni coppia di gravidanze successive i valori degli attributi (non derivati) sono non decrescenti e almeno uno di essi è strettamente crescente.
-\end{quote}
+\begin{itemize}
+\item[\Con{}] Se una paziente ha più di una gravidanza, per ogni coppia di gravidanze successive i valori degli attributi (non derivati) sono non decrescenti e almeno uno di essi è strettamente crescente.
+\end{itemize}
 
 Le relazioni che l'entità Gravidanza intrattiene con le diverse visite e con Parto hanno tutte partecipazione parziale, per cui viene imposto il seguente vincolo.
-\begin{quote}
-Una gravidanza viene registrata solo se viene effettuata almeno una visita oppure se termina con un parto.
-\end{quote}
+\begin{itemize}
+\item[\Con{}] Una gravidanza viene registrata solo se viene effettuata almeno una visita oppure se termina con un parto.
+\end{itemize}
 
 \subsubsection{Malattia}
 
@@ -133,9 +134,9 @@ Un tracciato è identificabile sia con il parto in cui viene registrato sia con 
 Ogni misurazione del tracciato riporta i valori FCM (frequenza cardiaca materna) e TOCO (tocogramma).
 I valori FCF (frequenza cardiaca fetale) possono essere multipli in ogni misurazione, quindi non sono contenute in un attributo dell'entità Misurazione TCG bensì nella relazione tra essa e Neonato.
 Si impone quindi il seguente vincolo.
-\begin{quote}
-Per ogni misurazione deve essere presente almeno uno tra: il valore FCM, il valore TOCO e un valore FCF per un neonato associato.
-\end{quote}
+\begin{itemize}
+\item[\Con{}] Per ogni misurazione deve essere presente almeno uno tra: il valore FCM, il valore TOCO e un valore FCF per un neonato associato.
+\end{itemize}
 
 \begin{figure}
     \centering

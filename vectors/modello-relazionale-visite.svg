@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="115.43101mm"
-   height="210.28627mm"
-   viewBox="0 0 115.431 210.28627"
+   width="115.43265mm"
+   height="214.88216mm"
+   viewBox="0 0 115.43264 214.88216"
    version="1.1"
    id="svg1"
    inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
@@ -23,38 +23,18 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="0.69219275"
-     inkscape:cx="220.31435"
-     inkscape:cy="413.90205"
-     inkscape:window-width="958"
-     inkscape:window-height="981"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="layer2"
+     inkscape:zoom="1.3843855"
+     inkscape:cx="206.95103"
+     inkscape:cy="447.85214"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
      inkscape:rotation="-90" />
   <defs
-     id="defs1">
-    <marker
-       style="overflow:visible"
-       id="Triangle"
-       refX="3"
-       refY="0"
-       orient="auto-start-reverse"
-       inkscape:stockid="Triangle arrow"
-       markerWidth="2"
-       markerHeight="2"
-       viewBox="0 0 1 1"
-       inkscape:isstock="true"
-       inkscape:collect="always"
-       preserveAspectRatio="xMidYMid">
-      <path
-         transform="scale(0.5)"
-         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
-         d="M 5.77,0 -2.88,5 V -5 Z"
-         id="path135" />
-    </marker>
-  </defs>
+     id="defs1" />
   <g
      inkscape:groupmode="layer"
      id="layer2"
@@ -63,7 +43,7 @@
      style="display:inline">
     <path
        style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#888888;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:2.4, 2.4;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
-       d="m 99.853608,145.19502 c -5.3027,0 -9.571675,3.88342 -9.571675,8.70715 v 136.50374 c 0,4.82375 4.268975,8.70715 9.571675,8.70715 h 96.086432 c 5.30268,0 9.57068,-3.8834 9.57068,-8.70715 V 153.90217 c 0,-4.82373 -4.268,-8.70715 -9.57068,-8.70715 z"
+       d="m 99.853608,145.19502 c -5.3027,0 -9.571675,3.88342 -9.571675,8.70715 v 141.09857 c 0,4.82375 4.268975,8.70715 9.571675,8.70715 h 96.086432 c 5.30268,0 9.57068,-3.8834 9.57068,-8.70715 V 153.90217 c 0,-4.82373 -4.268,-8.70715 -9.57068,-8.70715 z"
        id="path23"
        sodipodi:nodetypes="sssssssss" />
     <path
@@ -71,6 +51,46 @@
        d="m 180.78322,89.028796 c -5.3027,0 -9.57167,3.88342 -9.57167,8.70715 v 30.917704 c 0,4.82375 4.26897,8.70715 9.57167,8.70715 h 15.06126 c 5.30268,0 9.57068,-3.8834 9.57068,-8.70715 V 97.735946 c 0,-4.82373 -4.268,-8.70715 -9.57068,-8.70715 z"
        id="path82"
        sodipodi:nodetypes="sssssssss" />
+    <path
+       id="path2"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 186.34925,130.34502 h -1.90113 m 1.90113,-1.55103 v 1.55103 h 1.90113"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       id="path3"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 186.28165,150.36083 1.43658,3.00952 m -1.43658,0 v -3.00952 l -1.43658,3.00952"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       id="path1"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 186.28165,239.28568 1.43658,3.00952 m -1.43658,0 v -3.00952 l -1.43658,3.00952"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       id="path4"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 180.58279,239.28568 1.43658,3.00952 m -1.43658,0 v -3.00952 l -1.43658,3.00952"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       id="path5"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 174.88394,239.28568 1.43658,3.00952 m -1.43658,0 v -3.00952 l -1.43658,3.00952"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       id="path6"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 186.28165,229.47311 h -1.90113 m 1.90113,-1.55103 v 1.55103 h 1.90113"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       id="path7"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 180.58279,229.47311 h -1.90113 m 1.90113,-1.55103 v 1.55103 h 1.90113"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       id="path8"
+       style="display:inline;fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 134.99196,240.74415 h 1.90113 m -1.90113,1.55103 v -1.55103 h -1.90113"
+       sodipodi:nodetypes="ccccc" />
   </g>
   <g
      inkscape:label="Livello 1"
@@ -117,7 +137,7 @@
          id="tspan41"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;text-anchor:start;stroke-width:0.264583"
          x="155.85797"
-         y="-185.09094">\pk{gravidanza}</tspan></text>
+         y="-185.09094">\pk{gravidanza\_id}</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect41"
@@ -137,7 +157,7 @@
          id="tspan42"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;text-anchor:start;stroke-width:0.264583"
          x="155.85797"
-         y="-179.39209">\pk{data\_visita}</tspan></text>
+         y="-179.39209">\pk{data}</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect42"
@@ -799,16 +819,16 @@
          x="126.73217"
          y="-185.40564">\ty{integer}</tspan></text>
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle)"
+       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
        d="m 186.28165,153.37033 0.0676,-24.57635"
        id="path81"
        sodipodi:nodetypes="cc" />
     <rect
        style="fill:#cccccc;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect82"
-       width="48.641537"
+       width="54.182339"
        height="8.4223061"
-       x="242.29521"
+       x="242.2952"
        y="-197.55338"
        transform="rotate(90)" />
     <text
@@ -822,13 +842,13 @@
          id="tspan82"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;text-anchor:start;stroke-width:0.264583"
          x="244.61798"
-         y="-192.22363">\ent{fatto\_per}</tspan></text>
+         y="-192.22363">\ent{esame\_visita}</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect83"
-       width="32.532177"
+       width="38.072998"
        height="5.6988506"
-       x="242.2952"
+       x="242.29518"
        y="-189.13107"
        transform="rotate(90)" />
     <text
@@ -842,33 +862,33 @@
          id="tspan83"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;text-anchor:start;stroke-width:0.264583"
          x="244.78284"
-         y="-185.09094">\pk{gravidanza}</tspan></text>
+         y="-185.09094">\pk{gravidanza\_id}</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect84"
        width="16.109365"
        height="5.6988506"
-       x="274.82736"
+       x="280.36816"
        y="-189.13107"
        transform="rotate(90)" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;stroke-width:0.264583"
-       x="288.87491"
+       x="294.41571"
        y="-185.33803"
        id="text84"
        transform="rotate(90)"><tspan
          sodipodi:role="line"
          id="tspan84"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;text-anchor:end;stroke-width:0.264583"
-         x="288.87491"
+         x="294.41571"
          y="-185.33803">\ty{integer}</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect85"
-       width="32.532177"
+       width="38.072998"
        height="5.6988506"
-       x="242.2952"
+       x="242.29518"
        y="-183.43222"
        transform="rotate(90)" />
     <text
@@ -882,33 +902,33 @@
          id="tspan85"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;text-anchor:start;stroke-width:0.264583"
          x="244.78284"
-         y="-179.39209">\pk{data\_visita}</tspan></text>
+         y="-179.39209">\pk{visita\_data}</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect86"
        width="16.109365"
        height="5.6988506"
-       x="274.82736"
+       x="280.36816"
        y="-183.43222"
        transform="rotate(90)" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;stroke-width:0.264583"
-       x="288.87491"
+       x="294.41571"
        y="-179.63918"
        id="text86"
        transform="rotate(90)"><tspan
          sodipodi:role="line"
          id="tspan86"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;text-anchor:end;stroke-width:0.264583"
-         x="288.87491"
+         x="294.41571"
          y="-179.63918">\ty{date}</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect87"
-       width="32.532177"
+       width="38.072998"
        height="5.6988506"
-       x="242.2952"
+       x="242.29518"
        y="-177.73337"
        transform="rotate(90)" />
     <text
@@ -922,33 +942,33 @@
          id="tspan87"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;text-anchor:start;stroke-width:0.264583"
          x="244.78284"
-         y="-173.69324">\pk{esame}</tspan></text>
+         y="-173.69324">\pk{esame\_nome}</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect88"
        width="16.109365"
        height="5.6988506"
-       x="274.82736"
+       x="280.36816"
        y="-177.73337"
        transform="rotate(90)" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;stroke-width:0.264583"
-       x="288.87491"
+       x="294.41571"
        y="-173.94032"
        id="text88"
        transform="rotate(90)"><tspan
          sodipodi:role="line"
          id="tspan88"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;text-anchor:end;stroke-width:0.264583"
-         x="288.87491"
+         x="294.41571"
          y="-173.94032">\ty{varchar}</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect89"
-       width="32.532177"
+       width="38.072998"
        height="5.6988506"
-       x="242.2952"
+       x="242.29518"
        y="-172.03452"
        transform="rotate(90)" />
     <text
@@ -968,27 +988,27 @@
        id="rect90"
        width="16.109365"
        height="5.6988506"
-       x="274.82736"
+       x="280.36816"
        y="-172.03452"
        transform="rotate(90)" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;stroke-width:0.264583"
-       x="288.87491"
+       x="294.41571"
        y="-168.24147"
        id="text90"
        transform="rotate(90)"><tspan
          sodipodi:role="line"
          id="tspan90"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;text-anchor:end;stroke-width:0.264583"
-         x="288.87491"
+         x="294.41571"
          y="-168.24147">\ty{varchar}</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect91"
-       width="32.532177"
+       width="38.072998"
        height="5.6988506"
-       x="242.2952"
+       x="242.29518"
        y="-166.33566"
        transform="rotate(90)" />
     <text
@@ -1008,33 +1028,33 @@
        id="rect92"
        width="16.109365"
        height="5.6988506"
-       x="274.82736"
+       x="280.36816"
        y="-166.33566"
        transform="rotate(90)" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;stroke-width:0.264583"
-       x="288.87491"
+       x="294.41571"
        y="-162.54262"
        id="text92"
        transform="rotate(90)"><tspan
          sodipodi:role="line"
          id="tspan92"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;text-anchor:end;stroke-width:0.264583"
-         x="288.87491"
+         x="294.41571"
          y="-162.54262">\ty{date}</tspan></text>
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle)"
+       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
        d="M 186.28165,242.2952 V 227.92207"
        id="path92"
        sodipodi:nodetypes="cc" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle)"
+       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
        d="M 180.58279,242.2952 V 227.92207"
        id="path93"
        sodipodi:nodetypes="cc" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle)"
+       style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
        d="m 174.88394,242.2952 v -7.18656 l -39.89198,-2e-5 v 7.18656"
        id="path94"
        sodipodi:nodetypes="cccc" />
@@ -1117,7 +1137,7 @@
          id="tspan98"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;text-anchor:start;stroke-width:0.264583"
          x="244.78282"
-         y="-128.1024">tipo</tspan></text>
+         y="-128.1024">tipo\_esito</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect99"
