@@ -21,6 +21,7 @@ Elenchiamo di seguito i domini definiti per lo schema relazionale della nostra b
 \item Nella tabella \tab{paziente} si utilizza come identificatore il codice fiscale italiano, ovvero una stringa alfanumerica di 16 caratteri.
 \item Nella tabella \tab{gravidanza} l'attributo \at{pma\_tipo} contiene l'informazione relativa al tipo di procreazione medicalmente assistita, che può avere valore \val{iui}, \val{fivet} o \val{icsi}.
 \item Nella tabella \tab{visita} l'attributo \at{categoria\_visita}, relativo al tipo di visita, può avere valore \val{primo\_trimestre}, \val{secondo\_trimestre}, \val{biometrica}, \val{altro\_tipo}.
+\item Sempre nella tabella \tab{visita}, l'attributo \at{stato\_crescita} può avere valore \val{regolare}, \val{fgr} o \val{sga}.
 \end{itemize}
 
 \begin{lstlisting}[float,caption={Definizione dei domini.},label=pdom]
