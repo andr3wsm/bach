@@ -132,10 +132,6 @@ Le differenze rispetto allo schema originale sono minime: nell'entità Neonato l
 
 \newpage
 
-\newcommand{\at}[1]{\texttt{#1}}
-\newcommand{\tab}[1]{\texttt{#1}}
-\newcommand{\val}[1]{\texttt{#1}}
-
 \section{Schema logico relazionale}
 \label{logical}
 
@@ -151,6 +147,7 @@ Gli schemi relazionali usano la seguente sintassi: gli attributi chiave sono ind
 }.
 
 \subsection{Area della gravidanza}
+\label{logicalpregnancy}
 
 Le entità Paziente, Malattia e Gravidanza costituiscono tabelle a sé stanti.
 La relazione \enquote{ha} viene conservata nell'attributo \at{paziente\_cf} della tabella \tab{gravidanza}, mentre la relazione \enquote{avuta in concomitanza con}, che lega gravidanze e malattie, viene memorizzata in una tabella separata.
@@ -163,6 +160,7 @@ Sintetizziamo di seguito i vincoli precedentementi posti sullo schema concettual
 \end{itemize}
 
 \subsection{Area delle visite}
+\label{logicalvisits}
 
 Le entità Visita e Esame costituiscono tabelle a sé stanti. La relazione molti a molti \enquote{fatto per} diventa una tabella separata che lega esami e visite.
 
@@ -170,6 +168,7 @@ Le entità Visita e Esame costituiscono tabelle a sé stanti. La relazione molti
 Introduciamo un attributo \at{tipo} alla relazione \tab{esame} così ottenuta che descrive il tipo di dato dei valori di \at{esito} in \tab{esame\_visita}.
 Questo è utile a livello implementativo perché il tipo di dato dell'esito di un dato esame può variare in base all'esame stesso.
 L'attributo \at{categoria\_visita} di \tab{visita} ha uno dei seguenti valori: \val{primo\_trimestre}, \val{secondo\_trimestre}, \val{biometrica}, \val{altro\_tipo}.
+L'attributo \at{stato\_crescita} di \tab{visita}, se non è \val{NULL}, ha uno dei seguenti valori: \val{regolare}, \val{fgr}, \val{sga}.
 
 Riassumiamo di seguito i vincoli da porre su tale schema logico.
 \begin{itemize}
@@ -180,6 +179,7 @@ Riassumiamo di seguito i vincoli da porre su tale schema logico.
 \end{itemize}
 
 \subsection{Area del parto}
+\label{logicaldelivery}
 
 Le entità Parto, Cesareo programmato, Parto con travaglio e Induzione formano ciascuna una tabella a sé stante mentre tutte le relazioni vengono rimosse e si introduce come attributo chiave (o parte della chiave) l'identificatore della gravidanza in tutte le tabelle.
 
@@ -200,6 +200,7 @@ Si impongono quindi i seguenti vincoli.
 \end{itemize}
 
 \subsection{Area del neonato}
+\label{logicalnewborn}
 
 Le entità Neonato, Tracciato e Misurazione costituiscono tabelle a sé stanti, mentre solo la relazione \enquote{fatta su} diventa una tabella a parte (con il nome di \tab{misurazione\_neonato}) e le altre vengono invece accorpate alle altre tabelle.
 

@@ -36,9 +36,66 @@
 \usepackage[italian=quotes]{csquotes}
 %% per importare immagini vettoriali
 \usepackage[inkscapearea=page]{svg}
+%% per usare icone (es primary key)
 \usepackage{fontawesome5}
+%% per i listati di codice
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{orange}{rgb}{0.70,0.50,0.10}
+\definecolor{ltgray}{rgb}{0.95,0.95,0.95}
+\definecolor{dkblue}{rgb}{0,0,0.7}
+\lstdefinestyle{sqlstyle}{
+  frame=tb,
+  language=SQL,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  showspaces=false,
+  columns=fixed,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{dkblue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{orange},
+  backgroundcolor=\color{ltgray},
+  breaklines=true,
+  breakatwhitespace=false,
+  tabsize=2,
+  xleftmargin=6mm,
+  xrightmargin=6mm,
+  framexleftmargin=4mm,
+  framexrightmargin=4mm,
+  captionpos=b,
+  abovecaptionskip=3mm,
+  morekeywords=[4]{boolean,serial,text,is},
+  %floatplacement=b,
+  float=hb
+}
+\lstset{style=sqlstyle}
 
+%% comandi vari
+% analisi
 \newcommand{\column}[1]{\texttt{#1}}
+% concettuale
+\newcommand{\ent}[1]{{\Large #1}}
+\newcommand{\card}[1]{{\footnotesize #1}}
+\newcommand{\CZU}{\card{(0,1)}}
+\newcommand{\CZN}{\card{(0,n)}}
+\newcommand{\CUU}{\card{(1,1)}}
+\newcommand{\CUN}{\card{(1,n)}}
+\newcommand{\pk}[1]{\textbf{#1} \faKey}
+\newcommand{\mbn}[1]{\emph{#1}}
+\newcommand{\ty}[1]{{\footnotesize #1}}
+\newcommand{\Con}{$\circ{}$} % simbolo di vincolo
+% logica e fisica
+\newcommand{\at}[1]{\texttt{#1}}
+\newcommand{\tab}[1]{\texttt{#1}}
+\newcommand{\val}[1]{\texttt{#1}}
+\newcommand{\sql}[1]{\texttt{#1}}
+\renewcommand\lstlistingname{Listato}
 
 %% --- Stili di pagina disponibili (comando \pagestyle) ---
 %% sfbig (predefinito): Apertura delle parti e dei capitoli col numero grande; titoli delle parti e dei capitoli e intestazioni di pagina in sans serif.
@@ -47,6 +104,7 @@
 
 \begin{document}
 \maketitle
+
 
 %% Dedica (opzionale)
 %\begin{dedication}
@@ -77,6 +135,8 @@
 %% La suddivisione in parti � opzionale; solitamente sono sufficienti i capitoli.
 %\part{Parte}
 
+\iffalse
+
 \input{thesis-intro}
 
 \input{thesis-analisi}
@@ -84,6 +144,8 @@
 \input{thesis-concettuale}
 
 \input{thesis-logica}
+
+\fi
 
 \input{thesis-fisica}
 

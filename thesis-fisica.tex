@@ -7,12 +7,170 @@ Il linguaggio SQL (\emph{Structured Query Language}) è un linguaggio di interro
 Il primo standard ANSI e ISO per il linguaggio SQL è del 1986 (SQL-86) \cite{Sil11}. Successivamente sono stati pubblicati diversi aggiornamenti fino alla versione attuale, SQL:2023 (ISO/IEC 9075:2023).
 }.
 SQL è composto di diverse parti: è possibile esprimere sia la definizione delle tabelle (DDL, \emph{Data Definition Language}) sia le operazioni di inserimento, modifica, cancellazione e interrogazione (DML, \emph{Data Manipulation Language}), insieme anche ai vincoli di integrità e ai privilegi degli utenti che possono accedere alla base di dati.
+
 In questo capitolo costruiamo fisicamente la base di dati progettata nei capitoli precedenti attraverso diversi \emph{script} in linguaggio SQL.
+Il DBMS che utilizziamo è PostgreSQL, uno tra i più diffusi DBMS relazionali.
 
+\section{Definizione dei domini}
 
-\section{Definizione dei domini degli attributi}
+Alcune tabelle dello schema logico presentano attributi con vincoli sul dominio o con un insieme finito di valori possibili.
+In SQL è possibile definire domini, utilizzabili poi allo stesso modo di quelli predefiniti del linguaggio, che sintetizzano i vincoli da imporre ed evitano ripetizioni e quindi possibili inconsistenze.
+Elenchiamo di seguito i domini definiti per lo schema relazionale della nostra base di dati (\lstlistingname{} \ref{pdom}).
+
+\begin{itemize}
+\item Nella tabella \tab{paziente} si utilizza come identificatore il codice fiscale italiano, ovvero una stringa alfanumerica di 16 caratteri.
+\item Nella tabella \tab{gravidanza} l'attributo \at{pma\_tipo} contiene l'informazione relativa al tipo di procreazione medicalmente assistita, che può avere valore \val{iui}, \val{fivet} o \val{icsi}.
+\item Nella tabella \tab{visita} l'attributo \at{categoria\_visita}, relativo al tipo di visita, può avere valore \val{primo\_trimestre}, \val{secondo\_trimestre}, \val{biometrica}, \val{altro\_tipo}.
+\end{itemize}
+
+\begin{lstlisting}[float,caption={Definizione dei domini.},label=pdom]
+-- Dominio codice_fiscale per persona
+create domain codice_fiscale as char(16);
+-- Dominio pma_tipo_enum per +gravidanza
+create domain pma_tipo_enum as varchar
+check (value in ('iui','fivet','icsi'));
+-- Dominio categoria_visita_enum per visita
+create domain categoria_visita_enum as varchar
+check (value in ('primo_trimestre','secondo_trimestre','biometrica',
+  'altro_tipo'));
+-- Dominio stato_crescita_enum per visita
+create domain stato_crescita enum as varchar
+check (value in ('regolare','fgr','sga'));
+\end{lstlisting}
 
 \section{Definizione delle tabelle}
+
+%% manca
+
+\subsection{Area della gravidanza}
+
+La tabella \tab{paziente} (\lstlistingname{} \ref{ptabpaziente}) utilizza il dominio \tab{codice\_fiscale} definito precedentemente.
+
+\begin{lstlisting}[float,caption={Definizione della tabella \tab{paziente}.},label=ptabpaziente]
+create table paziente (
+  cf codice_fiscale,
+  primary key (cf),
+  nome varchar not null,
+  cognome varchar not null,
+  data_nascita date not null
+);
+\end{lstlisting}
+
+Nella tabella \tab{gravidanza} (\lstlistingname{} \ref{ptabgravidanza}) è stato introdotto come chiave primaria un attributo \at{id}, da intendersi come numero progressivo; un'implementazione tipica e di \enquote{basso livello} degli identificatori di questo tipo prevede di dichiarare l'attributo come intero e chiave primaria, forzando l'utente a determinare il valore da assegnare a \at{id} ad ogni inserimento, solitamente calcolando il massimo dei valori \at{id} presenti nella tabella e aggiungendo 1.
+In PostgreSQL \cite{Pos25} è possibile ovviare a tale ostacolo definendo il campo \at{id} come \sql{serial}: non è più necessario indicare né calcolare manualmente il valore \at{id} da assegnare perché viene determinato all'occorrenza, permettendo alle \emph{query} di inserimento di esserne trasparenti.
+Nell'implementazione, \sql{serial} è \emph{zucchero sintattico} che si traduce nella definizione di una \sql{sequence} di \sql{integer} (a cui vengono dedicati 4 byte) ed esistono le varianti \sql{smallserial} (2 byte, corrispondente a \sql{smallint}) e \sql{bigserial} (8 byte, corrispondente a \sql{bigint}).
+Quando un valore dichiarato come \sql{serial} viene usato come chiave esterna in altre tabelle deve essere trattato come il tipo \sql{integer} corrispondente.
+
+\begin{lstlisting}[float,caption={Definizione della tabella \tab{gravidanza}.},label=ptabgravidanza]
+create table gravidanza (
+  id serial,
+  primary key (id),
+  paziente_cf codice_fiscale not null,
+  data_primo_ingresso date not null,
+  unique (paziente_cf, data_primo_ingresso),
+  figli_nati_vivi integer not null,
+  aborti_avuti integer not null,
+  figli_nati_pretermine integer not null,
+  figli_nati_a_termine integer not null,
+  unique (paziente_cf, figli_nati_vivi, aborti_avuti, figli_nati_pretermine,
+    figli_nati_a_termine),
+  parita varchar not null,
+  eta_concepimento integer,
+  esito boolean,
+  pma_tipo pma_tipo_enum,
+  pma_ovodonazione boolean
+  pregresso_gdm boolean not null,
+  pregressa_pih boolean not null,
+  pregressa_tireopatia boolean not null,
+  pregressa_preeclampsia boolean not null,
+  data_prevista_parto date,
+  ultima_mestruazione_ecografica date,
+  ultima_mestruazione_anamnestica date,
+  annotazioni text
+);
+\end{lstlisting}
+
+Nella definizione della tabella \tab{gravidanza} (\lstlistingname{} \ref{ptabgravidanza}) vengono formalizzati i vincoli di unicità da imporre su tuple di attributi, che corrispondono alle chiavi candidate dello schema concettuale, esposti nella Sezione \ref{logicalpregnancy}.
+Aggiungendo ulteriori vincoli a \tab{gravidanza} (\lstlistingname{} \ref{pcongravidanza}) si possono soddisfare l'integrità referenziale verso la tabella \tab{paziente} e il vincolo relativo agli attributi \at{pma\_tipo} e \at{pma\_ovodonazione}, riportati sempre nella Sezione \ref{logicalpregnancy}.
+Per il vincolo rimanente, relativo alle proprietà di crescenza dei valori di parità, si definisce un \emph{trigger} apposito (Sezione \ref{}).
+
+\begin{lstlisting}[float,caption={Definizione di vincoli aggiuntivi nella tabella \tab{gravidanza}.},label=pcongravidanza]
+-- Vincolo di chiave esterna
+alter table gravidanza
+add foreign key (paziente_cf)
+references paziente
+on update cascade on delete cascade;
+-- Vincolo sugli attributi relativi alla PMA
+alter table gravidanza
+add constraint gravidanza_pma_vincolo
+check ((pma_tipo is null and pma_ovodonazione is null)
+  or (pma_tipo is not null and pma_ovodonazione is not null));
+\end{lstlisting}
+
+La tabella \tab{malattia} (\lstlistingname{} \ref{ptabmalattia}) e la tabella \tab{malattia\_gravidanza} (\lstlistingname{} \ref{ptabmalattiagravidanza}) seguono le definizioni riportate nello schema logico.
+Sulla seconda vengono imposti i vincoli di integrità referenziale (\lstlistingname{} \ref{pconmalattiagravidanza})
+
+\begin{lstlisting}[float,caption={Definizione della tabella \tab{malattia}.},label=ptabmalattia]
+create table malattia (
+  codice varchar,
+  primary key (codice),
+  nome varchar not null
+);
+\end{lstlisting}
+
+\begin{lstlisting}[float,caption={Definizione della tabella \tab{malattia\_gravidanza}.},label=ptabmalattiagravidanza]
+create table malattia_gravidanza (
+  gravidanza_id integer,
+  malattia_codice varchar,
+  primary key (gravidanza_id, malattia_codice),
+  terapia text
+);
+\end{lstlisting}
+
+\begin{lstlisting}[float,caption={Definizione dei vincoli di chiave esterna nella tabella \tab{malattia\_gravidanza}.},label=pconmalattiagravidanza]
+alter table malattia_gravidanza
+-- Vincolo di chiave esterna verso gravidanza
+add foreign key (gravidanza_id)
+references gravidanza.id
+on update cascade on delete cascade,
+-- Vincolo di chiave esterna verso malattia
+add foreign key (malattia_codice)
+references malattia.codice
+on update cascade on delete cascade;
+\end{lstlisting}
+
+\subsection{Area delle visite}
+
+La tabella \tab{visita} (\lstlistingname{} \ref{ptabvisita}) utilizza i domini \tab{categoria\_visita\_enum} e \tab{stato\_crescita\_enum} definiti precedentemente; fatta eccezione per il vincolo di chiave esterna (\lstlistingname{} \ref{pconvisita}) i diversi vincoli imposti su questa tabella (Sezione \ref{logicalvisits}) vengono implementati attraverso \emph{trigger} (\ref{}).
+
+\begin{lstlisting}[float,caption={Definizione della tabella \tab{visita}.},label=ptabvisita]
+create table visita (
+  gravidanza_id integer,
+  data date,
+  primary key (gravidanza_id, data)
+  epoca_gestazionale integer not null,
+  eta integer not null,
+  categoria_visita categoria_visita_enum not null,
+  pressione_arteriosa_materna integer,
+  anomalie_morfologiche_fetali text,
+  prescrizione_asa boolean,
+  decorso text,
+  fuma boolean,
+  premorfologica_indicata boolean,
+  stato_crescita stato_crescita_enum,
+  utpi float,
+  altezza float,
+  peso float,
+  annotazioni text
+);
+\end{lstlisting}
+
+\begin{lstlisting}[float,caption={Definizione del vincolo di chiave esterna nella tabella \tab{visita}.},label=pconvisita]
+alter table visita
+add foreign key (gravidanza_id)
+references gravidanza.id
+on update cascade on delete cascade;
+\end{lstlisting}
 
 \section{Definizione dei vincoli}
 
