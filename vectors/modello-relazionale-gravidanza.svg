@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="137.86485mm"
-   height="227.84238mm"
-   viewBox="0 0 137.86484 227.84238"
+   width="137.86295mm"
+   height="226.3141mm"
+   viewBox="0 0 137.86293 226.31411"
    version="1.1"
    id="svg1"
    inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
@@ -24,8 +24,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="1.3843855"
-     inkscape:cx="126.77105"
-     inkscape:cy="674.3064"
+     inkscape:cx="227.89895"
+     inkscape:cy="555.11994"
      inkscape:window-width="1920"
      inkscape:window-height="991"
      inkscape:window-x="-9"
@@ -39,11 +39,11 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Livello 2"
-     transform="translate(-67.748356,-87.976164)"
+     transform="translate(-67.748356,-89.507492)"
      style="display:inline">
     <path
        style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#888888;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:2.4, 2.4;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
-       d="m 77.420031,88.078534 c -5.3027,0 -9.571675,3.88342 -9.571675,8.707149 V 307.01139 c 0,4.82375 4.268975,8.70715 9.571675,8.70715 H 195.94004 c 5.30268,0 9.57068,-3.8834 9.57068,-8.70715 V 96.785683 c 0,-4.823729 -4.268,-8.707149 -9.57068,-8.707149 z"
+       d="m 77.420031,89.607492 c -5.3027,0 -9.571675,3.88342 -9.571675,8.707149 V 307.01139 c 0,4.82375 4.268975,8.70715 9.571675,8.70715 H 195.94004 c 5.30268,0 9.57068,-3.8834 9.57068,-8.70715 V 98.314641 c 0,-4.823729 -4.268,-8.707149 -9.57068,-8.707149 z"
        id="path23"
        sodipodi:nodetypes="sssssssss" />
   </g>
@@ -51,7 +51,7 @@
      inkscape:label="Livello 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-67.748356,-87.976164)"
+     transform="translate(-67.748356,-89.507492)"
      style="display:inline">
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
@@ -557,62 +557,62 @@
     <rect
        style="fill:#cccccc;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect15"
-       width="41.005032"
+       width="38.572475"
        height="8.4223061"
-       x="95.572174"
+       x="98.004723"
        y="-191.85452"
        transform="rotate(90)" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;stroke-width:0.264583"
-       x="97.894958"
+       x="100.32751"
        y="-186.52478"
        id="text15"
        transform="rotate(90)"><tspan
          sodipodi:role="line"
          id="tspan15"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;text-anchor:start;stroke-width:0.264583"
-         x="97.894958"
+         x="100.32751"
          y="-186.52478">\ent{malattia}</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect16"
        width="24.895668"
        height="5.6988506"
-       x="95.572174"
+       x="98.004723"
        y="-183.43222"
        transform="rotate(90)" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;stroke-width:0.264583"
-       x="98.059814"
+       x="100.49236"
        y="-179.39209"
        id="text16"
        transform="rotate(90)"><tspan
          sodipodi:role="line"
          id="tspan16"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;text-anchor:start;stroke-width:0.264583"
-         x="98.059814"
+         x="100.49236"
          y="-179.39209">\pk{codice}</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect17"
        width="24.895668"
        height="5.6988506"
-       x="95.572174"
+       x="98.004723"
        y="-177.73337"
        transform="rotate(90)" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;stroke-width:0.264583"
-       x="98.059814"
+       x="100.49236"
        y="-173.69324"
        id="text17"
        transform="rotate(90)"><tspan
          sodipodi:role="line"
          id="tspan17"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:Arial;-inkscape-font-specification:Arial;text-align:start;text-anchor:start;stroke-width:0.264583"
-         x="98.059814"
+         x="100.49236"
          y="-173.69324">nome</tspan></text>
     <rect
        style="fill:#cccccc;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
@@ -758,7 +758,7 @@
          id="tspan24"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;text-anchor:end;stroke-width:0.264583"
          x="305.27051"
-         y="-179.63918">\ty{char(16)}</tspan></text>
+         y="-179.63918">\ty{string}</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect25"
@@ -878,7 +878,7 @@
          id="tspan30"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;text-anchor:end;stroke-width:0.264583"
          x="305.27051"
-         y="-145.44606">\ty{varchar}</tspan></text>
+         y="-145.44606">\ty{string}</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect31"
@@ -938,7 +938,7 @@
          id="tspan33"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;text-anchor:end;stroke-width:0.264583"
          x="305.27051"
-         y="-128.3495">\ty{varchar}</tspan></text>
+         y="-128.3495">\ty{enum}</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect34"
@@ -1162,7 +1162,7 @@
          id="tspan48"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;text-anchor:end;stroke-width:0.264583"
          x="206.88519"
-         y="-179.63918">\ty{varchar}</tspan></text>
+         y="-179.63918">\ty{string}</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect49"
@@ -1186,7 +1186,7 @@
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect50"
-       width="16.109365"
+       width="13.676809"
        height="5.6988506"
        x="192.83765"
        y="-149.23911"
@@ -1194,19 +1194,19 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;stroke-width:0.264583"
-       x="206.88519"
+       x="204.45264"
        y="-145.44606"
        id="text50"
        transform="rotate(90)"><tspan
          sodipodi:role="line"
          id="tspan50"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;text-anchor:end;stroke-width:0.264583"
-         x="206.88519"
-         y="-145.44606">\ty{char(16)}</tspan></text>
+         x="204.45264"
+         y="-145.44606">\ty{string}</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect58"
-       width="16.109365"
+       width="13.676809"
        height="5.6988506"
        x="192.83765"
        y="-143.54025"
@@ -1214,19 +1214,19 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;stroke-width:0.264583"
-       x="206.88519"
+       x="204.45264"
        y="-139.74721"
        id="text59"
        transform="rotate(90)"><tspan
          sodipodi:role="line"
          id="tspan59"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;text-anchor:end;stroke-width:0.264583"
-         x="206.88519"
-         y="-139.74721">\ty{varchar}</tspan></text>
+         x="204.45264"
+         y="-139.74721">\ty{string}</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect59"
-       width="16.109365"
+       width="13.676809"
        height="5.6988506"
        x="192.83765"
        y="-137.84142"
@@ -1234,19 +1234,19 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;stroke-width:0.264583"
-       x="206.88519"
+       x="204.45264"
        y="-134.04837"
        id="text60"
        transform="rotate(90)"><tspan
          sodipodi:role="line"
          id="tspan60"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;text-anchor:end;stroke-width:0.264583"
-         x="206.88519"
-         y="-134.04837">\ty{varchar}</tspan></text>
+         x="204.45264"
+         y="-134.04837">\ty{string}</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect61"
-       width="16.109365"
+       width="13.676809"
        height="5.6988506"
        x="192.83763"
        y="-132.14256"
@@ -1254,55 +1254,55 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;stroke-width:0.264583"
-       x="206.88518"
+       x="204.45262"
        y="-128.34952"
        id="text61"
        transform="rotate(90)"><tspan
          sodipodi:role="line"
          id="tspan61"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;text-anchor:end;stroke-width:0.264583"
-         x="206.88518"
+         x="204.45262"
          y="-128.34952">\ty{date}</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect62"
-       width="16.109365"
+       width="13.676809"
        height="5.6988506"
-       x="120.46784"
+       x="122.90039"
        y="-183.43222"
        transform="rotate(90)" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;stroke-width:0.264583"
-       x="134.51538"
+       x="134.47099"
        y="-179.63918"
        id="text62"
        transform="rotate(90)"><tspan
          sodipodi:role="line"
          id="tspan62"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;text-anchor:end;stroke-width:0.264583"
-         x="134.51538"
-         y="-179.63918">\ty{varchar}</tspan></text>
+         x="134.47099"
+         y="-179.63918">\ty{string}</tspan></text>
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.199999;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers fill stroke"
        id="rect63"
-       width="16.109365"
+       width="13.676809"
        height="5.6988506"
-       x="120.46784"
+       x="122.90039"
        y="-177.73337"
        transform="rotate(90)" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;stroke-width:0.264583"
-       x="134.51538"
+       x="134.47099"
        y="-173.94032"
        id="text63"
        transform="rotate(90)"><tspan
          sodipodi:role="line"
          id="tspan63"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.175px;font-family:Arial;-inkscape-font-specification:Arial;text-align:end;text-anchor:end;stroke-width:0.264583"
-         x="134.51538"
-         y="-173.94032">\ty{varchar}</tspan></text>
+         x="134.47099"
+         y="-173.94032">\ty{string}</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
        d="M 180.58279,150.95033 V 136.5772"

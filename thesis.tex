@@ -68,13 +68,16 @@
   xrightmargin=6mm,
   framexleftmargin=4mm,
   framexrightmargin=4mm,
+  framextopmargin=3mm,
+  framexbottommargin=3mm,
   captionpos=b,
   abovecaptionskip=3mm,
-  morekeywords=[4]{boolean,serial,text,is},
+  morekeywords=[6]{boolean,serial,text,is,references,real},
   %floatplacement=b,
   float=hb
 }
 \lstset{style=sqlstyle}
+\usepackage{placeins}
 
 %% comandi vari
 % analisi
@@ -135,6 +138,8 @@
 %% La suddivisione in parti � opzionale; solitamente sono sufficienti i capitoli.
 %\part{Parte}
 
+%\iffalse
+
 \input{thesis-intro}
 
 \input{thesis-analisi}
@@ -142,6 +147,8 @@
 \input{thesis-concettuale}
 
 \input{thesis-logica}
+
+%\fi
 
 \input{thesis-fisica}
 

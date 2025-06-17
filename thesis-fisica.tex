@@ -1,4 +1,5 @@
 \chapter{Progettazione fisica}
+\label{physical}
 
 La fase di progettazione logica (Sezione \ref{logical}) produce uno schema logico, formalizzato nel modello relazionale, che descrive l'insieme di tabelle e di vincoli su di esse che contengono i dati di interesse.
 Questo schema è interrogabile, ovvero è possibile formulare delle interrogazioni (anche dette \emph{query} o richieste) sulla base di dati; le interrogazioni si formulano attraverso linguaggi formali specifici per il modello relazionale come algebra relazionale e calcolo relazionale.
@@ -12,16 +13,24 @@ In questo capitolo costruiamo fisicamente la base di dati progettata nei capitol
 Il DBMS che utilizziamo è PostgreSQL, uno tra i più diffusi DBMS relazionali.
 
 \section{Definizione dei domini}
+\label{physicaldomains}
+
+Per quanto riguarda i tipi di dato semplici, in PostgreSQL il tipo corrispondente alle stringhe è \sql{varchar} (\emph{variable character}) e il tipo corrispondente ai numeri rappresentati in virgola mobile è \sql{real}.
 
 Alcune tabelle dello schema logico presentano attributi con vincoli sul dominio o con un insieme finito di valori possibili.
 In SQL è possibile definire domini, utilizzabili poi allo stesso modo di quelli predefiniti del linguaggio, che sintetizzano i vincoli da imporre ed evitano ripetizioni e quindi possibili inconsistenze.
-Elenchiamo di seguito i domini definiti per lo schema relazionale della nostra base di dati (\lstlistingname{} \ref{pdom}).
+
+I tipi enumerazione, ovvero che possono assumere un insieme finito e contenuto di valori, si implementano come interi (a cui però serve poi aggiungere una funzione di conversione a livello più alto per tradurre il numero nel valore semantico corrispondente) oppure come stringa (\sql{varchar}) su cui viene imposto il vincolo di appartenenza all'insieme di valori del dominio; per la base di dati che stiamo costruendo scegliamo la seconda implementazione.
+
+Elenchiamo di seguito i domini definiti per lo schema relazionale della base di dati (\lstlistingname{} \ref{pdom}).
 
 \begin{itemize}
 \item Nella tabella \tab{paziente} si utilizza come identificatore il codice fiscale italiano, ovvero una stringa alfanumerica di 16 caratteri.
 \item Nella tabella \tab{gravidanza} l'attributo \at{pma\_tipo} contiene l'informazione relativa al tipo di procreazione medicalmente assistita, che può avere valore \val{iui}, \val{fivet} o \val{icsi}.
-\item Nella tabella \tab{visita} l'attributo \at{categoria\_visita}, relativo al tipo di visita, può avere valore \val{primo\_trimestre}, \val{secondo\_trimestre}, \val{biometrica}, \val{altro\_tipo}.
-\item Sempre nella tabella \tab{visita}, l'attributo \at{stato\_crescita} può avere valore \val{regolare}, \val{fgr} o \val{sga}.
+\item Nella tabella \tab{visita} l'attributo \at{categoria\_visita}, relativo al tipo di visita, può avere valore \val{primo\_trimestre}, \val{secondo\_trimestre}, \val{biometrica} o \val{altro\_tipo}. Nella stessa tabella, l'attributo \at{stato\_crescita} può avere valore \val{regolare}, \val{fgr} o \val{sga}.
+\item Per la tabella \tab{parto} è richiesta la dichiarazione di diversi domini. L'attributo \at{tipo\_parto} indica il tipo di parto e può avere valore \val{cesareo\_programmato} o \val{parto\_con\_travaglio}. L'attributo \at{tipo\_secondamento} può avere valore \val{attivo}, \val{strumentale}, \val{manuale} o \val{scovolamento}. L'attributo \at{robson} può avere valore \val{1}, \val{2a}, \val{2b}, \val{3}, \val{4a}, \val{4b}, \val{5.1}, \val{5.2}, \val{6}, \val{7}, \val{8}, \val{9} o \val{10}. L'attributo \at{analgesia} può avere valore \val{spinale}, \val{peridurale}, \val{spinale\_peridurale}, \val{calinox}.
+\item Nella tabella \tab{parto\_con\_cesareo} l'attributo \at{sottotipo\_parto} può avere valore uguale a \val{naturale}, \val{operativo}, \val{cesareo}, \val{naturale\_operativo}, \val{naturale\_cesareo}, \val{operativo\_cesareo}, mentre l'attributo \at{lacerazioni} può avere valore \val{episiotomia}, \val{tracheloraffia}, \val{nessuna}, \val{grado\_1}, \val{grado\_2}, \val{grado\_3}, \val{grado\_4}, \val{altro}.
+\item Nella tabella \tab{induzione} l'attributo \at{metodo\_induzione} può avere valore \val{amnioressi}, \val{cook},\linebreak \val{cook\_misoprostolo}, \val{cook\_ossitocina}, \val{dilapan}, \val{dilapan\_misoprostolo}, \val{dilapan\_ossitocina}, \val{misoprostolo}, \val{propess} o \val{propidil}.
 \end{itemize}
 
 \begin{lstlisting}[float,caption={Definizione dei domini.},label=pdom]
@@ -35,17 +44,86 @@ create domain categoria_visita_enum as varchar
 check (value in ('primo_trimestre','secondo_trimestre','biometrica',
   'altro_tipo'));
 -- Dominio stato_crescita_enum per visita
-create domain stato_crescita enum as varchar
+create domain stato_crescita_enum as varchar
 check (value in ('regolare','fgr','sga'));
+-- Dominio tipo_parto_enum per parto
+create domain tipo_parto_enum as varchar
+check (value in ('cesareo_programmato','parto_con_travaglio'));
+-- Dominio tipo_secondamento_enum per parto
+create domain tipo_secondamento_enum as varchar
+check (value in ('attivo','strumentale','manuale','scovolamento'));
+-- Dominio robson_enum per parto
+create domain robson_enum as varchar
+check (value in ('1','2a','2b','3','4a','4b','5.1','5.2',
+  '6','7','8','9','10'));
+-- Dominio analgesia_enum per parto
+create domain analgesia_enum as varchar
+check (value in ('spinale','peridurale','spinale_peridurale',
+  'calinox'));
+-- Dominio sottotipo_parto_enum per parto_con_travaglio
+create domain sottotipo_parto_enum as varchar
+check (value in ('naturale','operativo','cesareo','naturale_operativo',
+  'naturale_cesareo','operativo_cesareo'));
+-- Dominio lacerazioni_enum per parto_con_travaglio
+create domain lacerazioni_enum as varchar
+check (value in ('nessuna','episiotomia','tracheloraffia','grado_1',
+  'grado_2','grado_3','grado_4','altro'));
+-- Dominio metodo_induzione per induzione
+create domain metodo_induzione as varchar
+check (value in ('amnioressi','cook','cook_misoprostolo','cook_ossitocina',
+  'dilapan','dilapan_misoprostolo','dilapan_ossitocina','misoprostolo',
+  'propess','propidil'));
 \end{lstlisting}
+
+\FloatBarrier
 
 \section{Definizione delle tabelle}
 
-%% manca
+Definiamo con \emph{script} SQL tutte le tabelle presentate nello schema logico (Sezione \ref{logical}).
+Insieme agli attributi vengono introdotti anche tutti i vincoli di chiave esterna e alcuni vincoli aggiuntivi che si applicano ad attributi di un singolo record.
+Rimarranno da definire separatamente i vincoli che coinvolgono dati memorizzati su più tabelle o che verificano condizioni su dati aggregati.
+
+Nei vincoli di chiave esterna (\sql{foreign key}) si indica la tabella e l'attributo o la tupla di attributi a cui si fa riferimento (\sql{references}).
+Le opzioni \sql{on update cascade} e \sql{on delete cascade} indicano che determinate operazioni alla chiave primaria della tabella puntata dal riferimento vengono riprodotte a cascata sulla tabella dipendente, rispettivamente nei casi di modifiche e di cancellazioni.
 
 \subsection{Area della gravidanza}
 
 La tabella \tab{paziente} (\lstlistingname{} \ref{ptabpaziente}) utilizza il dominio \tab{codice\_fiscale} definito precedentemente.
+
+Nella tabella \tab{gravidanza} (\lstlistingname{} \ref{ptabgravidanza}) è stato introdotto come chiave primaria un attributo \at{id}, da intendersi come numero progressivo; un'implementazione tipica e di \enquote{basso livello} degli identificatori di questo tipo prevede di dichiarare l'attributo come intero e chiave primaria, forzando l'utente a determinare il valore da assegnare a \at{id} ad ogni inserimento, solitamente calcolando il massimo dei valori \at{id} presenti nella tabella e aggiungendo 1.
+In PostgreSQL \cite{Pos25} è possibile ovviare a tale ostacolo definendo il campo \at{id} come \sql{serial}: non è più necessario indicare né calcolare manualmente il valore \at{id} da assegnare perché viene determinato all'occorrenza, permettendo alle \emph{query} di inserimento di esserne trasparenti.
+Nell'implementazione, \sql{serial} è \emph{zucchero sintattico} che si traduce nella definizione di una \sql{sequence} di \sql{integer} (a cui vengono dedicati 4 byte) ed esistono le varianti \sql{smallserial} (2 byte, corrispondente a \sql{smallint}) e \sql{bigserial} (8 byte, corrispondente a \sql{bigint}).
+Quando un valore dichiarato come \sql{serial} viene usato come chiave esterna in altre tabelle deve essere trattato come il tipo \sql{integer} corrispondente.
+
+Nella definizione della tabella \tab{gravidanza} vengono formalizzati i vincoli di unicità da imporre su tuple di attributi, che corrispondono alle chiavi candidate dello schema concettuale, esposti nella Sezione \ref{logicalpregnancy}.
+Aggiungendo ulteriori vincoli a \tab{gravidanza} si possono soddisfare l'integrità referenziale verso la tabella \tab{paziente} e il vincolo relativo agli attributi \at{pma\_tipo} e \at{pma\_ovodonazione}, riportati sempre nella Sezione \ref{logicalpregnancy}.
+Per il vincolo rimanente, relativo alle proprietà di crescenza dei valori di parità, si definisce un \emph{trigger} apposito (Sezione \ref{}).
+
+La tabella \tab{malattia} (\lstlistingname{} \ref{ptabmalattia}) e la tabella \tab{malattia\_gravidanza} (\lstlistingname{} \ref{ptabmalattiagravidanza}) seguono le definizioni riportate nello schema logico.
+Sulla seconda vengono imposti i vincoli di integrità referenziale.
+
+\subsection{Area delle visite}
+
+La tabella \tab{visita} (\lstlistingname{} \ref{ptabvisita}) utilizza i domini \tab{categoria\_visita\_enum} e \tab{stato\_crescita\_enum} definiti precedentemente; fatta eccezione per il vincolo di chiave esterna i diversi vincoli imposti su questa tabella (Sezione \ref{logicalvisits}) vengono implementati attraverso \emph{trigger} (\ref{}).
+
+Le tabelle \tab{esame} (\lstlistingname{} \ref{ptabesame}) e \tab{esame\_visita} (\lstlistingname{} \ref{ptabesamevisita}) sono definite come nello schema logico.
+Per la tabella \tab{esame\_visita} si devono imporre i vincoli di chiave esterna; i vincoli rimanenti sono implementati attraverso \emph{trigger} (Sezione \ref{}).
+
+\subsection{Area del parto}
+
+Nella tabella \tab{parto} (\lstlistingname{} \ref{ptabparto}) utilizziamo molti dei domini di tipo enumerazione definiti nella Sezione \ref{physicaldomains}.
+Insieme ad essa definiamo le tabelle \tab{cesareo\_programmato} (\lstlistingname{} \ref{ptabcesareoprogrammato}) e \tab{parto\_con\_travaglio} (\lstlistingname{} \ref{ptabpartocontravaglio}) che contengono i dati delle entità specializzate, come da schema ristrutturato.
+Quest'ultima tabella deve soddisfare i vincoli sugli attributi \at{motivo} e \at{kristeller} indicati nella Sezione \ref{logicaldelivery}.
+Definiamo inoltre la tabella \tab{induzione} (\lstlistingname \ref{ptabinduzione}).
+
+I due vincoli rimanenti della Sezione \ref{logicaldelivery}, che impongono che ogni record di \tab{parto} deve averne uno e uno solo corrispondente in una delle due tabelle \tab{cesareo\_programmato} e \tab{parto\_con\_travaglio} vengono implementati con \emph{trigger} (Sezione \ref{}).
+
+\subsection{Area del neonato}
+
+Le tabelle \tab{neonato} (\lstlistingname{} \ref{ptabneonato}), \tab{tracciato} (\lstlistingname{} \ref{ptabtracciato}), \tab{misurazione} (\lstlistingname{} \ref{ptabmisurazione}) e\linebreak \tab{misurazione\_neonato} (\lstlistingname{} \ref{ptabmisurazioneneonato}) seguono le definizioni previste dallo schema logico.
+Rimane da implementare un solo vincolo, l'unico della Sezione \ref{logicalnewborn}, che verrà fatto con \emph{trigger} (Sezione \ref{})
+
+\FloatBarrier
 
 \begin{lstlisting}[float,caption={Definizione della tabella \tab{paziente}.},label=ptabpaziente]
 create table paziente (
@@ -56,11 +134,6 @@ create table paziente (
   data_nascita date not null
 );
 \end{lstlisting}
-
-Nella tabella \tab{gravidanza} (\lstlistingname{} \ref{ptabgravidanza}) è stato introdotto come chiave primaria un attributo \at{id}, da intendersi come numero progressivo; un'implementazione tipica e di \enquote{basso livello} degli identificatori di questo tipo prevede di dichiarare l'attributo come intero e chiave primaria, forzando l'utente a determinare il valore da assegnare a \at{id} ad ogni inserimento, solitamente calcolando il massimo dei valori \at{id} presenti nella tabella e aggiungendo 1.
-In PostgreSQL \cite{Pos25} è possibile ovviare a tale ostacolo definendo il campo \at{id} come \sql{serial}: non è più necessario indicare né calcolare manualmente il valore \at{id} da assegnare perché viene determinato all'occorrenza, permettendo alle \emph{query} di inserimento di esserne trasparenti.
-Nell'implementazione, \sql{serial} è \emph{zucchero sintattico} che si traduce nella definizione di una \sql{sequence} di \sql{integer} (a cui vengono dedicati 4 byte) ed esistono le varianti \sql{smallserial} (2 byte, corrispondente a \sql{smallint}) e \sql{bigserial} (8 byte, corrispondente a \sql{bigint}).
-Quando un valore dichiarato come \sql{serial} viene usato come chiave esterna in altre tabelle deve essere trattato come il tipo \sql{integer} corrispondente.
 
 \begin{lstlisting}[float,caption={Definizione della tabella \tab{gravidanza}.},label=ptabgravidanza]
 create table gravidanza (
@@ -87,29 +160,16 @@ create table gravidanza (
   data_prevista_parto date,
   ultima_mestruazione_ecografica date,
   ultima_mestruazione_anamnestica date,
-  annotazioni text
+  annotazioni text,
+  -- Vincolo di chiave esterna verso paziente
+  foreign key (paziente_cf)
+    references paziente (cf)
+    on update cascade on delete cascade,
+  -- Vincolo sugli attributi relativi alla PMA
+  check ((pma_tipo is null and pma_ovodonazione is null)
+    or (pma_tipo is not null and pma_ovodonazione is not null));
 );
 \end{lstlisting}
-
-Nella definizione della tabella \tab{gravidanza} (\lstlistingname{} \ref{ptabgravidanza}) vengono formalizzati i vincoli di unicità da imporre su tuple di attributi, che corrispondono alle chiavi candidate dello schema concettuale, esposti nella Sezione \ref{logicalpregnancy}.
-Aggiungendo ulteriori vincoli a \tab{gravidanza} (\lstlistingname{} \ref{pcongravidanza}) si possono soddisfare l'integrità referenziale verso la tabella \tab{paziente} e il vincolo relativo agli attributi \at{pma\_tipo} e \at{pma\_ovodonazione}, riportati sempre nella Sezione \ref{logicalpregnancy}.
-Per il vincolo rimanente, relativo alle proprietà di crescenza dei valori di parità, si definisce un \emph{trigger} apposito (Sezione \ref{}).
-
-\begin{lstlisting}[float,caption={Definizione di vincoli aggiuntivi nella tabella \tab{gravidanza}.},label=pcongravidanza]
--- Vincolo di chiave esterna
-alter table gravidanza
-add foreign key (paziente_cf)
-references paziente
-on update cascade on delete cascade;
--- Vincolo sugli attributi relativi alla PMA
-alter table gravidanza
-add constraint gravidanza_pma_vincolo
-check ((pma_tipo is null and pma_ovodonazione is null)
-  or (pma_tipo is not null and pma_ovodonazione is not null));
-\end{lstlisting}
-
-La tabella \tab{malattia} (\lstlistingname{} \ref{ptabmalattia}) e la tabella \tab{malattia\_gravidanza} (\lstlistingname{} \ref{ptabmalattiagravidanza}) seguono le definizioni riportate nello schema logico.
-Sulla seconda vengono imposti i vincoli di integrità referenziale (\lstlistingname{} \ref{pconmalattiagravidanza})
 
 \begin{lstlisting}[float,caption={Definizione della tabella \tab{malattia}.},label=ptabmalattia]
 create table malattia (
@@ -124,25 +184,17 @@ create table malattia_gravidanza (
   gravidanza_id integer,
   malattia_codice varchar,
   primary key (gravidanza_id, malattia_codice),
-  terapia text
+  terapia text,
+  -- Vincolo di chiave esterna verso gravidanza
+  foreign key (gravidanza_id)
+    references gravidanza (id)
+    on update cascade on delete cascade,
+  -- Vincolo di chiave esterna verso malattia
+  foreign key (malattia_codice)
+    references malattia (codice)
+    on update cascade on delete cascade;
 );
 \end{lstlisting}
-
-\begin{lstlisting}[float,caption={Definizione dei vincoli di chiave esterna nella tabella \tab{malattia\_gravidanza}.},label=pconmalattiagravidanza]
-alter table malattia_gravidanza
--- Vincolo di chiave esterna verso gravidanza
-add foreign key (gravidanza_id)
-references gravidanza.id
-on update cascade on delete cascade,
--- Vincolo di chiave esterna verso malattia
-add foreign key (malattia_codice)
-references malattia.codice
-on update cascade on delete cascade;
-\end{lstlisting}
-
-\subsection{Area delle visite}
-
-La tabella \tab{visita} (\lstlistingname{} \ref{ptabvisita}) utilizza i domini \tab{categoria\_visita\_enum} e \tab{stato\_crescita\_enum} definiti precedentemente; fatta eccezione per il vincolo di chiave esterna (\lstlistingname{} \ref{pconvisita}) i diversi vincoli imposti su questa tabella (Sezione \ref{logicalvisits}) vengono implementati attraverso \emph{trigger} (\ref{}).
 
 \begin{lstlisting}[float,caption={Definizione della tabella \tab{visita}.},label=ptabvisita]
 create table visita (
@@ -159,20 +211,185 @@ create table visita (
   fuma boolean,
   premorfologica_indicata boolean,
   stato_crescita stato_crescita_enum,
-  utpi float,
-  altezza float,
-  peso float,
-  annotazioni text
+  utpi real,
+  altezza real,
+  peso real,
+  annotazioni text,
+  -- Vincolo di chiave esterna verso gravidanza
+  foreign key (gravidanza_id)
+    references gravidanza (id)
+    on update cascade on delete cascade
 );
 \end{lstlisting}
 
-\begin{lstlisting}[float,caption={Definizione del vincolo di chiave esterna nella tabella \tab{visita}.},label=pconvisita]
-alter table visita
-add foreign key (gravidanza_id)
-references gravidanza.id
-on update cascade on delete cascade;
+% controllare
+\begin{lstlisting}[float,caption={Definizione della tabella \tab{esame}.},label=ptabesame]
+create table esame (
+  nome varchar,
+  primary key (nome),
+  tipo varchar not null
+);
 \end{lstlisting}
 
-\section{Definizione dei vincoli}
+\begin{lstlisting}[float,caption={Definizione della tabella \tab{esame\_visita}.},label=ptabesamevisita]
+create table esame_visita (
+  gravidanza_id integer,
+  visita_data date,
+  esame_nome varchar,
+  primary key (gravidanza_id, visita_data, esame_nome),
+  esito varchar not null,
+  data_esame date not null,
+  -- Vincolo di chiave esterna verso visita
+  foreign key (gravidanza_id, visita_data)
+    references visita (gravidanza_id, data)
+    on update cascade on delete cascade,
+  -- Vincolo di chiave esterna verso esame
+  foreign key (esame_nome)
+    references esame (nome)
+    on update cascade on delete cascade
+);
+\end{lstlisting}
+
+\begin{lstlisting}[float,caption={Definizione della tabella \tab{parto}.},label=ptabparto]
+create table parto (
+  gravidanza_id integer,
+  primary key (gravidanza_id),
+  tipo_parto tipo_parto_enum not null,
+  data_parto date not null,
+  eta integer not null,
+  epoca_gestazionale integer not null,
+  istante_secondamento timestamp not null,
+  tipo_secondamento tipo_secondamento_enum not null,
+  robson robson_enum not null,
+  analgesia analgesia_enum,
+  perdita_ematica integer,
+  annotazioni text,
+  -- Vincolo di chiave esterna verso gravidanza
+  foreign key (gravidanza_id)
+    references gravidanza (id)
+    on update cascade on delete cascade
+);
+\end{lstlisting}
+
+\begin{lstlisting}[float,caption={Definizione della tabella \tab{cesareo\_programmato}.},label=ptabcesareoprogrammato]
+create table cesareo_programmato (
+  gravidanza_id integer,
+  primary key (gravidanza_id),
+  motivo varchar not null,
+  -- Vincolo di chiave esterna verso parto
+  foreign key (gravidanza_id)
+    references parto (gravidanza_id)
+    on update cascade on delete cascade
+);
+\end{lstlisting}
+
+\begin{lstlisting}[float,caption={Definizione della tabella \tab{parto\_con\_travaglio}.},label=ptabpartocontravaglio]
+create table parto_con_travaglio (
+  gravidanza_id integer,
+  primary key (gravidanza_id),
+  sottotipo_parto sottotipo_parto_enum not null,
+  motivo varchar,
+  lacerazioni lacerazioni_enum not null,
+  kristeller boolean,
+  istante_rottura_membrane timestamp,
+  istante_inizio_fase_attiva timestamp,
+  istante_dilatazione_completa timestamp,
+  istante_inizio_fase_espulsiva timestamp,
+  istante_espulsione timestamp,
+  -- Vincolo di chiave esterna verso parto
+  foreign key (gravidanza_id)
+    references parto (gravidanza_id)
+    on update cascade on delete cascade,
+  -- Vincolo sull'attributo motivo
+  check ((sottotipo_parto = 'naturale' and motivo is null)
+    or (sottotipo_parto <> 'naturale' and motivo is not null)),
+  -- Vincolo sull'attributo kristeller
+  check ((sottotipo_parto = 'cesareo' and kristeller is null)
+    or (sottotipo_parto <> 'cesareo' and kristeller is not null))
+);
+\end{lstlisting}
+
+\begin{lstlisting}[float,caption={Definizione della tabella \tab{induzione}.},label=ptabinduzione]
+create table induzione (
+  gravidanza_id integer,
+  istante timestamp,
+  primary key (gravidanza_id,istante),
+  motivo varchar not null,
+  metodo metodo_induzione not null,
+  bishop integer not null,
+  quantita integer not null,
+  cicli_eseguiti integer not null,
+  completamento real check (value >= 0 and value <= 1),
+  -- Vincolo di chiave esterna verso parto_con_travaglio
+  foreign key (gravidanza_id)
+    references parto_con_travaglio (gravidanza_id)
+    on update cascade on delete cascade
+);
+\end{lstlisting}
+
+\begin{lstlisting}[float,caption={Definizione della tabella \tab{neonato}.},label=ptabneonato]
+create table neonato (
+  gravidanza_id integer,
+  istante_nascita timestamp,
+  primary key (gravidanza_id, istante_nascita),
+  peso real,
+  altezza real,
+  sesso char not null check (value in ('M','F')),
+  circonferenza_cranica real,
+  be real,
+  ph real,
+  tin boolean not null,
+  -- Vincolo di chiave esterna verso parto
+  foreign key (gravidanza_id)
+    references parto (gravidanza_id)
+    on update cascade on delete cascade
+);
+\end{lstlisting}
+
+\begin{lstlisting}[float,caption={Definizione della tabella \tab{tracciato}.},label=ptabtracciato]
+create table tracciato (
+  gravidanza_id integer,
+  primary key (gravidanza_id),
+  numero_progressivo varchar not null,
+  istante_inizio timestamp not null,
+  -- Vincolo di chiave esterna verso parto
+  foreign key (gravidanza_id)
+    references parto (gravidanza_id)
+    on update cascade on delete cascade
+);
+\end{lstlisting}
+
+\begin{lstlisting}[float,caption={Definizione della tabella \tab{misurazione}.},label=ptabmisurazione]
+create table misurazione (
+  gravidanza_id integer,
+  istante timestamp,
+  primary key (gravidanza_id, istante),
+  valore_fcm integer,
+  valore_toco integer,
+  -- Vincolo di chiave esterna verso tracciato
+  foreign key (gravidanza_id)
+    references tracciato (gravidanza_id)
+    on update cascade on delete cascade
+);
+\end{lstlisting}
+
+\begin{lstlisting}[float,caption={Definizione della tabella \tab{misurazione\_neonato}.},label=ptabmisurazioneneonato]
+create table misurazione_neonato (
+  misurazione_istante timestamp,
+  gravidanza_id integer,
+  neonato_istante_nascita timestamp,
+  primary key (misurazione_istante, gravidanza_id, neonato_istante_nascita),
+  -- Vincolo di chiave esterna verso misurazione
+  foreign key (gravidanza_id, misurazione_istante)
+    references misurazione (gravidanza_id, istante)
+    on update cascade on delete cascade,
+  -- Vincolo di chiave esterna verso neonato
+  foreign key (gravidanza_id, neonato_istante_nascita)
+    references neonato (gravidanza_id, istante_nascita)
+    on update cascade on delete cascade
+);
+\end{lstlisting}
+
+\FloatBarrier
 
 \section{Definizione dei trigger}

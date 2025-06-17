@@ -318,6 +318,8 @@ INPUT C:\Users\salva\AppData\Local\Programs\MiKTeX\tex\latex\listings\listings.c
 INPUT C:\Users\salva\AppData\Local\Programs\MiKTeX\tex\latex\listings\listings.cfg
 INPUT C:\Users\salva\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
 INPUT C:\Users\salva\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstlang1.sty
+INPUT C:\Users\salva\AppData\Local\Programs\MiKTeX\tex\latex\placeins\placeins.sty
+INPUT C:\Users\salva\AppData\Local\Programs\MiKTeX\tex\latex\placeins\placeins.sty
 INPUT .\thesis.aux
 INPUT .\thesis.aux
 OUTPUT thesis.aux
