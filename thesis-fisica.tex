@@ -347,6 +347,9 @@ create table neonato (
   be real,
   ph real,
   tin boolean not null,
+  apgar_min_1 integer not null,
+  apgar_min_5 integer not null,
+  apgar_min_10 integer,
   -- Vincolo di chiave esterna verso parto
   foreign key (gravidanza_id)
     references parto (gravidanza_id)
@@ -405,7 +408,10 @@ create table misurazione_neonato (
 
 I \emph{trigger} sono istruzioni che il DBMS esegue come effetto collaterale di modifiche alla base di dati \cite{Sil11}.
 Essi vengono attivati da eventi, eventualmente con condizioni che ne limitano l'avvio, e chiamano procedure che possono operare sui dati presenti nella tabella prima dell'esecuzione oppure dopo l'esecuzione della \emph{query} che ha scatenato l'evento.
+
 Il funzionamento della base di dati è di tipo transazionale, ovvero permette di svolgere un'insieme di operazioni distinte come se fossero atomiche: ciò permette di eseguire \emph{query}, anche con \emph{trigger} avviati come effetto collaterale, con la garanzia che alla loro conclusione le modifiche saranno permanenti (\emph{commit}) e le invarianti dei vincoli saranno rispettate; nel caso di errori avvenuti all'interno dell'operazione atomica o in seguito a istruzioni specifiche, si effettua un \emph{rollback} che annulla tutte le modifiche parziali e riporta il sistema nello stato precedente, in cui le invarianti valevano ancora.
+
+Per permettere un corretto funzionamento dei \emph{trigger}, ovvero per consentire alle operazioni interne alla transazione di poter violare temporaneamente i vincoli e di rimandare la verifica della loro validità solo alla fine della transazione, è necessario dichiararli utilizzando le parole chiave \sql{deferrable initially deferred} e le transazioni dovranno includere il comando \sql{set constraints all deferred}.
 
 \subsection{Sintesi dei vincoli da implementare con trigger}
 \label{physicaltriggerssynthesis}
@@ -416,21 +422,173 @@ Elenchiamo di seguito i vincoli esplicitati insieme allo schema logico (Sezione 
 \item Se una paziente ha più di una gravidanza, per ogni coppia di gravidanze successive i valori di \at{figli\_nati\_vivi}, \at{aborti\_avuti}, \at{figli\_nati\_pretermine} e \at{figli\_nati\_a\_termine} sono tutti non decrescenti e almeno uno tra essi è crescente (Sezione \ref{logicalpregnancy}).
 \item Per ogni gravidanza, in \tab{visita} esiste al massimo un solo record che ha \val{primo\_trimestre} nel campo \at{categoria\_visita} (Sezione \ref{logicalvisits}).
 \item Per ogni gravidanza, in \tab{visita} esiste al massimo un solo record che ha \val{secondo\_trimestre} nel campo \at{categoria\_visita} (Sezione \ref{logicalvisits}).
-\item Per ogni gravidanza deve essere presente almeno un record in \tab{vista} oppure in \tab{parto} (Sezione \ref{logicalvisits}).
+\item Per ogni gravidanza deve essere presente almeno un record in \tab{visita} oppure in \tab{parto} (Sezione \ref{logicalvisits}).
 \item Per ogni esame registrato per una data visita, si controlla la corrispondenza tra \at{esito} e il valore di \tab{tipo\_esito} della tabella \tab{esame}. Se il valore è \val{\{numeric\}} il valore di \at{esito} deve essere la rappresentazione come stringa di un numero. Se il valore è \val{\{string\}} il valore può essere una stringa arbitraria. Se il valore è diverso da questi, ovvero è un array (di stringhe) di lunghezza arbitraria, i suoi elementi sono da intendersi come i possibili valori di un tipo enumerazione definito appositamente per quell'esame, quindi il valore di \at{esito} deve essere uno dei valori possibili di questo tipo (Sezione \ref{tablesvisits})
 \item Il valore di \at{tipo\_parto} è \val{cesareo\_programmato} se e solo se il parto ha un record corrispondente in \tab{cesareo\_programmato} (Sezione \ref{logicaldelivery}).
 \item Il valore di \at{tipo\_parto} è \val{parto\_con\_travaglio} se e solo se il parto ha un record corrispondente in \tab{parto\_con\_travaglio} (Sezione \ref{logicaldelivery}).
 \item Per ogni misurazione deve essere presente almeno uno tra l'attributo \at{valore\_fcm}, l'attributo \at{valore\_toco} e un record nella tabella \tab{misurazione\_neonato} (Sezione \ref{logicalnewborn}).
 \end{enumerate}
 
+A questi aggiungiamo i diversi attributi derivati, ovvero calcolabili o dipendenti da altre informazioni già presenti nella base di dati e che quindi devono essere gestiti automaticamente in caso di inserimenti o modifiche per evitare inconsistenze.
+
+\begin{enumerate}
+\setcounter{enumi}{8}
+\item Nella tabella \tab{gravidanza} sono derivati gli attributi \at{data\_primo\_ingresso} e \at{parita}.
+\item Nella tabella \tab{visita} è derivato l'attributo \at{eta}.
+\item Nella tabella \tab{parto} è derivato l'attributo \at{eta}.
+\end{enumerate}
+
 \subsection{Area della gravidanza}
 \label{triggerspregnancy}
 
+Il \emph{trigger} \tab{gravidanza\_derivati} (\lstlistingname{} \ref{ptrggravidanzaderivati}) soddisfa il vincolo 9, ovvero definisce come si calcolano gli attributi derivati della tabella \tab{gravidanza} per ogni riga inserita o aggiornata.
+La parità è calcolata come concatenazione\footnote{
+  L'operatore di concatenazione (\sql{||} in SQL) è applicabile solo ad argomenti di tipo testuale, quindi per applicarlo a valori numerici è richiesto un \emph{casting} esplicito.
+} dei diversi valori indicati relativi alle gravidanze passate, mentre la data di primo ingresso è la minima nell'insieme delle date delle visite svolte con la data, se presente, del parto.
+
 \subsection{Area delle visite}
 \label{triggersvisits}
+
+Il \emph{trigger} \tab{gravidanza\_vincoli} (\lstlistingname{} \ref{ptrggravidanzavincoli}) soddisfa i vincoli 2, 3 e 4, ovvero controlla che non ci siano più di una visita del primo trimestre e più di una del secondo trimestre per ogni gravidanza e che ogni gravidanza abbia almeno una visita o un parto associato.
+In generale per causare il \emph{rollback} di una transazione è sufficiente eseguire l'istruzione \sql{return null}.
+Per i \sql{constraint trigger} non è possibile perché, essendo di tipo \sql{after}, l'istruzione \sql{return null} non ha nessun effetto concreto, quindi per forzare il \emph{rollback} si deve usare il comando \sql{raise exception}.
+
+La gestione della corrispondenza tra l'esito degli esami e il tipo previsto nella tabella \tab{esame} è gestito dal \emph{trigger} \tab{esame\_esito} (\lstlistingname{} \ref{ptrgesameesito}), che legge i valori presenti in \at{tipo\_esito} e verifica la corrispondenza con il valore \at{esito} di \tab{esame\_visita} e tratta i casi dei valori speciali \val{\{numeric\}} e \val{\{string\}}.
+
+La cancellazione di visite può rendere falsa l'invariante che impone la presenza di almeno una visita o di un parto per ogni gravidanza.
+Per ovviare a questo problema definiamo il \emph{trigger} \tab{visita\_vincoli} (\lstlistingname{} \ref{ptrgvisitavincoli}) che riutilizza la stessa funzione di \tab{gravidanza\_vincoli}.
 
 \subsection{Area del parto}
 \label{triggersdelivery}
 
 \subsection{Area del neonato}
 \label{triggersnewborn}
+
+\FloatBarrier % mancano 1 6 7 8 10 11
+
+\begin{lstlisting}[float,caption={Definizione del trigger \tab{gravidanza\_derivati}.},label=ptrggravidanzaderivati]
+-- Definizione della funzione di aggiornamento
+create or replace function gravidanza_aggiorna_derivati()
+returns trigger language plpgsql as $$
+begin
+  -- Calcolo dell'attributo parità
+  new.parita := cast(new.figli_nati_a_termine as text)
+    || cast(new.figli_nati_pretermine as text)
+    || cast(new.aborti_avuti as text)
+    || cast(new.figli_nati_vivi as text);
+  -- Calcolo dell'attributo data_primo_ingresso
+  new.data_primo_ingresso :=
+    (select min(data) from
+      (select data from visita
+      where gravidanza_id = new.id
+      union
+      select data_parto from parto
+      where gravidanza_id = new.id));
+  return new;
+end;
+$$;
+-- Definizione del trigger
+create constraint trigger gravidanza_derivati
+after insert or update on gravidanza
+deferrable initially deferred
+for each row
+execute procedure gravidanza_aggiorna_derivati();
+\end{lstlisting}
+
+\begin{lstlisting}[float,caption={Definizione del trigger \tab{gravidanza\_vincoli}.},label=ptrggravidanzavincoli]
+-- Definizione della funzione di aggiornamento
+create or replace function gravidanza_controlla_vincoli()
+returns trigger language plpgsql as $$
+begin
+  -- Presenza di una visita o di un parto
+  if
+    not exists (select gravidanza_id from visita
+    where gravidanza_id = new.id
+    union
+    select gravidanza_id from parto
+    where gravidanza_id = new.id)
+  then
+    raise exception 'La gravidanza non ha visite né parto associato';
+  end if;
+  -- Presenza di non più di una visita del primo trimestre
+  if
+    ((select count(*) from visita
+    where gravidanza_id = new.id
+    and categoria_visita = 'primo_trimestre') > 1)
+  then
+    raise exception 'Più di una visita del primo trimestre';
+  end if;
+  -- Presenza di non più di una visita del secondo trimestre
+  if
+    ((select count(*) from visita
+    where gravidanza_id = new.id
+    and categoria_visita = 'secondo_trimestre') > 1)
+  then
+    raise exception 'Più di una visita del secondo trimestre';
+  end if;
+  return new;
+end;
+$$;
+-- Definizione del trigger
+create constraint trigger gravidanza_vincoli
+after insert or update on gravidanza
+deferrable initially deferred
+for each row
+execute procedure gravidanza_controlla_vincoli();
+\end{lstlisting}
+
+\begin{lstlisting}[float,caption={Definizione del trigger \tab{esame\_esito}.},label=ptrgesameesito]
+-- Definizione della funzione di aggiornamento
+create or replace function esame_controlla_esito()
+returns trigger language plpgsql as $$
+declare
+  tipo_esito varchar[];
+  esito_val varchar;
+  numerico boolean := true;
+begin
+  tipo_esito := (select tipo_esito from esame
+    where nome = new.esame_nome);
+  -- Corrispondenza del tipo dell'esito
+  if (tipo_esito[1] == 'numeric')
+  then
+    -- Caso numerico
+    begin
+      esito_val := new.esito::nuumeric;
+    exception when others then
+      numerico := false;
+    end;
+    if numerico
+    then return new;
+    else raise exception 'Non corrisponde al tipo numerico';
+    end if;
+  else
+  if (tipo_esito[1] == 'string')
+  then
+    -- Caso stringa generica
+    return new;
+  else
+    -- Caso tipo enum
+    if (new.esito = any (tipo_esito))
+    then return new;
+    else raise exception 'Non corrisponde al tipo enumerazione';
+    end if;
+  end if;
+  end if;
+  return new;
+end;
+$$;
+-- Definizione del trigger
+create constraint trigger esame_esito
+after insert or update on esame_visita
+deferrable initially deferred
+for each row
+execute procedure esame_controlla_esito();
+\end{lstlisting}
+
+\begin{lstlisting}[float,caption={Definizione del trigger \tab{visita\_vincoli}.},label=ptrgvisitavincoli]
+create constraint trigger visita_vincoli
+after delete on visita
+deferrable initially deferred
+for each row
+execute procedure gravidanza_controlla_vincoli();
+\end{lstlisting}

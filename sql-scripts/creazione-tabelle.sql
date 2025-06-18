@@ -254,6 +254,9 @@ create table neonato (
   be real,
   ph real,
   tin boolean not null,
+  apgar_min_1 integer not null,
+  apgar_min_5 integer not null,
+  apgar_min_10 integer,
   -- Vincolo di chiave esterna verso parto
   foreign key (gravidanza_id)
     references parto (gravidanza_id)
