@@ -43,9 +43,9 @@ check (value in ('amnioressi','cook','cook_misoprostolo','cook_ossitocina',
 -- Listato 5.2
 
 create table paziente (
-  cf codice_fiscale
-  primary key (cf)
-  nome varchar not null
+  cf codice_fiscale,
+  primary key (cf),
+  nome varchar not null,
   cognome varchar not null,
   data_nascita date not null
 );
@@ -68,7 +68,7 @@ create table gravidanza (
   eta_concepimento integer,
   esito boolean,
   pma_tipo pma_tipo_enum,
-  pma_ovodonazione boolean
+  pma_ovodonazione boolean,
   pregresso_gdm boolean not null,
   pregressa_pih boolean not null,
   pregressa_tireopatia boolean not null,
@@ -83,7 +83,7 @@ create table gravidanza (
     on update cascade on delete cascade,
   -- Vincolo sugli attributi relativi alla PMA
   check ((pma_tipo is null and pma_ovodonazione is null)
-    or (pma_tipo is not null and pma_ovodonazione is not null));
+    or (pma_tipo is not null and pma_ovodonazione is not null))
 );
 
 -- Listato 5.4
@@ -108,7 +108,7 @@ create table malattia_gravidanza (
   -- Vincolo di chiave esterna verso malattia
   foreign key (malattia_codice)
     references malattia (codice)
-    on update cascade on delete cascade;
+    on update cascade on delete cascade
 );
 
 -- Listato 5.6
@@ -116,7 +116,7 @@ create table malattia_gravidanza (
 create table visita (
   gravidanza_id integer,
   data date,
-  primary key (gravidanza_id, data)
+  primary key (gravidanza_id, data),
   epoca_gestazionale integer not null,
   eta integer not null,
   categoria_visita categoria_visita_enum not null,
@@ -142,7 +142,7 @@ create table visita (
 create table esame (
   nome varchar,
   primary key (nome),
-  tipo varchar not null
+  tipo varchar[] not null
 );
 
 -- Listato 5.8
@@ -234,7 +234,7 @@ create table induzione (
   bishop integer not null,
   quantita integer not null,
   cicli_eseguiti integer not null,
-  completamento real check (value >= 0 and value <= 1),
+  completamento real check (completamento >= 0 and completamento <= 1),
   -- Vincolo di chiave esterna verso parto_con_travaglio
   foreign key (gravidanza_id)
     references parto_con_travaglio (gravidanza_id)
@@ -249,7 +249,7 @@ create table neonato (
   primary key (gravidanza_id, istante_nascita),
   peso real,
   altezza real,
-  sesso char not null check (value in ('M','F')),
+  sesso char not null check (sesso in ('M','F')),
   circonferenza_cranica real,
   be real,
   ph real,

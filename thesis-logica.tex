@@ -172,8 +172,8 @@ L'attributo \at{stato\_crescita} di \tab{visita}, se non è \val{NULL}, ha uno d
 
 Riassumiamo di seguito i vincoli da porre su tale schema logico.
 \begin{itemize}
-\item[\Con{}] Per ogni gravidanza, in \tab{visita} esiste un solo record che ha valore \val{primo\_trimestre} nel campo \at{categoria\_visita}.
-\item[\Con{}] Per ogni gravidanza, in \tab{visita} esiste un solo record che ha valore \val{secondo\_trimestre} nel campo \at{categoria\_visita}.
+\item[\Con{}] Per ogni gravidanza, in \tab{visita} esiste al massimo un solo record che ha valore \val{primo\_trimestre} nel campo \at{categoria\_visita}.
+\item[\Con{}] Per ogni gravidanza, in \tab{visita} esiste al massimo un solo record che ha valore \val{secondo\_trimestre} nel campo \at{categoria\_visita}.
 \item[\Con{}] Per ogni gravidanza deve essere presente almeno un record in \tab{visita} oppure in \tab{parto}.
 \item[\Con{}] Per ogni esame registrato per una data visita, l'esito dell'esame deve essere compatibile con il \at{tipo\_esito} indicato nel record corrispondente nella tabella \tab{esame}.
 \end{itemize}

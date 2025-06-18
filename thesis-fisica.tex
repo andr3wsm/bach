@@ -22,7 +22,9 @@ In SQL è possibile definire domini, utilizzabili poi allo stesso modo di quelli
 
 I tipi enumerazione, ovvero che possono assumere un insieme finito e contenuto di valori, si implementano come interi (a cui però serve poi aggiungere una funzione di conversione a livello più alto per tradurre il numero nel valore semantico corrispondente) oppure come stringa (\sql{varchar}) su cui viene imposto il vincolo di appartenenza all'insieme di valori del dominio; per la base di dati che stiamo costruendo scegliamo la seconda implementazione.
 
-Elenchiamo di seguito i domini definiti per lo schema relazionale della base di dati (\lstlistingname{} \ref{pdom}).
+Elenchiamo di seguito i domini definiti per lo schema relazionale della base di dati (\lstlistingname{} \ref{pdom})\footnote{
+  Tutti i frammenti di codice mostrati nei listati di questa tesi sono disponibili anche nella \emph{repository} al link\linebreak \url{https://github.com/andr3wsm/bach/tree/main/sql-scripts}.
+}.
 
 \begin{itemize}
 \item Nella tabella \tab{paziente} si utilizza come identificatore il codice fiscale italiano, ovvero una stringa alfanumerica di 16 caratteri.
@@ -97,17 +99,23 @@ Quando un valore dichiarato come \sql{serial} viene usato come chiave esterna in
 
 Nella definizione della tabella \tab{gravidanza} vengono formalizzati i vincoli di unicità da imporre su tuple di attributi, che corrispondono alle chiavi candidate dello schema concettuale, esposti nella Sezione \ref{logicalpregnancy}.
 Aggiungendo ulteriori vincoli a \tab{gravidanza} si possono soddisfare l'integrità referenziale verso la tabella \tab{paziente} e il vincolo relativo agli attributi \at{pma\_tipo} e \at{pma\_ovodonazione}, riportati sempre nella Sezione \ref{logicalpregnancy}.
-Per il vincolo rimanente, relativo alle proprietà di crescenza dei valori di parità, si definisce un \emph{trigger} apposito (Sezione \ref{}).
+Per il vincolo rimanente, relativo alle proprietà di crescenza dei valori di parità, si definisce un \emph{trigger} apposito (Sezione \ref{triggerspregnancy}).
 
 La tabella \tab{malattia} (\lstlistingname{} \ref{ptabmalattia}) e la tabella \tab{malattia\_gravidanza} (\lstlistingname{} \ref{ptabmalattiagravidanza}) seguono le definizioni riportate nello schema logico.
 Sulla seconda vengono imposti i vincoli di integrità referenziale.
 
 \subsection{Area delle visite}
+\label{tablesvisits}
 
-La tabella \tab{visita} (\lstlistingname{} \ref{ptabvisita}) utilizza i domini \tab{categoria\_visita\_enum} e \tab{stato\_crescita\_enum} definiti precedentemente; fatta eccezione per il vincolo di chiave esterna i diversi vincoli imposti su questa tabella (Sezione \ref{logicalvisits}) vengono implementati attraverso \emph{trigger} (\ref{}).
+La tabella \tab{visita} (\lstlistingname{} \ref{ptabvisita}) utilizza i domini \tab{categoria\_visita\_enum} e \tab{stato\_crescita\_enum} definiti precedentemente; fatta eccezione per il vincolo di chiave esterna i diversi vincoli imposti su questa tabella (Sezione \ref{logicalvisits}) vengono implementati attraverso \emph{trigger} (Sezione \ref{triggersvisits}).
 
 Le tabelle \tab{esame} (\lstlistingname{} \ref{ptabesame}) e \tab{esame\_visita} (\lstlistingname{} \ref{ptabesamevisita}) sono definite come nello schema logico.
-Per la tabella \tab{esame\_visita} si devono imporre i vincoli di chiave esterna; i vincoli rimanenti sono implementati attraverso \emph{trigger} (Sezione \ref{}).
+Il vincolo imposto sul tipo dell'attributo \at{esito} della tabella \tab{esame\_visita} (Sezione \ref{logicalvisits}) viene riformulato, considerando l'implementazione in SQL, come segue.
+\begin{itemize}
+\item[\Con{}] Per ogni esame registrato per una data visita, si controlla la corrispondenza tra \at{esito} e il valore di \tab{tipo\_esito} della tabella \tab{esame}. Se il valore è \val{\{numeric\}}\footnote{
+  La notazione \val{\{numeric\}} indica un array composto del solo elemento \val{numeric}.
+} il valore di \at{esito} deve essere la rappresentazione come stringa di un numero. Se il valore è \val{\{string\}} il valore può essere una stringa arbitraria. Se il valore è diverso da questi, ovvero è un array (di stringhe) di lunghezza arbitraria, i suoi elementi sono da intendersi come i possibili valori di un tipo enumerazione definito appositamente per quell'esame, quindi il valore di \at{esito} deve essere uno dei valori possibili di questo tipo.
+\end{itemize}
 
 \subsection{Area del parto}
 
@@ -116,12 +124,12 @@ Insieme ad essa definiamo le tabelle \tab{cesareo\_programmato} (\lstlistingname
 Quest'ultima tabella deve soddisfare i vincoli sugli attributi \at{motivo} e \at{kristeller} indicati nella Sezione \ref{logicaldelivery}.
 Definiamo inoltre la tabella \tab{induzione} (\lstlistingname \ref{ptabinduzione}).
 
-I due vincoli rimanenti della Sezione \ref{logicaldelivery}, che impongono che ogni record di \tab{parto} deve averne uno e uno solo corrispondente in una delle due tabelle \tab{cesareo\_programmato} e \tab{parto\_con\_travaglio} vengono implementati con \emph{trigger} (Sezione \ref{}).
+I due vincoli rimanenti della Sezione \ref{logicaldelivery}, che impongono che ogni record di \tab{parto} deve averne uno e uno solo corrispondente in una delle due tabelle \tab{cesareo\_programmato} e \tab{parto\_con\_travaglio} vengono implementati con \emph{trigger} (Sezione \ref{triggersdelivery}).
 
 \subsection{Area del neonato}
 
 Le tabelle \tab{neonato} (\lstlistingname{} \ref{ptabneonato}), \tab{tracciato} (\lstlistingname{} \ref{ptabtracciato}), \tab{misurazione} (\lstlistingname{} \ref{ptabmisurazione}) e\linebreak \tab{misurazione\_neonato} (\lstlistingname{} \ref{ptabmisurazioneneonato}) seguono le definizioni previste dallo schema logico.
-Rimane da implementare un solo vincolo, l'unico della Sezione \ref{logicalnewborn}, che verrà fatto con \emph{trigger} (Sezione \ref{})
+Rimane da implementare un solo vincolo, l'unico della Sezione \ref{logicalnewborn}, che verrà fatto con \emph{trigger} (Sezione \ref{triggersnewborn}).
 
 \FloatBarrier
 
@@ -152,7 +160,7 @@ create table gravidanza (
   eta_concepimento integer,
   esito boolean,
   pma_tipo pma_tipo_enum,
-  pma_ovodonazione boolean
+  pma_ovodonazione boolean,
   pregresso_gdm boolean not null,
   pregressa_pih boolean not null,
   pregressa_tireopatia boolean not null,
@@ -167,7 +175,7 @@ create table gravidanza (
     on update cascade on delete cascade,
   -- Vincolo sugli attributi relativi alla PMA
   check ((pma_tipo is null and pma_ovodonazione is null)
-    or (pma_tipo is not null and pma_ovodonazione is not null));
+    or (pma_tipo is not null and pma_ovodonazione is not null))
 );
 \end{lstlisting}
 
@@ -192,7 +200,7 @@ create table malattia_gravidanza (
   -- Vincolo di chiave esterna verso malattia
   foreign key (malattia_codice)
     references malattia (codice)
-    on update cascade on delete cascade;
+    on update cascade on delete cascade
 );
 \end{lstlisting}
 
@@ -200,7 +208,7 @@ create table malattia_gravidanza (
 create table visita (
   gravidanza_id integer,
   data date,
-  primary key (gravidanza_id, data)
+  primary key (gravidanza_id, data),
   epoca_gestazionale integer not null,
   eta integer not null,
   categoria_visita categoria_visita_enum not null,
@@ -227,7 +235,7 @@ create table visita (
 create table esame (
   nome varchar,
   primary key (nome),
-  tipo varchar not null
+  tipo varchar[] not null
 );
 \end{lstlisting}
 
@@ -319,12 +327,12 @@ create table induzione (
   bishop integer not null,
   quantita integer not null,
   cicli_eseguiti integer not null,
-  completamento real check (value >= 0 and value <= 1),
+  completamento real check (completamento >= 0 and completamento <= 1),
   -- Vincolo di chiave esterna verso parto_con_travaglio
   foreign key (gravidanza_id)
     references parto_con_travaglio (gravidanza_id)
     on update cascade on delete cascade
-);
+)
 \end{lstlisting}
 
 \begin{lstlisting}[float,caption={Definizione della tabella \tab{neonato}.},label=ptabneonato]
@@ -334,7 +342,7 @@ create table neonato (
   primary key (gravidanza_id, istante_nascita),
   peso real,
   altezza real,
-  sesso char not null check (value in ('M','F')),
+  sesso char not null check (sesso in ('M','F')),
   circonferenza_cranica real,
   be real,
   ph real,
@@ -393,3 +401,36 @@ create table misurazione_neonato (
 \FloatBarrier
 
 \section{Definizione dei trigger}
+\label{physicaltriggers}
+
+I \emph{trigger} sono istruzioni che il DBMS esegue come effetto collaterale di modifiche alla base di dati \cite{Sil11}.
+Essi vengono attivati da eventi, eventualmente con condizioni che ne limitano l'avvio, e chiamano procedure che possono operare sui dati presenti nella tabella prima dell'esecuzione oppure dopo l'esecuzione della \emph{query} che ha scatenato l'evento.
+Il funzionamento della base di dati è di tipo transazionale, ovvero permette di svolgere un'insieme di operazioni distinte come se fossero atomiche: ciò permette di eseguire \emph{query}, anche con \emph{trigger} avviati come effetto collaterale, con la garanzia che alla loro conclusione le modifiche saranno permanenti (\emph{commit}) e le invarianti dei vincoli saranno rispettate; nel caso di errori avvenuti all'interno dell'operazione atomica o in seguito a istruzioni specifiche, si effettua un \emph{rollback} che annulla tutte le modifiche parziali e riporta il sistema nello stato precedente, in cui le invarianti valevano ancora.
+
+\subsection{Sintesi dei vincoli da implementare con trigger}
+\label{physicaltriggerssynthesis}
+
+Elenchiamo di seguito i vincoli esplicitati insieme allo schema logico (Sezione \ref{logical}) che non sono soddisfacibili con le sole definizioni delle tabelle, ovvero che richiedono dei \emph{trigger} appositi per essere verificati.
+
+\begin{enumerate}
+\item Se una paziente ha più di una gravidanza, per ogni coppia di gravidanze successive i valori di \at{figli\_nati\_vivi}, \at{aborti\_avuti}, \at{figli\_nati\_pretermine} e \at{figli\_nati\_a\_termine} sono tutti non decrescenti e almeno uno tra essi è crescente (Sezione \ref{logicalpregnancy}).
+\item Per ogni gravidanza, in \tab{visita} esiste al massimo un solo record che ha \val{primo\_trimestre} nel campo \at{categoria\_visita} (Sezione \ref{logicalvisits}).
+\item Per ogni gravidanza, in \tab{visita} esiste al massimo un solo record che ha \val{secondo\_trimestre} nel campo \at{categoria\_visita} (Sezione \ref{logicalvisits}).
+\item Per ogni gravidanza deve essere presente almeno un record in \tab{vista} oppure in \tab{parto} (Sezione \ref{logicalvisits}).
+\item Per ogni esame registrato per una data visita, si controlla la corrispondenza tra \at{esito} e il valore di \tab{tipo\_esito} della tabella \tab{esame}. Se il valore è \val{\{numeric\}} il valore di \at{esito} deve essere la rappresentazione come stringa di un numero. Se il valore è \val{\{string\}} il valore può essere una stringa arbitraria. Se il valore è diverso da questi, ovvero è un array (di stringhe) di lunghezza arbitraria, i suoi elementi sono da intendersi come i possibili valori di un tipo enumerazione definito appositamente per quell'esame, quindi il valore di \at{esito} deve essere uno dei valori possibili di questo tipo (Sezione \ref{tablesvisits})
+\item Il valore di \at{tipo\_parto} è \val{cesareo\_programmato} se e solo se il parto ha un record corrispondente in \tab{cesareo\_programmato} (Sezione \ref{logicaldelivery}).
+\item Il valore di \at{tipo\_parto} è \val{parto\_con\_travaglio} se e solo se il parto ha un record corrispondente in \tab{parto\_con\_travaglio} (Sezione \ref{logicaldelivery}).
+\item Per ogni misurazione deve essere presente almeno uno tra l'attributo \at{valore\_fcm}, l'attributo \at{valore\_toco} e un record nella tabella \tab{misurazione\_neonato} (Sezione \ref{logicalnewborn}).
+\end{enumerate}
+
+\subsection{Area della gravidanza}
+\label{triggerspregnancy}
+
+\subsection{Area delle visite}
+\label{triggersvisits}
+
+\subsection{Area del parto}
+\label{triggersdelivery}
+
+\subsection{Area del neonato}
+\label{triggersnewborn}
