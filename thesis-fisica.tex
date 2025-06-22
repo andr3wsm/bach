@@ -441,32 +441,90 @@ A questi aggiungiamo i diversi attributi derivati, ovvero calcolabili o dipenden
 \subsection{Area della gravidanza}
 \label{triggerspregnancy}
 
+Il \emph{trigger} \tab{gravidanza\_ordinamento} (\lstlistingname{} \ref{ptrggravidanzaordinamento}) verifica il vincolo 1, ovvero che la tabella \tab{gravidanza}, considerando volta per volta i record relativi a ciascuna paziente, se viene ordinata secondo l'attributo \at{data\_primo\_ingresso} allora essa è ordinata anche secondo ciascuno degli attributi che compongono la parità\footnote{
+  Il vincolo di unicità posto sulla tupla composta da \at{paziente\_cf} e i quattro attributi componenti della parità, insieme al vincolo di ordinamento (ovvero non decrescenza) per ciascun attributo numerico, implica che per ogni record almeno un attributo numerico è diverso da record precedente e di conseguenza si ottiene la crescenza stretta per tale attributo.
+}.
+Ciò viene svolto da un ciclo \sql{for}, costrutto disponibile 
+
 Il \emph{trigger} \tab{gravidanza\_derivati} (\lstlistingname{} \ref{ptrggravidanzaderivati}) soddisfa il vincolo 9, ovvero definisce come si calcolano gli attributi derivati della tabella \tab{gravidanza} per ogni riga inserita o aggiornata.
 La parità è calcolata come concatenazione\footnote{
   L'operatore di concatenazione (\sql{||} in SQL) è applicabile solo ad argomenti di tipo testuale, quindi per applicarlo a valori numerici è richiesto un \emph{casting} esplicito.
 } dei diversi valori indicati relativi alle gravidanze passate, mentre la data di primo ingresso è la minima nell'insieme delle date delle visite svolte con la data, se presente, del parto.
 
-\subsection{Area delle visite}
-\label{triggersvisits}
-
 Il \emph{trigger} \tab{gravidanza\_vincoli} (\lstlistingname{} \ref{ptrggravidanzavincoli}) soddisfa i vincoli 2, 3 e 4, ovvero controlla che non ci siano più di una visita del primo trimestre e più di una del secondo trimestre per ogni gravidanza e che ogni gravidanza abbia almeno una visita o un parto associato.
 In generale per causare il \emph{rollback} di una transazione è sufficiente eseguire l'istruzione \sql{return null}.
 Per i \sql{constraint trigger} non è possibile perché, essendo di tipo \sql{after}, l'istruzione \sql{return null} non ha nessun effetto concreto, quindi per forzare il \emph{rollback} si deve usare il comando \sql{raise exception}.
 
+\subsection{Area delle visite}
+\label{triggersvisits}
+
 La gestione della corrispondenza tra l'esito degli esami e il tipo previsto nella tabella \tab{esame} è gestito dal \emph{trigger} \tab{esame\_esito} (\lstlistingname{} \ref{ptrgesameesito}), che legge i valori presenti in \at{tipo\_esito} e verifica la corrispondenza con il valore \at{esito} di \tab{esame\_visita} e tratta i casi dei valori speciali \val{\{numeric\}} e \val{\{string\}}.
 
-La cancellazione di visite può rendere falsa l'invariante che impone la presenza di almeno una visita o di un parto per ogni gravidanza.
-Per ovviare a questo problema definiamo il \emph{trigger} \tab{visita\_vincoli} (\lstlistingname{} \ref{ptrgvisitavincoli}) che riutilizza la stessa funzione di \tab{gravidanza\_vincoli}.
+La cancellazione di visite può rendere falsa l'invariante del vincolo 4 che impone la presenza di almeno una visita o di un parto per ogni gravidanza.
+Per ovviare a questo problema definiamo il \emph{trigger} \tab{visita\_vincoli} (\lstlistingname{} \ref{ptrgvisitavincoli}).
+L'aggiornamento dell'età, imposto dal vincolo 10, è implementato dal \emph{trigger} \tab{visita\_eta} (\lstlistingname{} \ref{ptrgvisitaeta}).
 
 \subsection{Area del parto}
 \label{triggersdelivery}
 
+Anche nella tabella \tab{parto} la cancellazione di record può violare il vincolo 4, quindi si definisce un \emph{trigger} \tab{parto\_vincoli} (\lstlistingname{} \ref{ptrgvisitavincoli}) che usa la stessa funzione richiamata dal \emph{trigger} \tab{visita\_vincoli}.
+
+Il \emph{trigger} \tab{parto\_tipo} soddisfa i vincoli 6 e 7, ovvero verifica che a seconda del tipo indicato nell'attributo \at{tipo\_parto} ci sia un record\footnote{
+  I vincoli di chiave primaria nelle tabelle \tab{cesareo\_programmato} e \tab{parto\_con\_travaglio} garantiscono l'unicità in ciascuna tabella, quindi è sufficiente verificare la presenza in una e l'assenza nell'altra tabella.
+} nella tabella corrispondente.
+Una violazione dello stesso vincolo può derivare anche dalla cancellazione di record nelle due tabelle delle sottoentità, quindi è necessario aggiungere due trigger \tab{cesareo\_programmato\_vincoli} e \tab{parto\_con\_travaglio\_vincoli} (\lstlistingname{} \ref{ptrgcesareovincoli}) che fanno riferimento a un unica funzione di verifica.
+
+L'aggiornamento dell'età, imposto dal vincolo 11, è implementato dal \emph{trigger} \tab{parto\_eta} (\lstlistingname{} \ref{ptrgpartoeta}) in modo analogo a \tab{visita\_eta}.
+
 \subsection{Area del neonato}
 \label{triggersnewborn}
 
-\FloatBarrier % mancano 1 6 7 8 10 11
+Il vincolo numero 8, che impone la presenza di almeno un valore per ogni misurazione di un tracciato, è implementato con il \emph{trigger} \tab{misurazione\_vincoli} (\lstlistingname{} \ref{ptrgmisurazionevincoli}) che esegue il controllo ad ogni inserimento in \tab{misurazione}.
+Il vincolo può essere violato anche da cancellazioni nella tabella \tab{misurazione\_neonato}, quindi è necessario aggiungere un altro \emph{trigger} (\lstlistingname{} \ref{ptrgmisurazioneneonatovincoli}), che è una minima variazione del precedente.
 
-\begin{lstlisting}[float,caption={Definizione del trigger \tab{gravidanza\_derivati}.},label=ptrggravidanzaderivati]
+\FloatBarrier
+
+\begin{lstlisting}[float,caption={Definizione del \emph{trigger} \tab{gravidanza\_ordinamento}.},label=ptrggravidanzaordinamento]
+-- Definizione della funzione di aggiornamento
+create or replace function gravidanza_controlla_ordinamento()
+returns trigger language plpgsql as $$
+declare
+  rec record;
+  is_init boolean := false; -- L'if non si valuta al primo giro
+  pre_rec record;
+begin
+  for rec in
+    -- Selezione dei valori di parità per le gravidanze della  stessa paziente
+    (select figli_nati_vivi as fnv, aborti_avuti as aa,
+    figli_nati_pretermine as fnp, figli_nati_a_termine as fna,
+    data_primo_ingresso
+    from gravidanza
+    where paziente_cf = new.paziente_cf
+    order by data_primo_ingresso asc)
+  loop
+    -- Verifica dell'ordinamento
+    if is_init
+      and (rec.fnv < pre_rec.fnv
+        or rec.aa < pre_rec.aa
+        or rec.fnp < pre_rec.fnv
+        or rec.fna < pre_rec.fna)
+    then
+      raise exception 'Almeno un attributo di parità non è ordinato';
+    end if;
+    is_init := true;
+    pre_rec := rec;
+  end loop;
+end;
+$$;
+-- Definizione del trigger
+create constraint trigger gravidanza_ordinamento
+after insert or update on gravidanza
+deferrable initially deferred
+for each row
+execute procedure gravidanza_controlla_ordinamento();
+\end{lstlisting}
+
+\begin{lstlisting}[float,caption={Definizione del \emph{trigger} \tab{gravidanza\_derivati}.},label=ptrggravidanzaderivati]
 -- Definizione della funzione di aggiornamento
 create or replace function gravidanza_aggiorna_derivati()
 returns trigger language plpgsql as $$
@@ -495,7 +553,7 @@ for each row
 execute procedure gravidanza_aggiorna_derivati();
 \end{lstlisting}
 
-\begin{lstlisting}[float,caption={Definizione del trigger \tab{gravidanza\_vincoli}.},label=ptrggravidanzavincoli]
+\begin{lstlisting}[float,caption={Definizione del \emph{trigger} \tab{gravidanza\_vincoli}.},label=ptrggravidanzavincoli]
 -- Definizione della funzione di aggiornamento
 create or replace function gravidanza_controlla_vincoli()
 returns trigger language plpgsql as $$
@@ -537,7 +595,7 @@ for each row
 execute procedure gravidanza_controlla_vincoli();
 \end{lstlisting}
 
-\begin{lstlisting}[float,caption={Definizione del trigger \tab{esame\_esito}.},label=ptrgesameesito]
+\begin{lstlisting}[float,caption={Definizione del \emph{trigger} \tab{esame\_esito}.},label=ptrgesameesito]
 -- Definizione della funzione di aggiornamento
 create or replace function esame_controlla_esito()
 returns trigger language plpgsql as $$
@@ -553,7 +611,7 @@ begin
   then
     -- Caso numerico
     begin
-      esito_val := new.esito::nuumeric;
+      esito_val := new.esito::numeric;
     exception when others then
       numerico := false;
     end;
@@ -585,10 +643,217 @@ for each row
 execute procedure esame_controlla_esito();
 \end{lstlisting}
 
-\begin{lstlisting}[float,caption={Definizione del trigger \tab{visita\_vincoli}.},label=ptrgvisitavincoli]
+\begin{lstlisting}[float,caption={Definizione dei \emph{trigger} \tab{visita\_vincoli} e \tab{esame\_vincoli}.},label=ptrgvisitavincoli]
+-- Definizione della funzione di aggiornamento
+create or replace function visita_parto_controlla_vincoli()
+returns trigger language plpgsql as $$
+begin
+  -- Presenza di una visita o di un parto
+  if
+    not exists (select gravidanza_id from visita
+    where gravidanza_id = old.id
+    union
+    select gravidanza_id from parto
+    where gravidanza_id = old.id)
+  then
+    raise exception 'La gravidanza non ha visite né parto associato';
+  end if;
+end;
+$$;
+-- Definizione del trigger per la tabella visita
 create constraint trigger visita_vincoli
 after delete on visita
 deferrable initially deferred
 for each row
 execute procedure gravidanza_controlla_vincoli();
+-- Definizione del trigger per la tabella parto
+create constraint trigger parto_vincoli
+after delete on parto
+deferrable initially deferred
+for each row
+execute procedure gravidanza_controlla_vincoli();
+\end{lstlisting}
+
+\begin{lstlisting}[float,caption={Definizione del \emph{trigger} \tab{visita\_eta}.},label=ptrgvisitaeta]
+-- Definizione della funzione di aggiornamento
+create or replace function visita_calcola_eta()
+returns trigger language plpgsql as $$
+declare
+  data_nascita date;
+begin
+  data_nascita :=
+    (select data_nascita from persona, gravidanza
+    where persona.cf = gravidanza.paziente_cf
+    and gravidanza.id = new.gravidanza_id);
+  new.eta := extract (year from age(new.data,data_nascita));
+  return new;
+end;
+$$;
+-- Definizione del trigger
+create constraint trigger visita_eta
+after insert or update on visita
+deferrable initially deferred
+for each row
+execute procedure visita_calcola_eta();
+\end{lstlisting}
+
+\begin{lstlisting}[float,caption={Definizione del \emph{trigger} \tab{parto\_tipo}.},label=ptrgpartotipo]
+-- Definizione della funzione di aggiornamento
+create or replace function parto_controlla_tipo()
+returns trigger language plpgsql as $$
+begin
+  -- Corrispondenza tra tipo_parto e tabelle
+  if (new.tipo_parto = 'cesareo_programmato')
+  then
+    -- Si verifica che sia in cesareo programmato
+    -- E non in parto con travaglio
+    if
+      exists (select count(*) from cesareo_programmato
+        where gravidanza_id = new.gravidanza_id)
+      and not exists (select count(*) from parto_con_cesareo
+        where gravidanza_id = new.gravidanza_id)
+    then return new;
+    else raise exception 'Non corrisponde a cesareo_programmato';
+    end if;
+  else
+    -- Si verifica che sia in parto con travaglio
+    -- E non in cesareo programmato
+    if
+      exists (select count(*) from parto_con_travaglio
+        where gravidanza_id = new.gravidanza_id)
+      and not exists (select count(*) from cesareo_programmato
+        where gravidanza_id = new.gravidanza_id)
+    then return new;
+    else raise exception 'Non corrisponde a parto_con_travaglio';
+    end if;
+  end if;
+end;
+$$;
+-- Definizione del trigger
+create constraint trigger parto_tipo
+after insert or update on parto
+deferrable initially deferred
+for each row
+execute procedure parto_controlla_tipo();
+\end{lstlisting}
+
+\begin{lstlisting}[float,caption={Definizione dei \emph{trigger} \tab{cesareo\_programmato\_vincoli} e \tab{parto\_con\_travaglio\_vincoli}.},label=ptrgcesareovincoli]
+-- Definizione della funzione di aggiornamento
+create or replace function parto_controlla_tipo_2()
+returns trigger language plpgsql as $$
+begin
+  -- Corrispondenza tra tipo_parto e tabelle
+  if (old.tipo_parto = 'cesareo_programmato')
+  then
+    -- Si verifica che sia in cesareo programmato
+    -- E non in parto con travaglio
+    if
+      exists (select count(*) from cesareo_programmato
+        where gravidanza_id = old.gravidanza_id)
+      and not exists (select count(*) from parto_con_cesareo
+        where gravidanza_id = old.gravidanza_id)
+    then return old;
+    else raise exception 'Non corrisponde a cesareo_programmato';
+    end if;
+  else
+    -- Si verifica che sia in parto con travaglio
+    -- E non in cesareo programmato
+    if
+      exists (select count(*) from parto_con_travaglio
+        where gravidanza_id = old.gravidanza_id)
+      and not exists (select count(*) from cesareo_programmato
+        where gravidanza_id = old.gravidanza_id)
+    then return old;
+    else raise exception 'Non corrisponde a parto_con_travaglio';
+    end if;
+  end if;
+end;
+$$;
+-- Definizione del trigger
+create constraint trigger cesareo_programmato_vincoli
+after delete on cesareo_programmato
+deferrable initially deferred
+for each row
+execute procedure parto_controlla_tipo_2();
+-- Definizione del trigger
+create constraint trigger parto_con_travaglio_vincoli
+after delete on parto_con_travaglio
+deferrable initially deferred
+for each row
+execute procedure parto_controlla_tipo_2();
+\end{lstlisting}
+
+\begin{lstlisting}[float,caption={Definizione del \emph{trigger} \tab{parto\_eta}.},label=ptrgpartoeta]
+-- Definizione della funzione di aggiornamento
+create or replace function parto_calcola_eta()
+returns trigger language plpgsql as $$
+declare
+  data_nascita date;
+begin
+  data_nascita :=
+    (select data_nascita from persona, gravidanza
+    where persona.cf = gravidanza.paziente_cf
+    and gravidanza.id = new.gravidanza_id);
+  new.eta := extract (year from age(new.data,data_nascita));
+  return new;
+end;
+$$;
+-- Definizione del trigger
+create constraint trigger parto_eta
+after insert or update on parto
+deferrable initially deferred
+for each row
+execute procedure parto_calcola_eta();
+\end{lstlisting}
+
+\begin{lstlisting}[float,caption={Definizione del \emph{trigger} \tab{misurazione\_vincoli}.},label=ptrgmisurazionevincoli]
+-- Definizione della funzione di aggiornamento
+create or replace function misurazione_controlla_vincoli()
+returns trigger language plpgsql as $$
+begin
+  -- Presenza di almeno uno dei valori da misurare
+  if
+    new.valore_fcm is null
+    and new.valore_toco is null
+    and not exists (select * from misurazione_neonato
+      where gravidanza_id = new.gravidanza_id
+      and misurazione_istante = new.istante)
+  then
+    raise exception 'Nessun valore misurato per questo timestamp';
+  end if;
+  return new;
+end;
+$$;
+-- Definizione del trigger
+create constraint trigger misurazione_vincoli
+after insert or update on misurazione
+deferrable initially deferred
+for each row
+execute procedure misurazione_controlla_vincoli();
+\end{lstlisting}
+
+\begin{lstlisting}[float,caption={Definizione del \emph{trigger} \tab{misurazione\_neonato\_vincoli}.},label=ptrgmisurazioneneonatovincoli]
+-- Definizione della funzione di aggiornamento
+create or replace function misurazione_neonato_controlla_vincoli()
+returns trigger language plpgsql as $$
+begin
+  -- Presenza di almeno uno dei valori da misurare
+  if
+    old.valore_fcm is null
+    and old.valore_toco is null
+    and not exists (select * from misurazione_neonato
+      where gravidanza_id = old.gravidanza_id
+      and misurazione_istante = old.istante)
+  then
+    raise exception 'Nessun valore misurato per questo timestamp';
+  end if;
+  return old;
+end;
+$$;
+-- Definizione del trigger
+create constraint trigger misurazione_neonato_vincoli
+after delete on misurazione_neonato
+deferrable initially deferred
+for each row
+execute procedure misurazione_neonato_controlla_vincoli();
 \end{lstlisting}

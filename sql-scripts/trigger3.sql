@@ -15,7 +15,7 @@ begin
   then
     -- Caso numerico
     begin
-      esito_val := new.esito::nuumeric;
+      esito_val := new.esito::numeric;
     exception when others then
       numerico := false;
     end;
