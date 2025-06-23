@@ -95,40 +95,40 @@ L'entità Travaglio rimane senza nessun attributo, quindi la rimuoviamo per lega
 La Figura \ref{newbornrerdiagram} mostra l'ingrandimento dello schema Entità-Relazione ristrutturato per quanto riguarda le entità Neonato, Tracciato CTG e Misurazione CTG.
 Le differenze rispetto allo schema originale sono minime: nell'entità Neonato l'attributo composto APGAR viene diviso nelle sue componenti che vengono collegate direttamente a Neonato, mentre nell'entità Tracciato CTG si sceglie come chiave la relazione identificante con l'entità Parto.
 
-\begin{figure}
+\begin{sidewaysfigure}
     \centering
     \includesvg{vectors/modello-er-ristrutturato.svg}
     \caption{Schema Entità-Relazione ristrutturato. Visione d'insieme semplificata, contenente soltanto entità e relazioni del modello. Le aree tratteggiate delimitano gli stessi ingrandimenti dello schema concettuale originale.}
     \label{completererdiagram}
-\end{figure}
+\end{sidewaysfigure}
 
-\begin{figure}
+\begin{sidewaysfigure}
     \centering
     \includesvg{vectors/modello-er-ristrutturato-gravidanza.svg}
     \caption{Schema Entità-Relazione ristrutturato. Ingrandimento dell'area gravidanza.}
 \label{pregnancyrerdiagram}
-\end{figure}
+\end{sidewaysfigure}
 
-\begin{figure}
+\begin{sidewaysfigure}
     \centering
     \includesvg{vectors/modello-er-ristrutturato-visite.svg}
     \caption{Schema Entità-Relazione ristrutturato. Ingrandimento dell'area visite.}
 \label{visitsrerdiagram}
-\end{figure}
+\end{sidewaysfigure}
 
-\begin{figure}
+\begin{sidewaysfigure}
     \centering
     \includesvg{vectors/modello-er-ristrutturato-parto.svg}
     \caption{Schema Entità-Relazione ristrutturato. Ingrandimento dell'area parto.}
 \label{deliveryrerdiagram}
-\end{figure}
+\end{sidewaysfigure}
 
-\begin{figure}
+\begin{sidewaysfigure}
     \centering
     \includesvg{vectors/modello-er-ristrutturato-neonato.svg}
     \caption{Schema Entità-Relazione ristrutturato. Ingrandimento dell'area neonato.}
 \label{newbornrerdiagram}
-\end{figure}
+\end{sidewaysfigure}
 
 \FloatBarrier
 
@@ -192,7 +192,7 @@ Di conseguenza si impone il seguente vincolo.
 }.
 \end{itemize}
 
-L'attributo \at{sottotipo\_parto} di \tab{parto\_con\_travaglio} deve essere uno tra \val{naturale}, \val{operativo}, \val{cesareo} (dove \enquote{urgente} è sottinteso per semplicità di rappresentazione), \val{naturale\_operativo}, \val{naturale\_cesareo}, \val{operativo\_cesareo}.
+L'attributo \at{sottotipo\_parto} di \tab{parto\_con\_travaglio} deve essere uno tra \val{naturale}, \val{operativo}, \val{cesareo} (dove \enquote{urgente} è sottinteso per semplicità di rappresentazione), \val{naturale\_operativo},\linebreak \val{naturale\_cesareo}, \val{operativo\_cesareo}.
 Si impongono quindi i seguenti vincoli.
 \begin{itemize}
 \item[\Con{}] L'attributo \at{motivo} di \tab{parto\_con\_travaglio} è assente se e solo se \at{sottotipo\_parto} ha valore \val{naturale}.
@@ -218,31 +218,30 @@ Il ciclo di relazioni che si forma a livello concettuale, comprendente le entit�
 \label{completereldiagram}
 \end{figure}
 
-\begin{figure}
+\begin{sidewaysfigure}
     \centering
     \includesvg{vectors/modello-relazionale-gravidanza.svg}
     \caption{Schema relazionale. Ingrandimento dell'area gravidanza.}
 \label{pregnancyreldiagram}
-\end{figure}
+\end{sidewaysfigure}
 
-\begin{figure}
+\begin{sidewaysfigure}
     \centering
     \includesvg{vectors/modello-relazionale-visite.svg}
     \caption{Schema relazionale. Ingrandimento dell'area visite.}
 \label{visitsreldiagram}
-\end{figure}
+\end{sidewaysfigure}
 
-\begin{figure}
+\begin{sidewaysfigure}
     \centering
     \includesvg{vectors/modello-relazionale-parto.svg}
     \caption{Schema relazionale. Ingrandimento dell'area parto.}
 \label{deliveryreldiagram}
-\end{figure}
+\end{sidewaysfigure}
 
-\begin{figure}
+\begin{sidewaysfigure}
     \centering
-    \includesvg{vectors/modello-relazionale-neonato.svg}
+    \includesvg{vectors/modello-relazionale-parto.svg}
     \caption{Schema relazionale. Ingrandimento dell'area neonato.}
 \label{newbornreldiagram}
-\end{figure}
-
+\end{sidewaysfigure}

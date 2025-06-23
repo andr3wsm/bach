@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{480.46802911bp}%
+    \setlength{\unitlength}{605.60775637bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,85 +50,85 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,1.26045381)%
+  \begin{picture}(1,0.79365795)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.67106257,0.73808616){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Gravidanza\end{tabular}}}}}%
+    \put(0.41442824,0.53239862){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Gravidanza\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.66973869,1.08596542){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Paziente\end{tabular}}}}}%
-    \put(0.96481091,1.24241527){\color[rgb]{0.53333333,0.53333333,0.53333333}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textsc{Gravidanza}\end{tabular}}}}}%
+    \put(0.13843299,0.5313483){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Paziente\end{tabular}}}}%
+    \put(0.01431114,0.7654483){\color[rgb]{0.53333333,0.53333333,0.53333333}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textsc{Gravidanza}\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.67106266,0.91780897){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}ha\end{tabular}}}}}%
+    \put(0.27184243,0.5323987){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}ha\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.50322313,0.73767813){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}termina\end{tabular}}}}}%
-    \put(0.48092884,0.73762222){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}con\end{tabular}}}}}%
+    \put(0.41475195,0.39924068){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}termina\end{tabular}}}}%
+    \put(0.41479631,0.38155317){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}con\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.81740002,0.73767813){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}avuta in\end{tabular}}}}}%
-    \put(0.7949648,0.73762222){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}concomitanza\end{tabular}}}}}%
-    \put(0.77342514,0.73767813){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}con\end{tabular}}}}}%
+    \put(0.41475195,0.64849764){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}avuta in\end{tabular}}}}%
+    \put(0.41479631,0.63069833){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}concomitanza\end{tabular}}}}%
+    \put(0.41475195,0.61360951){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}con\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.92227118,0.73867617){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Malattia\end{tabular}}}}}%
+    \put(0.41396014,0.73169876){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Malattia\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.32846684,0.73867612){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Parto\end{tabular}}}}}%
+    \put(0.41396018,0.26059515){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Parto\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=8]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.27637214,0.15317206){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Operativo\end{tabular}}}}}%
+    \put(0.87847868,0.21926503){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Operativo\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=9]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.35727448,0.15317206){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Naturale\end{tabular}}}}}%
+    \put(0.87847868,0.28345012){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Naturale\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=10]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.18063856,0.45347184){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}ha\end{tabular}}}}}%
+    \put(0.64023133,0.14331339){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}ha\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=11]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.07090908,0.45332663){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Travaglio\end{tabular}}}}}%
+    \put(0.64034653,0.05625782){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Travaglio\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=12]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.84007956,0.35440538){\rotatebox{-90}{\makebox(0,0)[t]{\smash{\begin{tabular}[t]{c}Visita I°\\trimestre\end{tabular}}}}}%
+    \put(0.71882719,0.6664908){\makebox(0,0)[t]{\smash{\begin{tabular}[t]{c}Visita I°\\trimestre\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=13]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.82643943,0.52310967){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}effettua\end{tabular}}}}}%
+    \put(0.58498307,0.6556692){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}effettua\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=14]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.73737752,0.35440538){\rotatebox{-90}{\makebox(0,0)[t]{\smash{\begin{tabular}[t]{c}Visita II°\\trimestre\end{tabular}}}}}%
+    \put(0.71882719,0.58501059){\makebox(0,0)[t]{\smash{\begin{tabular}[t]{c}Visita II°\\trimestre\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=15]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.72373747,0.52310967){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}effettua\end{tabular}}}}}%
+    \put(0.58498307,0.57418905){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}effettua\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=16]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.63467565,0.35440538){\rotatebox{-90}{\makebox(0,0)[t]{\smash{\begin{tabular}[t]{c}Visita\\biometrica\end{tabular}}}}}%
+    \put(0.71882719,0.50353051){\makebox(0,0)[t]{\smash{\begin{tabular}[t]{c}Visita\\biometrica\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=17]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.62103579,0.52310967){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}effettua\end{tabular}}}}}%
+    \put(0.58498307,0.49270912){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}effettua\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=18]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.53197365,0.35440538){\rotatebox{-90}{\makebox(0,0)[t]{\smash{\begin{tabular}[t]{c}Visita di\\altro tipo\end{tabular}}}}}%
+    \put(0.71882719,0.42205034){\makebox(0,0)[t]{\smash{\begin{tabular}[t]{c}Visita di\\altro tipo\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=19]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.5183337,0.52310981){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}effettua\end{tabular}}}}}%
+    \put(0.58498299,0.41122887){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}effettua\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=20]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.67249592,0.21641596){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\cup$\end{tabular}}}}}%
+    \put(0.82830318,0.53353579){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\cup$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=21]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.67106248,0.09086639){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Visita\end{tabular}}}}}%
+    \put(0.92790982,0.53239855){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Visita\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=22]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.78079192,0.0910116){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}fatto per\end{tabular}}}}}%
+    \put(0.92779461,0.61945405){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}fatto per\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=23]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.8878735,0.09086639){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Esame\end{tabular}}}}}%
+    \put(0.92790982,0.70440884){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Esame\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=24]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.68790564,0.17553598){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\supseteq$\end{tabular}}}}}%
+    \put(0.86073592,0.54576133){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\supseteq$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=25]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.5216118,1.12460672){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Tracciato CTG\end{tabular}}}}}%
+    \put(0.10777633,0.41382961){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Tracciato CTG\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=26]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.08798985,1.12460683){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Neonato\end{tabular}}}}}%
+    \put(0.10777624,0.06980914){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Neonato\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=27]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.41453026,1.12475208){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}consta di\end{tabular}}}}}%
+    \put(0.10766101,0.32887489){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}consta di\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=28]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.30480074,1.12460674){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Misurazione CTG\end{tabular}}}}}%
+    \put(0.10777632,0.24181929){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Misurazione CTG\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=29]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.19771933,1.12475212){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}fatta su\end{tabular}}}}}%
+    \put(0.10766097,0.15686464){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}fatta su\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=30]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.08931371,0.93196697){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}nato da\end{tabular}}}}}%
+    \put(0.26060998,0.07085939){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}nato da\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=31]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.52902431,0.93141409){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}misurato\end{tabular}}}}}%
-    \put(0.50672993,0.93135818){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}in\end{tabular}}}}}%
+    \put(0.26104861,0.41971043){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}misurato\end{tabular}}}}%
+    \put(0.26109297,0.40202285){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}in\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=32]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.38417629,0.45332654){\rotatebox{-90}{\makebox(0,0)[t]{\smash{\begin{tabular}[t]{c}Cesareo\\programmato\end{tabular}}}}}%
+    \put(0.6403466,0.30479304){\makebox(0,0)[t]{\smash{\begin{tabular}[t]{c}Cesareo\\programmato\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=33]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.28771996,0.45366197){\rotatebox{-90}{\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Di altro tipo\end{tabular}}}}}%
+    \put(0.64008049,0.22826803){\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Di altro tipo\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=34]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.21043362,0.15317197){\rotatebox{-90}{\makebox(0,0)[t]{\smash{\begin{tabular}[t]{c}Cesareo\\urgente\end{tabular}}}}}%
+    \put(0.87847875,0.16695175){\makebox(0,0)[t]{\smash{\begin{tabular}[t]{c}Cesareo\\urgente\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=35]{modello-er-originale_svg-tex.pdf}}%
-    \put(0.96481091,0.02888434){\color[rgb]{0.53333333,0.53333333,0.53333333}\rotatebox{-90}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}\textsc{Visite}\end{tabular}}}}}%
-    \put(0.0286278,0.02888435){\color[rgb]{0.53333333,0.53333333,0.53333333}\rotatebox{-90}{\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}\textsc{Parto}\end{tabular}}}}}%
-    \put(0.02054428,1.24136537){\color[rgb]{0.53333333,0.53333333,0.53333333}\rotatebox{-90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textsc{Neonato}\end{tabular}}}}}%
+    \put(0.97708421,0.7654483){\color[rgb]{0.53333333,0.53333333,0.53333333}\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}\textsc{Visite}\end{tabular}}}}%
+    \put(0.9770842,0.02271333){\color[rgb]{0.53333333,0.53333333,0.53333333}\makebox(0,0)[rt]{\lineheight{1.25}\smash{\begin{tabular}[t]{r}\textsc{Parto}\end{tabular}}}}%
+    \put(0.0151441,0.01630013){\color[rgb]{0.53333333,0.53333333,0.53333333}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textsc{Neonato}\end{tabular}}}}%
   \end{picture}%
 \endgroup%
