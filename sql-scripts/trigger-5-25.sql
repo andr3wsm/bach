@@ -1,4 +1,4 @@
--- Listato 5.x
+-- Listato 5.25
 
 -- Definizione della funzione di aggiornamento
 create or replace function parto_calcola_eta()

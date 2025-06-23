@@ -1,4 +1,4 @@
--- Listato 5.x
+-- Listato 5.26
 
 -- Definizione della funzione di aggiornamento
 create or replace function misurazione_controlla_vincoli()

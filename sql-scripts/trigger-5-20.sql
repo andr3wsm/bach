@@ -1,4 +1,4 @@
--- Listato 5.19
+-- Listato 5.20
 
 -- Definizione della funzione di aggiornamento
 create or replace function esame_controlla_esito()

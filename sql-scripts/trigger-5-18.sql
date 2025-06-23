@@ -1,4 +1,4 @@
--- Listato 5.17
+-- Listato 5.18
 
 -- Definizione della funzione di aggiornamento
 create or replace function gravidanza_aggiorna_derivati()

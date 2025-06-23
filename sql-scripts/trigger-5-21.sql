@@ -1,4 +1,4 @@
--- Listato 5.20
+-- Listato 5.21
 
 -- Definizione della funzione di aggiornamento
 create or replace function visita_parto_controlla_vincoli()

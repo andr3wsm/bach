@@ -1,4 +1,4 @@
--- Listato 5.18
+-- Listato 5.19
 
 -- Definizione della funzione di aggiornamento
 create or replace function gravidanza_controlla_vincoli()

@@ -1,4 +1,4 @@
--- Listato 5.x
+-- Listato 5.24
 
 -- Definizione della funzione di aggiornamento
 create or replace function parto_controlla_tipo_2()

@@ -1,4 +1,4 @@
--- Listato 5.21
+-- Listato 5.22
 
 -- Definizione della funzione di aggiornamento
 create or replace function visita_calcola_eta()

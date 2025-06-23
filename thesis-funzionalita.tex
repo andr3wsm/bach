@@ -1,0 +1,64 @@
+\chapter{Funzionalità della base di dati}
+\label{functionality}
+
+Come anticipato nella Sezione \ref{choice}, una base di dati relazionale permette di memorizzare dati in maniera strutturata ed efficiente e allo stesso tempo mantiene i vincoli imposti sui dati che prevengono le inconsistenze.
+Vogliamo mostrare e valutare le qualità del sistema ottenuto e confrontarlo con la soluzione attualmente in uso; ciò viene fatto principalmente con l'esemplificazione di \emph{query} per l'interrogazione della base di dati.
+
+\section{Esempi di query} % provvisorio
+
+Generalmente il personale medico è interessato a inserire, visualizzare e modificare le informazioni relative a singole pazienti e raccolte in singoli momenti, ad esempio l'inserimento in blocco dei dati di un parto o di una visita.
+Queste operazioni, che risultano immediate nella soluzione attuale che impiega fogli di calcolo strutturati proprio secondo i diversi eventi della gravidanza, rimangono non solo possibili ma soprattutto facilmente esprimibili in SQL.
+Questo avviene perché, nonostante le ristrutturazioni e gli adattamenti necessari all'implementazione, le tabelle dello schema logico e fisico sono ancora perlopiù corrispondenti a entità e relazioni dello schema concettuale.
+
+Ci concentriamo quindi su un livello diverso di analisi dei dati, ovvero principalmente lo studio di dati aggregati e la selezione di record sulla base di caratteristiche di interesse per gli utilizzatori finali.
+Portiamo alcuni esempi di interrogazioni richieste dai medici che, grazie alla struttura tabellare e alle funzionalità dei DBMS relazionali, vengono svolte efficientemente e senza che sia richiesta una processazione manuale aggiuntiva.
+Gli esempi di \emph{query} mostrati di seguito non hanno l'obiettivo di portare a un'effettiva analisi delle informazioni presenti nell'istanza di base di dati, bensì hanno il solo scopo di mostrare come tali informazioni possono essere estratte.
+
+\subsubsection{Correlazione tra parto cesareo e travaglio indotto}
+
+Si vuole ottenere la percentale di tagli cesarei effettuati nei parti con travaglio indotto confrontata con quella nei parti con travaglio spontaneo.
+Questo risultato è ottenibile con l'interrogazione del \lstlistingname{} \ref{qcesareotravaglio}.
+Definiamo una vista \tab{parto\_con\_travaglio\_induzione} per rendere più concise le diverse \emph{subquery} nel corpo della \emph{query} principale.
+
+\begin{lstlisting}[float,caption={Esempio di \emph{query}. Correlazione tra parto cesareo e travaglio indotto.},label=qcesareotravaglio]
+-- Definizione di una vista con il numero di induzioni per parto
+create view parto_con_travaglio_induzione as
+select *
+from parto_con_travaglio p natural join
+  (select count(*) as induzioni, gravidanza_id
+  from induzione
+  group by gravidanza_id);
+
+-- Query principale
+select s1.tc_travaglio_spontaneo as tc_travaglio_spontaneo,
+  s2.parti_travaglio_spontaneo as parti_travaglio_spontaneo,
+  case when s2.parti_travaglio_spontaneo = 0
+    then 0
+	  else s1.tc_travaglio_spontaneo/s2.parti_travaglio_spontaneo
+  end as rapporto_tc_travaglio_spontaneo,
+  s3.tc_travaglio_indotto as tc_travaglio_indotto,
+  s4.parti_travaglio_indotto as parti_travaglio_indotto,
+  case when s4.parti_travaglio_indotto = 0
+    then 0
+	  else s3.tc_travaglio_indotto/s4.parti_travaglio_indotto
+  end as rapporto_tc_travaglio_indotto
+from
+-- Numero di tagli cesarei in travaglio spontaneo
+(select count(*) as tc_travaglio_spontaneo
+from parto_con_travaglio_induzione
+where induzioni = 0
+  and sottotipo_parto like '%cesareo%') s1,
+-- Numero di parti totali in travaglio spontaneo
+(select count(*) as parti_travaglio_spontaneo
+from parto_con_travaglio_induzione
+where induzioni = 0) s2,
+-- Numero di tagli cesarei in travaglio indotto
+(select count(*) as tc_travaglio_indotto
+from parto_con_travaglio_induzione
+where induzioni > 0
+  and sottotipo_parto like '%cesareo') s3,
+-- Numero di parti totali in travaglio indotto
+(select count(*) as parti_travaglio_indotto
+from parto_con_travaglio_induzione
+where induzioni > 0) s4;
+\end{lstlisting}
