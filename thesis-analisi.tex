@@ -22,7 +22,7 @@ I diversi momenti nel corso della gravidanza in cui vengono registrati dati rela
 \item Il travaglio e il parto, con informazioni sull'intero processo inclusi dati sui neonati.
 \end{enumerate}
 
-È importante considerare che il personale medico registra dati soltanto per le visite svolte all'interno della Clinica, e accade frequentemente che una o più visite vengano effettuate in altre strutture o che anche il parto possa avvenire presso altri punti nascite.
+È importante considerare che il personale medico registra dati soltanto per le visite svolte all'interno della Clinica, e accade frequentemente che una o più visite vengano effettuate in altre strutture o che anche il parto possa avvenire presso altri punti nascita.
 
 Oltre agli esiti di queste visite si vorrebbero conservare informazioni su eventuali patologie delle pazienti, potendo contare sulla presenza di un ambulatorio specifico per le gravidanze \emph{a rischio} che monitora anche le terapie seguite.
 
@@ -39,7 +39,7 @@ A questi si aggiunge un software più complesso e strutturato, ma giudicato non 
 \label{firsttrimester}
 
 Nella visita del primo trimestre vengono annotati aspetti di base ma fondamentali della gravidanza, insieme a primi test genetici e di rischio per determinate condizioni patologiche.
-In questa visita viene svolto l'esame della translucenza nucale, volto a rilevare malformazioni nel feto già negli stadi iniziali della gravidanza \cite{Sou05}.
+In questa visita viene svolto l'esame della translucenza nucale, atto a rilevare malformazioni nel feto già negli stadi iniziali della gravidanza \cite{Sou05}.
 Questa tabella, così come le successive, contiene un record per ogni gravidanza.
 
 Nella tabella la notazione usata adotta frequentemente abbreviazioni e i campi indicati sono stati predisposti direttamente dal personale medico che poi li deve compilare, adattandosi quindi alle convenzioni a cui gli operatori sono abituati.
@@ -64,7 +64,7 @@ La scelta di indicare il rischio con una lettera, con l'intera parola o come rap
 \item \column{NIPT}: riporta se è stato effettuato il test prenatale non-invasivo (\emph{Noninvasive Prenatal Testing}).
 \item \column{esito NIPT}: esito dell'esame NIPT, riportato come descrizione testuale.
 \item \column{BS/BSOB}: indice morfologico misurato sulle dimensioni del tronco encefalico (BS) e della distanza dall'osso occipitale (BSOB), indicato come valore reale.
-\item \column{CRL}: indice morfologico, misurato sulla lunghezza del feto in millimetri.
+\item \column{CRL}: indice morfologico, corrispondente alla lunghezza del feto in millimetri.
 \item \column{PAPP-A}, \column{freeBHCG}, \column{PLGF}: esami svolti sul sangue della paziente per la rilevazione di proteine e materiale genetico, danno valori reali.
 \item \column{UTPI}: indice di pulsatilità dell'arteria uterina, espresso come valore reale.
 \item \column{PAM}: pressione arteriosa media materna, misurata come valore intero in mmHg.
@@ -113,8 +113,8 @@ I valori delle colonne da \column{APGAR} a \column{Sesso neonato} sono riferite 
 \item \column{PZ}: cognome e nome della paziente.
 \item \column{S.G.}: età (stato) gestazionale, espresso sempre come settimane+giorni.
 \item \column{Parità}: stringa di cifre che sintetizzano le gravidanze della paziente che hanno preceduto quella corrente.
-Si considerano: il numero di figli nati a termine, il numero di figli nati pretermine, il numero di aborti (spontanei cossì come per interruzione volontaria di gravidanza), il numero totale di figli nati vivi; la stringa risultante è costituita di questi valori, nell'ordine riportato (ad esempio 1021, 0000), e quindi è costituita generalmente di 4 caratteri, ma occasionalmente può averne di più se la paziente ha avuto un numero notevole di gravidanze.
-\item \column{Travaglio}: indica il metodo di induzione del travaglio. Può avere i seguenti valori: indotto, spontaneo, pilotato, senza travaglio. L'ultimo caso corrisponde a parti cesarei programmati.
+Si considerano: il numero di figli nati a termine, il numero di figli nati pretermine, il numero di aborti (spontanei cossì come per interruzione volontaria di gravidanza), il numero totale di figli nati vivi; la stringa risultante è costituita di questi valori, nell'ordine riportato (ad esempio 1021, 0000), e quindi è costituita generalmente di 4 caratteri, ma occasionalmente può averne di più se la paziente ha avuto un numero elevato di gravidanze.
+\item \column{Travaglio}: indica il tipo del travaglio. Può avere i seguenti valori: indotto, spontaneo, pilotato, senza travaglio. L'ultimo caso corrisponde a parti cesarei programmati.
 \item \column{Motivo induzione}: indica il motivo dell'induzione del travaglio come descrizione testuale.
 \item \column{Metodo induzione}: indica il metodo di induzione del travaglio. Solitamente corrisponde a una lista di abbreviazioni che rappresentano farmaci o metodi meccanici di induzione.
 \item \column{Parto}: indica il tipo di parto, con i seguenti valori possibili: spontaneo, cesareo, operativo.
@@ -143,7 +143,7 @@ Si considerano: il numero di figli nati a termine, il numero di figli nati prete
 \label{cardiotocograph}
 
 Durante il travaglio viene usato il cardiotocografo, uno strumento che rileva il battito cardiaco del feto (o anche di più feti nel caso di parti gemellari) e l'entità delle contrazioni uterine \cite{Ayr18}.
-Questa apparecchiatura registra e salva i dati, in modo da poterli esportare in forma grafica o tabellare.
+Questa apparecchiatura registra e salva i dati in modo da poterli esportare in forma grafica o tabellare.
 In particolare consideriamo il file risultato dall'esportazione in forma di foglio di calcolo, in cui vengono indicati alcuni dati identificativi della paziente.
 
 \begin{itemize}
@@ -156,7 +156,7 @@ I diversi sensori dello strumento sono sincronizzati e rilevano i rispettivi val
 La tabella contiene quindi una riga per ogni rilevazione, ciascuna delle quali ha i seguenti campi.
 
 \begin{itemize}
-\item \column{Secondi}, \column{Decimi}: indicazione del momento di rilevazione, rispetto al tempo di inizio tracciato indicato all'inizio della tabella. Entrambi i valori sono interi, con \column{Decimi} che indica i centesimi~[\textit{sic}] di secondo (0, 25, 50, 75).
+\item \column{Secondi}, \column{Decimi}: indicazione del momento di rilevazione, rispetto al tempo di inizio tracciato indicato all'inizio della tabella. Entrambi i valori sono interi, con \column{Decimi}~[\textit{sic}] che indica i centesimi di secondo (0, 25, 50, 75).
 \item \column{FCF}, \column{FCF (2)}, \column{FCF (3)}: indicano la frequenza cardiaca fetale, come valore intero, rilevata da ciascuno dei tre sensori di cui è dotato lo strumento. Anche se la gravidanza è singola, non è necessariamente il sensore 1 a rilevare il battito del feto. Un valore assente, sia per sensori non utilizzati sia per eventuali errori nella rilevazione, è indicato nella tabella con -1.
 Nel caso di parti gemellari è comunque possibile stabilire a quale neonato corrisponde ciascun tracciato.
 \item \column{TOCO}: misura la contrazione uterina, indicata come valore intero.
@@ -197,7 +197,7 @@ Il contenuto della base di dati, se esportato come tabella in formato CSV, arriv
 \item \column{Data Secondamento}: indica data e ora di espulsione della placenta.
 \item \column{Complicazioni}: descrizione testuale di eventuali complicazioni avvenute nel processo di travaglio e parto.
 \item \column{Indicazioni operativo}: dettagli sullo svolgimento del parto, se operativo.
-\item \column{Ind ?}: indicazione del motivo o dei motivi dell'induzione del travaglio. Sono presenti diverse colonne, ciascuna rappresentativa di una motivazione (al posto di \column{?}): \column{ipertensione preesistente}, \column{ipertensione gestazionale}, \column{proteinuria isolata}, \column{iugr}, \column{gdm}, \column{preeclampsia}, \column{macrosomia}, \column{protratta}, \column{pma}, \column{oligoamnios}, \column{poliidramnios}, \column{altro}, \column{pprom}, \column{prom}, \column{colestasi}, \column{mef}, \column{prodromi prolungati}. Per indicare che l'induzione è stata svolta per uno o più determinati motivi la colonna riporta la lettera Y, altrimenti è lasciata vuota.
+\item \column{Ind \_}: indicazione del motivo o dei motivi dell'induzione del travaglio. Sono presenti diverse colonne, ciascuna rappresentativa di una motivazione (al posto di \column{\_}): \column{ipertensione preesistente}, \column{ipertensione gestazionale}, \column{proteinuria isolata}, \column{iugr}, \column{gdm}, \column{preeclampsia}, \column{macrosomia}, \column{protratta}, \column{pma}, \column{oligoamnios}, \column{poliidramnios}, \column{altro}, \column{pprom}, \column{prom}, \column{colestasi}, \column{mef}, \column{prodromi prolungati}. Per indicare che l'induzione è stata svolta per uno o più determinati motivi la colonna riporta la lettera Y, altrimenti è lasciata vuota.
 \item \column{Minuti induzione-inizio travaglio}: tempo trascorso tra l'induzione del travaglio e l'inizio del travaglio, indicato come valore intero.
 \item \column{Minuti induzione-parto}: tempo trascorso tra l'induzione del travaglio e l'espulsione, indicato come valore intero.
 \item \column{Bishop}: indicatore relativo alla preparazione del collo dell'utero all'induzione del travaglio, riportato come valore intero su una scala da 0 a 16.
