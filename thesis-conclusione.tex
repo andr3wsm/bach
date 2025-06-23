@@ -1,5 +1,7 @@
 \chapter{Conclusione}
 
+\section{Sintesi della progettazione della base di dati}
+
 Analizziamo velocemente le attività svolte per la costruzione della base di dati secondo i principi punti previsti nella Sezione \ref{realization}.
 
 L'analisi della situazione di fatto, degli strumenti in uso e delle richieste di aggiunte ulteriori (Sezione \ref{analysis}) ha permesso la formalizzazione dei requisiti di un sistema complesso per la gestione del percorso gravidanza e parto.
@@ -11,4 +13,12 @@ Queste fasi di progettazione si susseguono a cascata in modo naturale e sono gui
 Ogni fase del processo di realizzazione è corredata di schemi, che seguono i formalismi specifici delle singole fasi di progettazione affrontate, insieme a vincoli aggiuntivi e alla spiegazione delle eventuali scelte operate.
 La documentazione è necessaria non solo per lo sviluppo iniziale del sistema ma anche per l'utilizzo quotidiano, ad esempio per la formulazione di interrogazioni, e per la manutenzione, nel caso in cui emergano criticità, errori o nuovi requisiti da integrare.
 
-% si potrebbe aggiungere altro
+\section{Possibili sviluppi futuri}
+
+L'obiettivo finale della realizzazione della base di dati è raggiungere una piena integrazione del nuovo sistema con l'ambiente preesistente in cui lavora il personale medico.
+Il sistema così ottenuto potrebbe beneficiare dell'uso di un'insieme di strumenti per facilitare questa integrazione.
+\begin{itemize}
+\item Lo sviluppo di un'interfaccia grafica è fondamentale per l'uso della base di dati perché si possono implementare le \emph{query} in un \emph{back-end} programmato a priori e si rende possibile l'uso anche all'utente finale senza che gli sia richiesta la conoscenza del linguaggio SQL né della struttura tabellare di basso livello.
+\item Anche per il programmatore può essere utile operare a livello più astratto rispetto alle tabelle descritte nell'implementazione (Sezione \ref{physical}). Si possono quindi definire delle funzioni per facilitare inserimenti singoli o in blocco oppure delle viste per sintetizzare interrogazioni su dati aggregati. 
+\item Per agevolare il popolamento della base di dati a partire dai sistemi attualmente in uso si possono definire \emph{script} o semplici programmi per la conversione dai questi formati a inserimenti nella nuova base di dati relazionale.
+\end{itemize}

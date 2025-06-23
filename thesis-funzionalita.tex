@@ -14,33 +14,65 @@ Ci concentriamo quindi su un livello diverso di analisi dei dati, ovvero princip
 Portiamo alcuni esempi di interrogazioni richieste dai medici che, grazie alla struttura tabellare e alle funzionalità dei DBMS relazionali, vengono svolte efficientemente e senza che sia richiesta una processazione manuale aggiuntiva.
 Gli esempi di \emph{query} mostrati di seguito non hanno l'obiettivo di portare a un'effettiva analisi delle informazioni presenti nell'istanza di base di dati, bensì hanno il solo scopo di mostrare come tali informazioni possono essere estratte.
 
-\subsubsection{Correlazione tra parto cesareo e travaglio indotto}
+\subsubsection{Valori di BMI e lacerazioni}
+
+Si vuole ottenere, per ogni gravidanza, il valore del BMI registrato all'inizio della gravidanza e il grado di lacerazioni subito nel parto.
+Questo risultato è ottenibile con l'interrogazione del \lstlistingname{} \ref{qbmilacerazioni}.
+
+\subsubsection{Correlazione tra taglio cesareo e travaglio indotto}
 
 Si vuole ottenere la percentale di tagli cesarei effettuati nei parti con travaglio indotto confrontata con quella nei parti con travaglio spontaneo.
 Questo risultato è ottenibile con l'interrogazione del \lstlistingname{} \ref{qcesareotravaglio}.
 Definiamo una vista \tab{parto\_con\_travaglio\_induzione} per rendere più concise le diverse \emph{subquery} nel corpo della \emph{query} principale.
 
+\subsubsection{Correlazione tra parto operativo ed episiotomia}
+
+Si vuole ottenere la percentuale di episiotomie effettate nei parti operativi rispetto ai parti vaginali.
+Questo risultato è ottenibile con l'interrogazione del \lstlistingname{} \ref{qoperativoepisiotomia}, che risulta essere molto simile al primo esempio di \emph{query}.
+
+\subsubsection{Correlazione tra taglio cesareo e indice Robson}
+
+Si vuole ottenere il numero di tagli cesarei e di parti vaginali per ciascun valore dell'indice Robson.
+Questo risultato è ottenibile con l'interrogazione del \lstlistingname{} \ref{qcesareorobson}; definiamo e usiamo una vista \tab{parto\_sottotipo} per rendere più concisa la \emph{query} principale.
+
+Per evitare doppi conteggi, questa interrogazione non considera i parti che non sono stati soltanto vaginali o soltanto cesarei.
+Ricordiamo che è possibile avere una sovrapposizione nel sottotipo dei parti con travaglio nel caso di parti gemellari in cui i gemelli nascono con procedure diverse.
+
+\begin{lstlisting}[float,caption={Esempio di \emph{query}. Valori di BMI e lacerazioni.},label=qbmilacerazioni]
+-- Query principale
+select *
+from
+  (select gravidanza_id, peso/(altezza*altezza) as bmi
+  from visita
+  where categoria_visita = 'primo_trimestre'
+    and altezza is not null
+    and altezza <> 0
+    and peso is not null) b
+  natural join
+  (select gravidanza_id, lacerazioni
+  from parto_con_travaglio);
+\end{lstlisting}
+
 \begin{lstlisting}[float,caption={Esempio di \emph{query}. Correlazione tra parto cesareo e travaglio indotto.},label=qcesareotravaglio]
 -- Definizione di una vista con il numero di induzioni per parto
 create view parto_con_travaglio_induzione as
 select *
-from parto_con_travaglio p natural join
+from parto_con_travaglio natural join
   (select count(*) as induzioni, gravidanza_id
   from induzione
   group by gravidanza_id);
-
 -- Query principale
 select s1.tc_travaglio_spontaneo as tc_travaglio_spontaneo,
   s2.parti_travaglio_spontaneo as parti_travaglio_spontaneo,
   case when s2.parti_travaglio_spontaneo = 0
     then 0
-	  else s1.tc_travaglio_spontaneo/s2.parti_travaglio_spontaneo
+	  else s1.tc_travaglio_spontaneo::numeric/s2.parti_travaglio_spontaneo
   end as rapporto_tc_travaglio_spontaneo,
   s3.tc_travaglio_indotto as tc_travaglio_indotto,
   s4.parti_travaglio_indotto as parti_travaglio_indotto,
   case when s4.parti_travaglio_indotto = 0
     then 0
-	  else s3.tc_travaglio_indotto/s4.parti_travaglio_indotto
+	  else s3.tc_travaglio_indotto::numeric/s4.parti_travaglio_indotto
   end as rapporto_tc_travaglio_indotto
 from
 -- Numero di tagli cesarei in travaglio spontaneo
@@ -61,4 +93,58 @@ where induzioni > 0
 (select count(*) as parti_travaglio_indotto
 from parto_con_travaglio_induzione
 where induzioni > 0) s4;
+\end{lstlisting}
+
+\begin{lstlisting}[float,caption={Esempio di \emph{query}. Correlazione tra parto operativo ed episiotomia.},label=qoperativoepisiotomia]
+-- Query principale
+select s1.ep_operativi as episiotomie_operativi,
+  s2.parti_operativi as parti_operativi,
+  case when s2.parti_operativi = 0
+    then 0
+	  else s1.ep_operativi::numeric/s2.parti_operativi
+  end as rapporto_episiotomie_operativi,
+  s3.ep_vaginali as episiotomie_vaginali,
+  s4.parti_vaginali as parti_vaginali,
+  case when s4.parti_vaginali = 0
+    then 0
+	  else s3.ep_vaginali::numeric/s4.parti_vaginali
+  end as rapporto_episiotomie_vaginali
+from
+-- Numero di tagli cesarei in travaglio spontaneo
+(select count(*) as ep_operativi
+from parto_con_travaglio
+where lacerazioni = 'episiotomia'
+  and sottotipo_parto = 'operativo') s1,
+-- Numero di parti totali in travaglio spontaneo
+(select count(*) as parti_operativi
+from parto_con_travaglio
+where sottotipo_parto = 'operativo') s2,
+-- Numero di tagli cesarei in travaglio indotto
+(select count(*) as ep_vaginali
+from parto_con_travaglio
+where lacerazioni = 'episiotomia'
+  and sottotipo_parto = 'naturale') s3,
+-- Numero di parti totali in travaglio indotto
+(select count(*) as parti_vaginali
+from parto_con_travaglio
+where sottotipo_parto = 'naturale') s4;
+\end{lstlisting}
+
+\begin{lstlisting}[float,caption={Esempio di \emph{query}. Correlazione tra parto cesareo e indice Robson.},label=qcesareorobson]
+-- Definizione di una vista con il sottotipo di ogni parto
+create view parto_sottotipo as
+select
+  gravidanza_id,
+  robson,
+  case when tipo_parto = 'cesareo_programmato'
+    then 'cesareo'
+    else sottotipo_parto
+  end as sottotipo_parto
+from parto natural left join parto_con_travaglio;
+-- Query principale
+select robson, parto_sottotipo as tipo, count(*) as numero_parti
+from parto_sottotipo
+where sottotipo_parto in ('cesareo','naturale')
+group by robson, sottotipo_parto
+order by robson, sottotipo_parto;
 \end{lstlisting}

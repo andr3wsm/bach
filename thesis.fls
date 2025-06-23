@@ -367,6 +367,7 @@ INPUT C:\Users\salva\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy6.tfm
 INPUT C:\Users\salva\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmex10.tfm
 INPUT C:\Users\salva\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmex10.tfm
 INPUT C:\Users\salva\AppData\Local\MiKTeX\luatex-cache\generic\fonts\otl\lmroman12-bold.luc
+INPUT C:\Users\salva\AppData\Local\MiKTeX\luatex-cache\generic\fonts\otl\lmroman10-italic.luc
 INPUT .\thesis.toc
 INPUT .\thesis.toc
 INPUT C:\Users\salva\AppData\Local\MiKTeX\luatex-cache\generic\fonts\otl\lmroman10-bold.luc
@@ -374,7 +375,6 @@ OUTPUT thesis.toc
 OUTPUT thesis.toc
 INPUT .\thesis-intro.tex
 INPUT .\thesis-intro.tex
-INPUT C:\Users\salva\AppData\Local\MiKTeX\luatex-cache\generic\fonts\otl\lmroman10-italic.luc
 INPUT .\thesis-analisi.tex
 INPUT .\thesis-analisi.tex
 INPUT C:\Users\salva\AppData\Local\MiKTeX\luatex-cache\generic\fonts\otl\lmroman8-regular.luc
