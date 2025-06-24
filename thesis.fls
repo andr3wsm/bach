@@ -368,6 +368,8 @@ INPUT C:\Users\salva\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy6.tfm
 INPUT C:\Users\salva\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy6.tfm
 INPUT C:\Users\salva\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmex10.tfm
 INPUT C:\Users\salva\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmex10.tfm
+INPUT .\thesis-inizio.tex
+INPUT .\thesis-inizio.tex
 INPUT C:\Users\salva\AppData\Local\MiKTeX\luatex-cache\generic\fonts\otl\lmroman12-bold.luc
 INPUT C:\Users\salva\AppData\Local\MiKTeX\luatex-cache\generic\fonts\otl\lmroman10-italic.luc
 INPUT .\thesis.toc

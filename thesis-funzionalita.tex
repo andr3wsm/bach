@@ -2,9 +2,9 @@
 \label{functionality}
 
 Come anticipato nella Sezione \ref{choice}, una base di dati relazionale permette di memorizzare dati in maniera strutturata ed efficiente e allo stesso tempo mantiene i vincoli imposti sui dati che prevengono le inconsistenze.
-Vogliamo mostrare e valutare le qualità del sistema ottenuto e confrontarlo con la soluzione attualmente in uso; ciò viene fatto principalmente con l'esemplificazione di \emph{query} per l'interrogazione della base di dati.
+Vogliamo mostrare e valutare le qualità del sistema ottenuto e confrontarlo con la soluzione attualmente in uso; ciò viene fatto principalmente con l'esemplificazione di interrogazioni sulla base di dati.
 
-\section{Esempi di query} % provvisorio
+\section{Esempi di interrogazioni} % provvisorio
 
 Generalmente il personale medico è interessato a inserire, visualizzare e modificare le informazioni relative a singole pazienti e raccolte in singoli momenti, ad esempio l'inserimento in blocco dei dati di un parto o di una visita.
 Queste operazioni, che risultano immediate nella soluzione attuale che impiega fogli di calcolo strutturati proprio secondo i diversi eventi della gravidanza, rimangono non solo possibili ma soprattutto facilmente esprimibili in SQL.
@@ -12,7 +12,7 @@ Questo avviene perché, nonostante le ristrutturazioni e gli adattamenti necessa
 
 Ci concentriamo quindi su un livello diverso di analisi dei dati, ovvero principalmente lo studio di dati aggregati e la selezione di record sulla base di caratteristiche di interesse per gli utilizzatori finali.
 Portiamo alcuni esempi di interrogazioni richieste dai medici che, grazie alla struttura tabellare e alle funzionalità dei DBMS relazionali, vengono svolte efficientemente e senza che sia richiesta una processazione manuale aggiuntiva.
-Gli esempi di \emph{query} mostrati di seguito non hanno l'obiettivo di portare a un'effettiva analisi delle informazioni presenti nell'istanza di base di dati, bensì hanno il solo scopo di mostrare come tali informazioni possono essere estratte.
+Gli esempi di interrogazioni mostrati di seguito non hanno l'obiettivo di portare a un'effettiva analisi delle informazioni presenti nell'istanza di base di dati, bensì hanno il solo scopo di mostrare come tali informazioni possono essere estratte.
 
 \subsubsection{Valori di BMI e lacerazioni}
 
@@ -23,23 +23,23 @@ Questo risultato è ottenibile con l'interrogazione del \lstlistingname{} \ref{q
 
 Si vuole ottenere la percentale di tagli cesarei effettuati nei parti con travaglio indotto confrontata con quella nei parti con travaglio spontaneo.
 Questo risultato è ottenibile con l'interrogazione del \lstlistingname{} \ref{qcesareotravaglio}.
-Definiamo una vista \tab{parto\_con\_travaglio\_induzione} per rendere più concise le diverse \emph{subquery} nel corpo della \emph{query} principale.
+Definiamo una vista \tab{parto\_con\_travaglio\_induzione} per rendere più concise le diverse sottointerrogazioni nel corpo dell'interrogazione principale.
 
 \subsubsection{Correlazione tra parto operativo ed episiotomia}
 
 Si vuole ottenere la percentuale di episiotomie effettate nei parti operativi rispetto ai parti vaginali.
-Questo risultato è ottenibile con l'interrogazione del \lstlistingname{} \ref{qoperativoepisiotomia}, che risulta essere molto simile al primo esempio di \emph{query}.
+Questo risultato è ottenibile con l'interrogazione del \lstlistingname{} \ref{qoperativoepisiotomia}, che risulta essere molto simile al primo esempio.
 
 \subsubsection{Correlazione tra taglio cesareo e indice Robson}
 
 Si vuole ottenere il numero di tagli cesarei e di parti vaginali per ciascun valore dell'indice Robson.
-Questo risultato è ottenibile con l'interrogazione del \lstlistingname{} \ref{qcesareorobson}; definiamo e usiamo una vista \tab{parto\_sottotipo} per rendere più concisa la \emph{query} principale.
+Questo risultato è ottenibile con l'interrogazione del \lstlistingname{} \ref{qcesareorobson}; definiamo e usiamo una vista \tab{parto\_sottotipo} per rendere più concisa l'interrogazione principale.
 
 Per evitare doppi conteggi, questa interrogazione non considera i parti che non sono stati soltanto vaginali o soltanto cesarei.
 Ricordiamo che è possibile avere una sovrapposizione nel sottotipo dei parti con travaglio nel caso di parti gemellari in cui i gemelli nascono con procedure diverse.
 
-\begin{lstlisting}[float,caption={Esempio di \emph{query}. Valori di BMI e lacerazioni.},label=qbmilacerazioni]
--- Query principale
+\begin{lstlisting}[float,caption={Esempio di interrogazione. Valori di BMI e lacerazioni.},label=qbmilacerazioni]
+-- Interrogazione principale
 select *
 from
   (select gravidanza_id, peso/(altezza*altezza) as bmi
@@ -53,7 +53,7 @@ from
   from parto_con_travaglio);
 \end{lstlisting}
 
-\begin{lstlisting}[float,caption={Esempio di \emph{query}. Correlazione tra parto cesareo e travaglio indotto.},label=qcesareotravaglio]
+\begin{lstlisting}[float,caption={Esempio di interrogazione. Correlazione tra parto cesareo e travaglio indotto.},label=qcesareotravaglio]
 -- Definizione di una vista con il numero di induzioni per parto
 create view parto_con_travaglio_induzione as
 select *
@@ -61,7 +61,7 @@ from parto_con_travaglio natural join
   (select count(*) as induzioni, gravidanza_id
   from induzione
   group by gravidanza_id);
--- Query principale
+-- Interrogazione principale
 select s1.tc_travaglio_spontaneo as tc_travaglio_spontaneo,
   s2.parti_travaglio_spontaneo as parti_travaglio_spontaneo,
   case when s2.parti_travaglio_spontaneo = 0
@@ -95,8 +95,8 @@ from parto_con_travaglio_induzione
 where induzioni > 0) s4;
 \end{lstlisting}
 
-\begin{lstlisting}[float,caption={Esempio di \emph{query}. Correlazione tra parto operativo ed episiotomia.},label=qoperativoepisiotomia]
--- Query principale
+\begin{lstlisting}[float,caption={Esempio di interrogazione. Correlazione tra parto operativo ed episiotomia.},label=qoperativoepisiotomia]
+-- Interrogazione principale
 select s1.ep_operativi as episiotomie_operativi,
   s2.parti_operativi as parti_operativi,
   case when s2.parti_operativi = 0
@@ -130,7 +130,7 @@ from parto_con_travaglio
 where sottotipo_parto = 'naturale') s4;
 \end{lstlisting}
 
-\begin{lstlisting}[float,caption={Esempio di \emph{query}. Correlazione tra parto cesareo e indice Robson.},label=qcesareorobson]
+\begin{lstlisting}[float,caption={Esempio di interrogazione. Correlazione tra parto cesareo e indice Robson.},label=qcesareorobson]
 -- Definizione di una vista con il sottotipo di ogni parto
 create view parto_sottotipo as
 select
@@ -141,7 +141,7 @@ select
     else sottotipo_parto
   end as sottotipo_parto
 from parto natural left join parto_con_travaglio;
--- Query principale
+-- Interrogazione principale
 select robson, parto_sottotipo as tipo, count(*) as numero_parti
 from parto_sottotipo
 where sottotipo_parto in ('cesareo','naturale')
