@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex thesis"] 1750758578.74503 "thesis.aux" "thesis.bbl" "thesis" 1750758964.791 0
+["bibtex thesis"] 1750758578.74503 "thesis.aux" "thesis.bbl" "thesis" 1750867319.81636 0
   "./plain_italian.bst" 1748115837 21772 b9f53fc1e71a9c29c62ec7586a3d5fef ""
   "./thud.bib" 1750711602 3518 b36706a510dfc10abd75861a85260ffb ""
-  "thesis.aux" 1750758959 27425 0bb1ee29524ceac8ab165e96e0dff0a6 "lualatex"
+  "thesis.aux" 1750867314 27425 0bb1ee29524ceac8ab165e96e0dff0a6 "lualatex"
   (generated)
   "thesis.bbl"
   "thesis.blg"
   (rewritten before read)
-["lualatex"] 1750758953.32978 "c:/Users/salva/Andrea/uni/tesi triennale/tesi/thesis.tex" "thesis.pdf" "thesis" 1750758964.79161 0
+["lualatex"] 1750867307.65487 "c:/Users/salva/Andrea/uni/tesi triennale/tesi/thesis.tex" "thesis.pdf" "thesis" 1750867319.81727 0
   "//?/c:/users/salva/appdata/local/programs/miktex/fonts/opentype/public/fontawesome5/fontawesome5free-solid-900.otf" 1651500229 303808 70a8db554e533dec02a44c3d28fd3c40 ""
   "//?/c:/users/salva/appdata/local/programs/miktex/fonts/opentype/public/lm/lmmono10-regular.otf" 1256929440 64684 c6f5a48921f83c1a51d9384f785ddd5a ""
   "//?/c:/users/salva/appdata/local/programs/miktex/fonts/opentype/public/lm/lmmono9-regular.otf" 1256929440 63076 649b48710517d49fb67ce305ff6982d9 ""
@@ -237,7 +237,7 @@
   "banners/banner_uniud_italian.pdf" 1748115837 311097 43520a8d67752a5d14b2af2b86c05575 ""
   "book.thud.tex" 1748115837 8455 cc88fdb259aa89be92cf1f36cf80a0cc ""
   "c:/Users/salva/Andrea/uni/tesi triennale/tesi/thesis.tex" 1750757317 5644 9256daa4def6d2be91c4ba9a51c8c497 ""
-  "pdfa.xmpi" 1750758954 5042 2f7b81a38b50e3ae0a50383f936b5062 "lualatex"
+  "pdfa.xmpi" 1750867309 5042 63b4c5df82cb284b6bc2e226a7b16c67 "lualatex"
   "svg-inkscape/modello-er-originale-gravidanza_svg-tex.pdf" 1750694231 32267 011b5c5ce4000dc98388061e66fc52ac ""
   "svg-inkscape/modello-er-originale-gravidanza_svg-tex.pdf_tex" 1750694231 16435 df11ea7c433512dab9f14e33a16fea28 ""
   "svg-inkscape/modello-er-originale-neonato_svg-tex.pdf" 1750693869 20213 490ab22af9977b61603130087f086e58 ""
@@ -271,14 +271,14 @@
   "thesis-conclusione.tex" 1750756229 4482 f67cf0472e2f23cff11bcc31ca029d91 ""
   "thesis-fisica.tex" 1750756229 44686 c81fb8ed3d66eecee8998370efafb026 ""
   "thesis-funzionalita.tex" 1750756229 7948 16701e2ec8a60161445482f452351f08 ""
-  "thesis-inizio.tex" 1750758952 2114 74fd0314786ed0effe6af94c6982c2ad ""
+  "thesis-inizio.tex" 1750867306 2275 03793ee27541cd00963ba53b9dd51b56 ""
   "thesis-intro.tex" 1750755855 3465 ebb61b5f34cd2160ba6fa0fe3263a047 ""
   "thesis-logica.tex" 1750695295 18390 a98c86341486078ac7b4f7842e75ed00 ""
-  "thesis.aux" 1750758959 27425 0bb1ee29524ceac8ab165e96e0dff0a6 "lualatex"
+  "thesis.aux" 1750867314 27425 0bb1ee29524ceac8ab165e96e0dff0a6 "lualatex"
   "thesis.bbl" 1750758578 2556 7bae52aeceac618351b1984443536299 "bibtex thesis"
-  "thesis.out" 1750758959 10823 a0ecc891199c0bbccb7323ecdd4d77bc "lualatex"
+  "thesis.out" 1750867314 10823 a0ecc891199c0bbccb7323ecdd4d77bc "lualatex"
   "thesis.tex" 1750757317 5644 9256daa4def6d2be91c4ba9a51c8c497 ""
-  "thesis.toc" 1750758959 6125 71f9a999be73f276d54331ca037c3f4b "lualatex"
+  "thesis.toc" 1750867314 6125 71f9a999be73f276d54331ca037c3f4b "lualatex"
   "thud.cls" 1748115837 6945 34fd740a843e0f4c23172ea0cfac1b63 ""
   (generated)
   "pdfa.xmpi"
